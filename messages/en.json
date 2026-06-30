@@ -1,0 +1,215 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "gallery": "Gallery",
+    "flavors": "Flavors",
+    "order": "Order",
+    "prices": "Prices",
+    "faq": "FAQ",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Chrisi Cake",
+    "subtitle": "Custom Cakes to Order",
+    "description": "Handcrafted dream cakes for your unforgettable moments — made with love and the finest ingredients.",
+    "cta": "Order Now",
+    "note": "Minimum order: 8–10 persons"
+  },
+  "about": {
+    "title": "About Me",
+    "p1": "Hello! I'm Christina, the founder of Chrisi Cake. My passion for baking began in childhood, when I stood in the kitchen with my grandmother and discovered the magic of baking.",
+    "p2": "Today I create every cake with dedication, using only high-quality, fresh ingredients. For me, every cake is a unique work of art — I work exclusively with modern decoration techniques and completely avoid fondant.",
+    "p3": "I'm based in Bern, Switzerland, and I look forward to crowning your special occasion with an unforgettable cake.",
+    "badge1": "Fresh Ingredients",
+    "badge2": "Modern Techniques",
+    "badge3": "No Fondant",
+    "badge4": "Handmade"
+  },
+  "gallery": {
+    "title": "Gallery",
+    "subtitle": "A glimpse into my creations"
+  },
+  "flavors": {
+    "title": "Flavor Worlds",
+    "subtitle": "Discover my signature creations",
+    "items": {
+      "spinatHimbeere": {
+        "name": "Spinach Raspberry",
+        "desc": "Moist spinach sponge with light cream cheese frosting and fresh raspberries"
+      },
+      "oreo": {
+        "name": "Oreo",
+        "desc": "Chocolate sponge with delicate vanilla cream and crunchy Oreo crumbles"
+      },
+      "spinatZitrone": {
+        "name": "Spinach Lemon",
+        "desc": "Airy spinach sponge with refreshing lemon cream"
+      },
+      "schockiOrange": {
+        "name": "Choco Orange",
+        "desc": "Dark chocolate sponge with fruity orange cream"
+      },
+      "caramelBanane": {
+        "name": "Caramel Banana",
+        "desc": "Vanilla sponge with silky caramel and fresh bananas"
+      },
+      "schockiHimbeere": {
+        "name": "Choco Raspberry",
+        "desc": "Intense chocolate sponge with cream cheese frosting and raspberries"
+      },
+      "snickers": {
+        "name": "Snickers",
+        "desc": "Chocolate sponge with caramel peanut cream — a true indulgence"
+      },
+      "rotVelvetErdbeere": {
+        "name": "Red Velvet Strawberry",
+        "desc": "Classic red velvet sponge with strawberry jam and vanilla cream"
+      },
+      "vanillaErdbeere": {
+        "name": "Vanilla Strawberry",
+        "desc": "Fine vanilla sponge with cream cheese frosting and fresh strawberries"
+      },
+      "vanillaHimbeere": {
+        "name": "Vanilla Raspberry",
+        "desc": "Delicate vanilla sponge with cream cheese frosting and fresh raspberries"
+      }
+    }
+  },
+  "order": {
+    "title": "Order a Cake",
+    "subtitle": "Configure your dream cake",
+    "flavorLabel": "Choose Flavor",
+    "flavorPlaceholder": "Please select a flavor",
+    "guestsLabel": "Number of Guests",
+    "guestsPlaceholder": "Minimum 10 persons",
+    "dateLabel": "Pickup Date",
+    "datePlaceholder": "Select a date",
+    "dateNote": "Pickup is available Monday to Saturday after 18:00. Sundays are closed.",
+    "timeNote": "Self-pickup available after 18:00",
+    "referenceLabel": "Attach Reference Photo",
+    "referenceBtn": "Attach cake photo",
+    "referenceNote": "JPG, PNG or PDF, max 10 MB",
+    "nameLabel": "Your Name",
+    "namePlaceholder": "Full name",
+    "emailLabel": "Email",
+    "emailPlaceholder": "your@email.com",
+    "phoneLabel": "Phone",
+    "phonePlaceholder": "+41 ...",
+    "detailsLabel": "Additional Requests",
+    "detailsPlaceholder": "Decoration, allergies, special wishes...",
+    "submitBtn": "Send Booking Request",
+    "importantNote": "I work exclusively with modern decoration techniques — no fondant!",
+    "legalNote": "Your order is only confirmed once you receive a personal confirmation from me (by email or phone).",
+    "successTitle": "Request Sent!",
+    "successMsg": "Thank you! I will get back to you as soon as possible.",
+    "minGuests": "Minimum order: 10 persons",
+    "sundayError": "Sunday is not available. Please choose another day."
+  },
+  "prices": {
+    "title": "Prices",
+    "subtitle": "Pricing",
+    "intro": "Prices for my cakes vary depending on weight, design complexity and choice of ingredients.",
+    "items": [
+      {
+        "label": "Base price",
+        "value": "from 100.- CHF",
+        "desc": "Per cake (10 persons)"
+      },
+      {
+        "label": "Two-tier cakes",
+        "value": "from 230.- CHF",
+        "desc": "From 18 persons"
+      },
+      {
+        "label": "Extra decorations",
+        "value": "by effort",
+        "desc": "Edible photos, fresh flowers, cake toppers"
+      },
+      {
+        "label": "Individual quote",
+        "value": "on request",
+        "desc": "Since every cake is unique, I'm happy to create a personal quote"
+      }
+    ],
+    "ctaLabel": "Enquire Now"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "items": [
+      {
+        "q": "What is the minimum order quantity?",
+        "a": "To guarantee the quality and freshness of my creations, I accept orders for a minimum of 10 persons."
+      },
+      {
+        "q": "When can I pick up my order?",
+        "a": "Pickup is available Monday to Saturday after 18:00."
+      },
+      {
+        "q": "Are you open on Sundays?",
+        "a": "Please note that I do not work on Sundays and no pickups or deliveries are possible on this day."
+      },
+      {
+        "q": "How far in advance do I need to order?",
+        "a": "Please place your order at least 5 days before your desired date."
+      },
+      {
+        "q": "How does payment work?",
+        "a": "To reserve the date, a deposit of 30.- CHF is required by bank transfer or Twint. The remaining balance is paid at pickup."
+      },
+      {
+        "q": "How does the ordering process work?",
+        "a": "Your order is only officially confirmed once you receive a personal confirmation from me (by email or phone)."
+      },
+      {
+        "q": "Do you work with fondant?",
+        "a": "No, I work exclusively with modern decoration techniques and completely avoid fondant."
+      }
+    ]
+  },
+  "testimonials": {
+    "title": "What My Customers Say",
+    "items": [
+      {
+        "name": "Anna M.",
+        "text": "The cake was absolutely beautiful and incredibly delicious! Christina perfectly fulfilled my wishes. All guests were thrilled!",
+        "stars": 5
+      },
+      {
+        "name": "Michael S.",
+        "text": "Ordered for the second time and top quality again! You can really taste the quality of the ingredients. Highly recommended!",
+        "stars": 5
+      },
+      {
+        "name": "Sabrina K.",
+        "text": "Dreamy wedding cake, exactly as I imagined it. Professional, punctual and simply delicious. Thank you Christina!",
+        "stars": 5
+      }
+    ]
+  },
+  "storage": {
+    "title": "Transport & Storage",
+    "subtitle": "Recommendations for delivery and storage",
+    "tips": [
+      "If you're arriving by car, you can place the cake on the floor of the passenger seat. Make sure it stands at a 90-degree angle to the floor.",
+      "Do not hold the cake by the handle, as it is heavy and could break.",
+      "I strongly recommend always keeping the cake at a 90-degree angle.",
+      "The cake can only be stored in the refrigerator. If the temperature allows, it can also be stored in a box on the balcony (+3, +5 degrees).",
+      "The cake's shelf life is 3 days (72 hours).",
+      "If the cake is multi-tiered, there are stands and food tubes under each tier, along with a wooden center axis."
+    ]
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Do you have questions or would you like to order a cake for your event? I look forward to your message!",
+    "email": "chrisicake@gmail.com",
+    "phone": "+41 76 223 61 26",
+    "location": "Bern, Switzerland",
+    "instagram": "@chrisicake",
+    "instagramUrl": "https://www.instagram.com/chrisicake"
+  },
+  "footer": {
+    "copy": "© 2024 Chrisi Cake. All rights reserved.",
+    "madein": "Handmade with love in Bern, Switzerland"
+  }
+}

@@ -1,0 +1,215 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "Über mich",
+    "gallery": "Galerie",
+    "flavors": "Geschmackswelten",
+    "order": "Bestellen",
+    "prices": "Preise",
+    "faq": "FAQ",
+    "contact": "Kontakt"
+  },
+  "hero": {
+    "title": "Chrisi Cake",
+    "subtitle": "Torten auf Bestellung",
+    "description": "Handgefertigte Traumtorten für Ihre unvergesslichen Momente — mit Liebe und den feinsten Zutaten gemacht.",
+    "cta": "Jetzt bestellen",
+    "note": "Mindestbestellung: 8–10 Personen"
+  },
+  "about": {
+    "title": "Über mich",
+    "p1": "Hallo! Ich bin Christina, die Gründerin von Chrisi Cake. Meine Leidenschaft für das Backen begann in meiner Kindheit, als ich mit meiner Großmutter in der Küche stand und die Magie des Backens entdeckte.",
+    "p2": "Heute kreiere ich jede Torte mit Hingabe und verwende ausschließlich hochwertige, frische Zutaten. Für mich ist jede Torte ein einzigartiges Kunstwerk — ich arbeite ausschließlich mit modernen Dekorationstechniken und verzichte komplett auf Fondant (Mastika).",
+    "p3": "Ich bin in Bern, Schweiz ansässig und freue mich darauf, Ihren besonderen Anlass mit einer unvergesslichen Torte zu krönen.",
+    "badge1": "Frische Zutaten",
+    "badge2": "Moderne Techniken",
+    "badge3": "Kein Fondant",
+    "badge4": "Handgemacht"
+  },
+  "gallery": {
+    "title": "Galerie",
+    "subtitle": "Einblicke in meine Kreationen"
+  },
+  "flavors": {
+    "title": "Geschmackswelten",
+    "subtitle": "Entdecken Sie meine Signature-Kreationen",
+    "items": {
+      "spinatHimbeere": {
+        "name": "Spinat Himbeere",
+        "desc": "Saftiger Spinatbiskuit mit leichter Frischkäsecreme und frischen Himbeeren"
+      },
+      "oreo": {
+        "name": "Oreo",
+        "desc": "Schokoladenbiskuit mit zarter Vanillecreme und knusprigen Oreo-Bröseln"
+      },
+      "spinatZitrone": {
+        "name": "Spinat Zitrone",
+        "desc": "Luftiger Spinatbiskuit mit erfrischender Zitronencreme"
+      },
+      "schockiOrange": {
+        "name": "Schoki Orange",
+        "desc": "Dunkler Schokoladenbiskuit mit fruchtiger Orangencreme"
+      },
+      "caramelBanane": {
+        "name": "Caramel Banane",
+        "desc": "Vanillebiskuit mit seidigem Karamell und frischen Bananen"
+      },
+      "schockiHimbeere": {
+        "name": "Schoki Himbeere",
+        "desc": "Intensiver Schokoladenbiskuit mit Frischkäsecreme und Himbeeren"
+      },
+      "snickers": {
+        "name": "Snickers",
+        "desc": "Schokoladenbiskuit mit Karamell-Erdnuss-Creme — ein wahrer Genuss"
+      },
+      "rotVelvetErdbeere": {
+        "name": "Rot Velvet Erdbeere",
+        "desc": "Klassischer Red-Velvet-Biskuit mit Erdbeerkonfitüre und Vanillecreme"
+      },
+      "vanillaErdbeere": {
+        "name": "Vanilla Erdbeere",
+        "desc": "Feiner Vanillebiskuit mit Frischkäsecreme und frischen Erdbeeren"
+      },
+      "vanillaHimbeere": {
+        "name": "Vanilla Himbeere",
+        "desc": "Zarter Vanillebiskuit mit Frischkäsecreme und frischen Himbeeren"
+      }
+    }
+  },
+  "order": {
+    "title": "Torte bestellen",
+    "subtitle": "Konfigurieren Sie Ihre Traumtorte",
+    "flavorLabel": "Geschmack wählen",
+    "flavorPlaceholder": "Bitte wählen Sie einen Geschmack",
+    "guestsLabel": "Anzahl der Gäste",
+    "guestsPlaceholder": "Mindestens 10 Personen",
+    "dateLabel": "Abholdatum",
+    "datePlaceholder": "Datum wählen",
+    "dateNote": "Abholung ist von Montag bis Samstag nach 18:00 Uhr möglich. Sonntag ist geschlossen.",
+    "timeNote": "Selbstabholung möglich nach 18:00 Uhr",
+    "referenceLabel": "Referenzfoto anhängen",
+    "referenceBtn": "Foto der Torte anhängen",
+    "referenceNote": "JPG, PNG oder PDF, max. 10 MB",
+    "nameLabel": "Ihr Name",
+    "namePlaceholder": "Vollständiger Name",
+    "emailLabel": "E-Mail",
+    "emailPlaceholder": "ihre@email.com",
+    "phoneLabel": "Telefon",
+    "phonePlaceholder": "+41 ...",
+    "detailsLabel": "Zusätzliche Wünsche",
+    "detailsPlaceholder": "Dekoration, Allergien, besondere Wünsche...",
+    "submitBtn": "Buchungsanfrage senden",
+    "importantNote": "Ich arbeite ausschließlich mit modernen Dekorationstechniken — kein Fondant (Mastika)!",
+    "legalNote": "Ihre Bestellung gilt erst dann als bestätigt, wenn Sie von mir eine persönliche Bestätigung (per E-Mail oder Telefon) erhalten haben.",
+    "successTitle": "Anfrage gesendet!",
+    "successMsg": "Vielen Dank! Ich melde mich so bald wie möglich bei Ihnen.",
+    "minGuests": "Mindestbestellung: 10 Personen",
+    "sundayError": "Sonntag ist leider nicht möglich. Bitte wählen Sie einen anderen Tag."
+  },
+  "prices": {
+    "title": "Preise",
+    "subtitle": "Preisgestaltung",
+    "intro": "Die Preise für meine Torten variieren je nach Gewicht, Komplexität des Designs und der Wahl der Zutaten.",
+    "items": [
+      {
+        "label": "Basispreis",
+        "value": "ab 100.- CHF",
+        "desc": "Pro Torte (10 Personen)"
+      },
+      {
+        "label": "Zweistöckige Torten",
+        "value": "ab 230.- CHF",
+        "desc": "Ab 18 Personen"
+      },
+      {
+        "label": "Zusatzdekorationen",
+        "value": "nach Aufwand",
+        "desc": "Essbare Fotos, frische Blumen, Cake-Topper"
+      },
+      {
+        "label": "Individuelles Angebot",
+        "value": "auf Anfrage",
+        "desc": "Da jede Torte ein Unikat ist, erstelle ich gerne ein persönliches Angebot"
+      }
+    ],
+    "ctaLabel": "Jetzt anfragen"
+  },
+  "faq": {
+    "title": "Häufig gestellte Fragen",
+    "items": [
+      {
+        "q": "Wie hoch ist die Mindestbestellmenge?",
+        "a": "Um die Qualität und Frische meiner Kreationen zu garantieren, nehme ich Bestellungen ab einer Mindestanzahl von 10 Personen entgegen."
+      },
+      {
+        "q": "Wann kann ich meine Bestellung abholen?",
+        "a": "Da ich mich voll auf die Zubereitung Ihrer Torten konzentriere, ist die Abholung Ihrer Bestellung von Montag bis Samstag jeweils nach 18:00 Uhr möglich."
+      },
+      {
+        "q": "Haben Sie sonntags geöffnet?",
+        "a": "Bitte beachten Sie, dass ich am Sonntag nicht arbeite und an diesem Tag keine Abholungen oder Lieferungen möglich sind."
+      },
+      {
+        "q": "Wie weit im Voraus muss ich bestellen?",
+        "a": "Damit ich Ihre Torte mit der nötigen Sorgfalt und Frische zubereiten kann, bitte ich Sie, Ihre Bestellung mindestens 5 Tage vor Ihrem Wunschtermin aufzugeben."
+      },
+      {
+        "q": "Wie läuft die Bezahlung ab?",
+        "a": "Um den Termin verbindlich zu reservieren, wird eine Anzahlung in Höhe von 30.- CHF per Banküberweisung oder Twint fällig. Der Restbetrag wird dann bequem bei der Abholung beglichen."
+      },
+      {
+        "q": "Wie ist der Ablauf der Bestellung?",
+        "a": "Bitte beachten Sie, dass Ihre Bestellung erst dann offiziell bestätigt ist, wenn Sie von mir eine persönliche Bestätigung (per E-Mail oder Telefon) erhalten haben."
+      },
+      {
+        "q": "Arbeiten Sie mit Fondant/Mastika?",
+        "a": "Nein, bei meinen Kreationen arbeite ich ausschließlich mit modernen Dekorationstechniken und verzichte komplett auf die Verwendung von Fondant (Mastika)."
+      }
+    ]
+  },
+  "testimonials": {
+    "title": "Was meine Kunden sagen",
+    "items": [
+      {
+        "name": "Anna M.",
+        "text": "Die Torte war absolut wunderschön und unglaublich lecker! Christina hat meine Wünsche perfekt umgesetzt. Alle Gäste waren begeistert!",
+        "stars": 5
+      },
+      {
+        "name": "Michael S.",
+        "text": "Zum zweiten Mal bestellt und wieder top! Die Qualität der Zutaten schmeckt man wirklich. Sehr empfehlenswert!",
+        "stars": 5
+      },
+      {
+        "name": "Sabrina K.",
+        "text": "Traumhafte Hochzeitstorte, genau wie ich sie mir vorgestellt habe. Professionell, pünktlich und einfach köstlich. Danke Christina!",
+        "stars": 5
+      }
+    ]
+  },
+  "storage": {
+    "title": "Transport & Lagerung",
+    "subtitle": "Empfehlungen für Lieferung und Lagerung",
+    "tips": [
+      "Wenn Sie mit dem Auto anreisen, können Sie die Torte auf den Boden des Beifahrersitzes stellen. Achten Sie darauf, dass sie im 90-Grad-Winkel zum Boden steht.",
+      "Fassen Sie die Torte nicht am Griff an, da sie schwer ist und zerbrechen könnte.",
+      "Ich empfehle dringend, die Torte immer im 90-Grad-Winkel zu halten.",
+      "Der Kuchen kann nur im Kühlschrank aufbewahrt werden. Wenn die Temperatur es zulässt, kann man ihn auch in einer Schachtel auf dem Balkon (+3, +5 Grad) lagern.",
+      "Die Haltbarkeit des Kuchens beträgt 3 Tage (72 Stunden).",
+      "Wenn die Torte mehrstöckig ist, dann befinden sich unter jeder Etage ein Ständer und Lebensmittelröhren, und dies ist die hölzerne Mittelachse."
+    ]
+  },
+  "contact": {
+    "title": "Kontakt",
+    "subtitle": "Haben Sie Fragen oder möchten Sie eine Torte für Ihren Anlass anfragen? Ich freue mich auf Ihre Nachricht!",
+    "email": "chrisicake@gmail.com",
+    "phone": "+41 76 223 61 26",
+    "location": "Bern, Schweiz",
+    "instagram": "@chrisicake",
+    "instagramUrl": "https://www.instagram.com/chrisicake"
+  },
+  "footer": {
+    "copy": "© 2024 Chrisi Cake. Alle Rechte vorbehalten.",
+    "madein": "Handgemacht mit Liebe in Bern, Schweiz"
+  }
+}
