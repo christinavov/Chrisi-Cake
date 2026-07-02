@@ -77,7 +77,7 @@ export default function Header() {
           <button onClick={() => scrollTo("hero")} className="flex items-center gap-2 flex-shrink-0">
             <div className="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden border-2 border-pink-200 shadow">
               <Image
-                src="/images/logo.png"
+                src="/images/logo.jpg"
                 alt="Chrisi Cake"
                 width={48}
                 height={48}

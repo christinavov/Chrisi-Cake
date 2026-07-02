@@ -23,7 +23,7 @@ export default function About() {
             <div className="absolute inset-0 bg-gradient-to-br from-pink-200 to-rose-200 rounded-3xl rotate-6 opacity-60" />
             <div className="absolute inset-0 bg-white rounded-3xl shadow-xl overflow-hidden">
               <Image
-                src="/images/logo.png"
+                src="/images/logo.jpg"
                 alt="Chrisi Cake"
                 fill
                 className="object-cover p-4"

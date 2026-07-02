@@ -28,7 +28,7 @@ export default function Hero() {
         <div className="flex justify-center mb-6 md:mb-8">
           <div className="w-36 h-36 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-white shadow-2xl shadow-pink-200">
             <Image
-              src="/images/logo.png"
+              src="/images/logo.jpg"
               alt="Chrisi Cake"
               width={192}
               height={192}
