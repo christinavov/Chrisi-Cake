@@ -165,6 +165,10 @@
       {
         "q": "Do you work with fondant?",
         "a": "No, I work exclusively with modern decoration techniques and completely avoid fondant."
+      },
+      {
+        "q": "Where can I pick up my order?",
+        "a": "Pickup is in Bern, Lorraine, 3013."
       }
     ]
   },
