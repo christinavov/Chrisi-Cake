@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import { Leaf, Sparkles, Ban, Heart } from "lucide-react";
+import { Leaf, Sparkles, Ban, Heart, Instagram } from "lucide-react";
 
 export default function About() {
   const t = useTranslations("about");
@@ -53,7 +53,7 @@ export default function About() {
           </div>
 
           {/* Badges */}
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-2 gap-3 mb-6">
             {badges.map(({ icon: Icon, key }) => (
               <div
                 key={key}
@@ -66,6 +66,17 @@ export default function About() {
               </div>
             ))}
           </div>
+
+          {/* Instagram button */}
+          <a
+            href="https://www.instagram.com/chrisicake"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center gap-3 w-full py-3 px-6 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 text-white font-semibold rounded-2xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
+          >
+            <Instagram size={20} />
+            @chrisicake
+          </a>
         </div>
       </div>
     </section>
