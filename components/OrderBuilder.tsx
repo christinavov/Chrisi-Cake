@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { useTranslations } from "next-intl";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { Upload, AlertTriangle, CheckCircle2, Info } from "lucide-react";
+import { AlertTriangle, CheckCircle2, MessageCircle } from "lucide-react";
 
 type FlavorKey =
   | "spinatHimbeere"
@@ -51,7 +51,6 @@ export default function OrderBuilder() {
   const [flavor, setFlavor] = useState("");
   const [guests, setGuests] = useState("");
   const [date, setDate] = useState<Date | null>(null);
-  const [files, setFiles] = useState<File[]>([]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -59,7 +58,6 @@ export default function OrderBuilder() {
   const [submitted, setSubmitted] = useState(false);
   const [dateError, setDateError] = useState("");
   const [guestsError, setGuestsError] = useState("");
-  const fileRef = useRef<HTMLInputElement>(null);
 
   const handleDateChange = (d: Date | null) => {
     setDateError("");
@@ -81,7 +79,6 @@ export default function OrderBuilder() {
     }
 
     const body = new FormData();
-    const fileNames = files.map((f) => f.name).join(", ");
 
     try {
       await fetch("https://api.web3forms.com/submit", {
@@ -216,51 +213,21 @@ export default function OrderBuilder() {
             </div>
           </div>
 
-          {/* File upload */}
-          <div>
-            <label className="block text-sm font-semibold text-pink-800 mb-2">{t("referenceLabel")}</label>
-            <input
-              type="file"
-              ref={fileRef}
-              accept="image/*"
-              multiple
-              className="hidden"
-              onChange={(e) => {
-                const selected = Array.from(e.target.files ?? []);
-                setFiles((prev) => {
-                  const combined = [...prev, ...selected];
-                  return combined.slice(0, 3);
-                });
-                e.target.value = "";
-              }}
-            />
-            <button
-              type="button"
-              onClick={() => fileRef.current?.click()}
-              disabled={files.length >= 3}
-              className="w-full flex items-center justify-center gap-2 px-4 py-3 border-2 border-dashed border-pink-200 rounded-xl text-pink-600 hover:bg-pink-50 hover:border-pink-400 transition-all text-sm font-medium disabled:opacity-40 disabled:cursor-not-allowed"
-            >
-              <Upload size={18} />
-              {files.length >= 3 ? t("referenceMax") : t("referenceBtn")}
-            </button>
-            {files.length > 0 && (
-              <div className="mt-2 space-y-1">
-                {files.map((f, i) => (
-                  <div key={i} className="flex items-center justify-between bg-pink-50 border border-pink-100 rounded-lg px-3 py-2 text-sm text-pink-700">
-                    <span className="truncate">{f.name}</span>
-                    <button
-                      type="button"
-                      onClick={() => setFiles((prev) => prev.filter((_, idx) => idx !== i))}
-                      className="ml-2 text-pink-400 hover:text-pink-600 flex-shrink-0"
-                    >
-                      ×
-                    </button>
-                  </div>
-                ))}
-              </div>
-            )}
-            <p className="mt-1 text-xs text-gray-400">{t("referenceNote")}</p>
-          </div>
+          {/* WhatsApp reference block */}
+          <a
+            href="https://wa.me/41762236126"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-4 bg-green-50 border-2 border-green-200 hover:border-green-400 hover:bg-green-100 rounded-2xl px-5 py-4 transition-all group"
+          >
+            <div className="w-12 h-12 bg-green-500 group-hover:bg-green-600 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors">
+              <MessageCircle size={24} className="text-white" />
+            </div>
+            <div>
+              <p className="font-bold text-green-800 text-sm">{t("whatsappBlockTitle")}</p>
+              <p className="text-green-700 text-xs mt-0.5">{t("whatsappBlockNote")}</p>
+            </div>
+          </a>
 
           <div className="border-t border-pink-100 pt-6 space-y-4">
             {/* Name */}
