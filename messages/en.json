@@ -147,7 +147,12 @@
     ],
     "ctaLabel": "Enquire Now",
     "twintTitle": "💳 Prepayment via Twint",
-    "twintNote": "I work exclusively with prepayment. After order confirmation, a deposit of 30 CHF is due via Twint. The remaining balance is paid at pickup."
+    "twintNote": "I work exclusively with prepayment. After order confirmation, a deposit of 30 CHF is due via Twint. The remaining balance is paid at pickup.",
+    "exampleNote": "Prices are for the minimum cake (10 persons)",
+    "exampleBerries": "🍓 With berries & chocolate",
+    "examplePrint": "🖨️ With edible photo print",
+    "exampleFlowers": "🌸 With fresh flowers",
+    "exampleBottle": "🍾 With alcohol bottle"
   },
   "faq": {
     "title": "Frequently Asked Questions",

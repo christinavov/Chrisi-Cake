@@ -2,6 +2,33 @@
 
 import { useTranslations } from "next-intl";
 import { ChevronRight, CreditCard } from "lucide-react";
+import Image from "next/image";
+
+const exampleCakes = [
+  {
+    images: [
+      "/images/gallery/photo_2026-07-03_21-02-13.jpg",
+      "/images/gallery/photo_2026-07-03_21-01-31.jpg",
+    ],
+    labelKey: "exampleBerries",
+    price: "ab 100 CHF",
+  },
+  {
+    images: ["/images/gallery/photo_2026-07-03_21-02-28.jpg"],
+    labelKey: "examplePrint",
+    price: "ab 110 CHF",
+  },
+  {
+    images: ["/images/gallery/photo_2026-07-03_21-01-28.jpg"],
+    labelKey: "exampleFlowers",
+    price: "ab 120 CHF",
+  },
+  {
+    images: ["/images/gallery/photo_2026-07-03_21-02-33.jpg"],
+    labelKey: "exampleBottle",
+    price: "ab 120 CHF",
+  },
+];
 
 const icons = ["🎂", "🏰", "✨", "💌"];
 
@@ -33,6 +60,28 @@ export default function Prices() {
             <p className="text-xs text-gray-500 flex-grow">{item.desc}</p>
           </div>
         ))}
+      </div>
+
+      {/* Example cakes */}
+      <div className="mb-10">
+        <p className="text-center text-gray-500 text-sm mb-6">* {t("exampleNote")}</p>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {exampleCakes.map((cake, i) => (
+            <div key={i} className="bg-white/90 border border-pink-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300">
+              <div className={`grid ${cake.images.length > 1 ? "grid-cols-2" : "grid-cols-1"} gap-0.5`}>
+                {cake.images.map((src, j) => (
+                  <div key={j} className="relative aspect-square">
+                    <Image src={src} alt={t(cake.labelKey)} fill className="object-cover" />
+                  </div>
+                ))}
+              </div>
+              <div className="p-4 text-center">
+                <p className="text-sm font-medium text-gray-700 mb-1">{t(cake.labelKey)}</p>
+                <p className="text-xl font-bold text-pink-600">{cake.price}</p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Twint / Prepayment notice */}

@@ -147,7 +147,12 @@
     ],
     "ctaLabel": "Jetzt anfragen",
     "twintTitle": "💳 Vorauszahlung via Twint",
-    "twintNote": "Ich arbeite ausschließlich mit Vorauszahlung. Nach Bestätigung der Bestellung wird eine Anzahlung von 30 CHF via Twint fällig. Der Restbetrag ist bei der Abholung zu begleichen."
+    "twintNote": "Ich arbeite ausschließlich mit Vorauszahlung. Nach Bestätigung der Bestellung wird eine Anzahlung von 30 CHF via Twint fällig. Der Restbetrag ist bei der Abholung zu begleichen.",
+    "exampleNote": "Preise gelten für die Mindesttorte (10 Personen)",
+    "exampleBerries": "🍓 Mit Beeren & Schokolade",
+    "examplePrint": "🖨️ Mit essbarem Foto-Druck",
+    "exampleFlowers": "🌸 Mit frischen Blumen",
+    "exampleBottle": "🍾 Mit Alkoholflasche"
   },
   "faq": {
     "title": "Häufig gestellte Fragen",
