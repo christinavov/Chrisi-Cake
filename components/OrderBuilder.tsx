@@ -74,7 +74,7 @@ export default function OrderBuilder() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!flavor || !guests || !date || !name || !email) return;
+    if (!flavor || !guests || !date || !name || !email || !phone) return;
     if (parseInt(guests) < 10) {
       setGuestsError(t("minGuestsError"));
       return;
@@ -250,12 +250,13 @@ export default function OrderBuilder() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-semibold text-pink-800 mb-2">{t("phoneLabel")}</label>
+                <label className="block text-sm font-semibold text-pink-800 mb-2">{t("phoneLabel")} *</label>
                 <input
                   type="tel"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   placeholder={t("phonePlaceholder")}
+                  required
                   className="w-full px-4 py-3 border border-pink-200 rounded-xl bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-pink-300 focus:border-pink-400 transition-all placeholder:text-gray-400"
                 />
               </div>
