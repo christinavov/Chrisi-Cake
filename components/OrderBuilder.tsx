@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { AlertTriangle, CheckCircle2, MessageCircle } from "lucide-react";
+import { AlertTriangle, CheckCircle2, MessageCircle, Info } from "lucide-react";
 
 type FlavorKey =
   | "spinatHimbeere"
@@ -78,8 +78,6 @@ export default function OrderBuilder() {
       return;
     }
 
-    const body = new FormData();
-
     try {
       await fetch("https://api.web3forms.com/submit", {
         method: "POST",
@@ -94,7 +92,6 @@ export default function OrderBuilder() {
           guests,
           date: date ? date.toLocaleDateString("de-CH") : "",
           details: details || "—",
-          referenceFiles: fileNames || "—",
         }),
       });
     } catch {}
