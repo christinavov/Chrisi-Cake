@@ -104,6 +104,7 @@
     "successTitle": "Request Sent!",
     "successMsg": "Thank you! I will get back to you as soon as possible.",
     "minGuests": "Minimum order: 10 persons",
+    "minGuestsError": "Minimum is 10 persons",
     "sundayError": "Sunday is not available. Please choose another day."
   },
   "prices": {

@@ -104,6 +104,7 @@
     "successTitle": "Anfrage gesendet!",
     "successMsg": "Vielen Dank! Ich melde mich so bald wie möglich bei Ihnen.",
     "minGuests": "Mindestbestellung: 10 Personen",
+    "minGuestsError": "Mindestanzahl ist 10 Personen",
     "sundayError": "Sonntag ist leider nicht möglich. Bitte wählen Sie einen anderen Tag."
   },
   "prices": {

@@ -58,6 +58,7 @@ export default function OrderBuilder() {
   const [details, setDetails] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [dateError, setDateError] = useState("");
+  const [guestsError, setGuestsError] = useState("");
   const fileRef = useRef<HTMLInputElement>(null);
 
   const handleDateChange = (d: Date | null) => {
@@ -74,6 +75,10 @@ export default function OrderBuilder() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!flavor || !guests || !date || !name || !email) return;
+    if (parseInt(guests) < 10) {
+      setGuestsError(t("minGuestsError"));
+      return;
+    }
 
     const body = new FormData();
     body.append("name", name);
@@ -158,12 +163,18 @@ export default function OrderBuilder() {
               type="number"
               min={10}
               value={guests}
-              onChange={(e) => setGuests(e.target.value)}
+              onChange={(e) => { setGuests(e.target.value); setGuestsError(""); }}
               placeholder={t("guestsPlaceholder")}
               required
-              className="w-full px-4 py-3 border border-pink-200 rounded-xl bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-pink-300 focus:border-pink-400 transition-all placeholder:text-gray-400"
+              className={`w-full px-4 py-3 border rounded-xl bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-pink-300 focus:border-pink-400 transition-all placeholder:text-gray-400 ${guestsError ? "border-red-400" : "border-pink-200"}`}
             />
-            <p className="mt-1 text-xs text-gray-400">⚠️ {t("minGuests")}</p>
+            {guestsError ? (
+              <p className="mt-1 text-xs text-red-500 flex items-center gap-1">
+                <AlertTriangle size={12} /> {guestsError}
+              </p>
+            ) : (
+              <p className="mt-1 text-xs text-gray-400">⚠️ {t("minGuests")}</p>
+            )}
           </div>
 
           {/* Date */}
