@@ -72,6 +72,25 @@ export default function Contact() {
             </div>
           ))}
         </div>
+
+        {/* Instagram banner */}
+        <a
+          href="https://www.instagram.com/chrisicake"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-8 flex items-center gap-5 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 rounded-2xl p-6 shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 group"
+        >
+          <div className="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center flex-shrink-0">
+            <Instagram size={30} className="text-white" />
+          </div>
+          <div className="text-white">
+            <p className="font-bold text-lg">@chrisicake</p>
+            <p className="text-white/80 text-sm">{t("instagramFollow")}</p>
+          </div>
+          <div className="ml-auto text-white/80 text-sm font-medium hidden sm:block">
+            {t("instagramCta")} →
+          </div>
+        </a>
       </div>
     </section>
   );

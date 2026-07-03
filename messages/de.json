@@ -237,7 +237,9 @@
     "phone": "+41 76 223 61 26",
     "location": "Bern, Schweiz",
     "instagram": "@chrisicake",
-    "instagramUrl": "https://www.instagram.com/chrisicake"
+    "instagramUrl": "https://www.instagram.com/chrisicake",
+    "instagramFollow": "Folge mir für tägliche Torteninspo ✨",
+    "instagramCta": "Zum Profil"
   },
   "footer": {
     "copy": "© 2024 Chrisi Cake. Alle Rechte vorbehalten.",

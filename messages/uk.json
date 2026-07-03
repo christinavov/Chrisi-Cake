@@ -237,7 +237,9 @@
     "phone": "+41 76 223 61 26",
     "location": "Берн, Швейцарія",
     "instagram": "@chrisicake",
-    "instagramUrl": "https://www.instagram.com/chrisicake"
+    "instagramUrl": "https://www.instagram.com/chrisicake",
+    "instagramFollow": "Підпишись на щоденне натхнення ✨",
+    "instagramCta": "Перейти до профілю"
   },
   "footer": {
     "copy": "© 2024 Chrisi Cake. Всі права захищені.",
