@@ -57,7 +57,7 @@ export default function Testimonials() {
     if (photo) formData.append("photo", photo);
 
     try {
-      await fetch("https://formspree.io/f/xpwzgkbr", {
+      await fetch("https://formspree.io/f/xqevwbzj", {
         method: "POST",
         body: formData,
         headers: { Accept: "application/json" },

@@ -86,7 +86,7 @@ export default function OrderBuilder() {
     if (file) body.append("reference", file);
 
     try {
-      await fetch("https://formspree.io/f/xpwzgkbr", {
+      await fetch("https://formspree.io/f/xqevwbzj", {
         method: "POST",
         body,
         headers: { Accept: "application/json" },
