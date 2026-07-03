@@ -192,7 +192,16 @@ export default function OrderBuilder() {
               type="number"
               min={10}
               value={guests}
-              onChange={(e) => { setGuests(e.target.value); setGuestsError(""); }}
+              onChange={(e) => {
+                const val = e.target.value;
+                if (val === "" || parseInt(val) >= 10) {
+                  setGuests(val);
+                  setGuestsError("");
+                } else {
+                  setGuests("10");
+                  setGuestsError("");
+                }
+              }}
               placeholder={t("guestsPlaceholder")}
               required
               className={`w-full px-4 py-3 border rounded-xl bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-pink-300 focus:border-pink-400 transition-all placeholder:text-gray-400 ${guestsError ? "border-red-400" : "border-pink-200"}`}
