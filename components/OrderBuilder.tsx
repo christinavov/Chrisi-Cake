@@ -81,20 +81,21 @@ export default function OrderBuilder() {
     }
 
     const body = new FormData();
+    body.append("access_key", "9acbede1-9652-4427-9603-023f4a7940e8");
     body.append("name", name);
     body.append("email", email);
+    body.append("subject", `Neue Bestellung von ${name}`);
     body.append("flavor", flavor);
     body.append("guests", guests);
     body.append("date", date ? date.toLocaleDateString("de-CH") : "");
-    body.append("_subject", `Neue Bestellung von ${name}`);
-    body.append("_replyto", email);
+    body.append("phone", phone);
+    if (details) body.append("details", details);
     files.forEach((f, i) => body.append(`reference_${i + 1}`, f));
 
     try {
-      await fetch("https://formspree.io/f/xqevwbzj", {
+      await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         body,
-        headers: { Accept: "application/json" },
       });
     } catch {}
 
