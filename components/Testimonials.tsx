@@ -1,35 +1,79 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Star } from "lucide-react";
+import Image from "next/image";
+import { useState } from "react";
+
+const reviewImages = [
+  "/images/reviews/photo_2026-07-03_20-12-03.jpg",
+  "/images/reviews/photo_2026-07-03_20-12-04.jpg",
+  "/images/reviews/photo_2026-07-03_20-12-05.jpg",
+  "/images/reviews/photo_2026-07-03_20-12-06.jpg",
+  "/images/reviews/photo_2026-07-03_20-12-08.jpg",
+  "/images/reviews/photo_2026-07-03_20-12-09.jpg",
+  "/images/reviews/photo_2026-07-03_20-12-10.jpg",
+  "/images/reviews/photo_2026-07-03_20-12-12.jpg",
+  "/images/reviews/photo_2026-07-03_20-12-13.jpg",
+  "/images/reviews/photo_2026-07-03_20-12-14.jpg",
+  "/images/reviews/photo_2026-07-03_20-12-16.jpg",
+  "/images/reviews/photo_2026-07-03_20-12-17.jpg",
+  "/images/reviews/photo_2026-07-03_20-12-19.jpg",
+  "/images/reviews/photo_2026-07-03_20-12-20.jpg",
+  "/images/reviews/photo_2026-07-03_20-12-22.jpg",
+];
 
 export default function Testimonials() {
   const t = useTranslations("testimonials");
-  const items = t.raw("items") as Array<{ name: string; text: string; stars: number }>;
+  const [selected, setSelected] = useState<string | null>(null);
 
   return (
     <section className="py-20 md:py-28 px-4 max-w-7xl mx-auto">
       <div className="text-center mb-12">
         <h2 className="text-4xl md:text-5xl font-script text-pink-700">{t("title")}</h2>
+        <p className="text-gray-500 mt-3 text-lg">{t("subtitle")}</p>
       </div>
 
-      <div className="grid md:grid-cols-3 gap-6">
-        {items.map((item, i) => (
+      <div className="columns-2 sm:columns-3 lg:columns-4 gap-3 space-y-3">
+        {reviewImages.map((src) => (
           <div
-            key={i}
-            className="bg-white/90 border border-pink-100 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300"
+            key={src}
+            onClick={() => setSelected(src)}
+            className="break-inside-avoid cursor-pointer rounded-2xl overflow-hidden border border-pink-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300"
           >
-            {/* Stars */}
-            <div className="flex gap-1 mb-4">
-              {Array.from({ length: item.stars }).map((_, s) => (
-                <Star key={s} size={16} className="text-pink-400 fill-pink-400" />
-              ))}
-            </div>
-            <p className="text-gray-600 mb-4 italic leading-relaxed">"{item.text}"</p>
-            <p className="font-semibold text-pink-700">— {item.name}</p>
+            <Image
+              src={src}
+              alt="Kundenbewertung"
+              width={400}
+              height={300}
+              className="w-full h-auto object-cover"
+            />
           </div>
         ))}
       </div>
+
+      {/* Lightbox */}
+      {selected && (
+        <div
+          onClick={() => setSelected(null)}
+          className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
+        >
+          <div className="relative max-w-2xl w-full">
+            <Image
+              src={selected}
+              alt="Bewertung"
+              width={800}
+              height={600}
+              className="w-full h-auto rounded-2xl shadow-2xl"
+            />
+            <button
+              onClick={() => setSelected(null)}
+              className="absolute top-3 right-3 bg-white/90 rounded-full w-9 h-9 flex items-center justify-center text-pink-700 font-bold text-lg hover:bg-white transition"
+            >
+              ×
+            </button>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
