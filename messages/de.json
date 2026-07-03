@@ -106,7 +106,8 @@
     "minGuests": "Mindestbestellung: 10 Personen",
     "minGuestsError": "Mindestanzahl ist 10 Personen",
     "sundayError": "Sonntag ist leider nicht möglich. Bitte wählen Sie einen anderen Tag.",
-    "referenceMax": "Maximum erreicht (3 Bilder)"
+    "referenceMax": "Maximum erreicht (3 Bilder)",
+    "whatsappHint": "📸 Bitte sende deine Referenzfotos per WhatsApp an: +41 76 223 61 26"
   },
   "prices": {
     "title": "Preise",

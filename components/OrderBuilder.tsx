@@ -118,6 +118,14 @@ export default function OrderBuilder() {
               <AlertTriangle size={20} className="text-amber-500 flex-shrink-0 mt-0.5" />
               <p className="text-amber-800 font-semibold text-sm">{t("successMsg")}</p>
             </div>
+            <a
+              href="https://wa.me/41762236126"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 w-full py-3 px-4 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-xl transition-all text-sm"
+            >
+              📸 {t("whatsappHint")}
+            </a>
           </div>
         </div>
       </section>

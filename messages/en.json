@@ -106,7 +106,8 @@
     "minGuests": "Minimum order: 10 persons",
     "minGuestsError": "Minimum is 10 persons",
     "sundayError": "Sunday is not available. Please choose another day.",
-    "referenceMax": "Maximum reached (3 images)"
+    "referenceMax": "Maximum reached (3 images)",
+    "whatsappHint": "📸 Please send your reference photos via WhatsApp to: +41 76 223 61 26"
   },
   "prices": {
     "title": "Prices",
