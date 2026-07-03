@@ -63,7 +63,10 @@ export default function Prices() {
 
       {/* Example cakes */}
       <div className="mb-10">
-        <p className="text-center text-gray-500 text-sm mb-6">* {t("exampleNote")}</p>
+        <div className="text-center mb-6">
+          <h3 className="text-2xl md:text-3xl font-script text-pink-700 mb-1">{t("exampleTitle")}</h3>
+          <p className="text-gray-500 text-sm">* {t("exampleNote")}</p>
+        </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {exampleCakes.map((cake, i) => (
             <div key={i} className="bg-white/90 border border-pink-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300">
