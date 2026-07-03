@@ -33,7 +33,7 @@ export default function Header() {
 
   const switchLocale = (newLocale: string) => {
     const newPath = newLocale === "de" ? "/" : `/${newLocale}`;
-    router.push(newPath);
+    window.location.href = newPath;
     setLangOpen(false);
   };
 
