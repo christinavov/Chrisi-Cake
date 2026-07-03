@@ -186,7 +186,18 @@
         "stars": 5
       }
     ],
-    "subtitle": "Настоящие отзывы моих клиентов"
+    "subtitle": "Настоящие отзывы моих клиентов",
+    "formTitle": "Оставить отзыв",
+    "formSubtitle": "Мне важно ваше мнение!",
+    "formRating": "Оценка",
+    "formName": "Ваше имя",
+    "formNamePlaceholder": "например, Анна М.",
+    "formText": "Ваш отзыв",
+    "formTextPlaceholder": "Как вам понравился торт?",
+    "formPhoto": "Фото (необязательно)",
+    "formPhotoHint": "Загрузите фото здесь",
+    "formSubmit": "Отправить отзыв",
+    "formSuccess": "Спасибо за ваш отзыв! 🎉"
   },
   "storage": {
     "title": "Транспортировка и хранение",

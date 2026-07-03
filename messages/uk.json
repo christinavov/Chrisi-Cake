@@ -186,7 +186,18 @@
         "stars": 5
       }
     ],
-    "subtitle": "Справжні відгуки моїх клієнтів"
+    "subtitle": "Справжні відгуки моїх клієнтів",
+    "formTitle": "Залишити відгук",
+    "formSubtitle": "Мені важлива ваша думка!",
+    "formRating": "Оцінка",
+    "formName": "Ваше ім'я",
+    "formNamePlaceholder": "наприклад, Анна М.",
+    "formText": "Ваш відгук",
+    "formTextPlaceholder": "Як вам сподобався торт?",
+    "formPhoto": "Фото (необов'язково)",
+    "formPhotoHint": "Завантажте фото тут",
+    "formSubmit": "Надіслати відгук",
+    "formSuccess": "Дякуємо за ваш відгук! 🎉"
   },
   "storage": {
     "title": "Транспортування та зберігання",

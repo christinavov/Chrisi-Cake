@@ -186,7 +186,18 @@
         "stars": 5
       }
     ],
-    "subtitle": "Echte Bewertungen meiner Kunden"
+    "subtitle": "Echte Bewertungen meiner Kunden",
+    "formTitle": "Bewertung hinterlassen",
+    "formSubtitle": "Ich freue mich über dein Feedback!",
+    "formRating": "Bewertung",
+    "formName": "Dein Name",
+    "formNamePlaceholder": "z. B. Anna M.",
+    "formText": "Deine Bewertung",
+    "formTextPlaceholder": "Wie hat dir die Torte gefallen?",
+    "formPhoto": "Foto (optional)",
+    "formPhotoHint": "Foto hier hochladen",
+    "formSubmit": "Bewertung absenden",
+    "formSuccess": "Vielen Dank für deine Bewertung! 🎉"
   },
   "storage": {
     "title": "Transport & Lagerung",

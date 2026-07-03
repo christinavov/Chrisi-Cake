@@ -186,7 +186,18 @@
         "stars": 5
       }
     ],
-    "subtitle": "Real reviews from my customers"
+    "subtitle": "Real reviews from my customers",
+    "formTitle": "Leave a Review",
+    "formSubtitle": "I'd love to hear your feedback!",
+    "formRating": "Rating",
+    "formName": "Your name",
+    "formNamePlaceholder": "e.g. Anna M.",
+    "formText": "Your review",
+    "formTextPlaceholder": "How did you like the cake?",
+    "formPhoto": "Photo (optional)",
+    "formPhotoHint": "Upload a photo here",
+    "formSubmit": "Submit Review",
+    "formSuccess": "Thank you for your review! 🎉"
   },
   "storage": {
     "title": "Transport & Storage",
