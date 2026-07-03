@@ -51,7 +51,7 @@ export default function OrderBuilder() {
   const [flavor, setFlavor] = useState("");
   const [guests, setGuests] = useState("");
   const [date, setDate] = useState<Date | null>(null);
-  const [file, setFile] = useState<File | null>(null);
+  const [files, setFiles] = useState<File[]>([]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -74,7 +74,7 @@ export default function OrderBuilder() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!flavor || !guests || !date || !name || !email || !phone) return;
+    if (!flavor || !guests || !date || !name || !email || !phone || files.length === 0) return;
     if (parseInt(guests) < 10) {
       setGuestsError(t("minGuestsError"));
       return;
@@ -88,7 +88,7 @@ export default function OrderBuilder() {
     body.append("date", date ? date.toLocaleDateString("de-CH") : "");
     body.append("_subject", `Neue Bestellung von ${name}`);
     body.append("_replyto", email);
-    if (file) body.append("reference", file);
+    files.forEach((f, i) => body.append(`reference_${i + 1}`, f));
 
     try {
       await fetch("https://formspree.io/f/xqevwbzj", {
@@ -206,22 +206,47 @@ export default function OrderBuilder() {
 
           {/* File upload */}
           <div>
-            <label className="block text-sm font-semibold text-pink-800 mb-2">{t("referenceLabel")}</label>
+            <label className="block text-sm font-semibold text-pink-800 mb-2">{t("referenceLabel")} *</label>
             <input
               type="file"
               ref={fileRef}
-              accept="image/*,.pdf"
+              accept="image/*"
+              multiple
               className="hidden"
-              onChange={(e) => setFile(e.target.files?.[0] ?? null)}
+              onChange={(e) => {
+                const selected = Array.from(e.target.files ?? []);
+                setFiles((prev) => {
+                  const combined = [...prev, ...selected];
+                  return combined.slice(0, 3);
+                });
+                e.target.value = "";
+              }}
             />
             <button
               type="button"
               onClick={() => fileRef.current?.click()}
-              className="w-full flex items-center justify-center gap-2 px-4 py-3 border-2 border-dashed border-pink-200 rounded-xl text-pink-600 hover:bg-pink-50 hover:border-pink-400 transition-all text-sm font-medium"
+              disabled={files.length >= 3}
+              className="w-full flex items-center justify-center gap-2 px-4 py-3 border-2 border-dashed border-pink-200 rounded-xl text-pink-600 hover:bg-pink-50 hover:border-pink-400 transition-all text-sm font-medium disabled:opacity-40 disabled:cursor-not-allowed"
             >
               <Upload size={18} />
-              {file ? file.name : t("referenceBtn")}
+              {files.length >= 3 ? t("referenceMax") : t("referenceBtn")}
             </button>
+            {files.length > 0 && (
+              <div className="mt-2 space-y-1">
+                {files.map((f, i) => (
+                  <div key={i} className="flex items-center justify-between bg-pink-50 border border-pink-100 rounded-lg px-3 py-2 text-sm text-pink-700">
+                    <span className="truncate">{f.name}</span>
+                    <button
+                      type="button"
+                      onClick={() => setFiles((prev) => prev.filter((_, idx) => idx !== i))}
+                      className="ml-2 text-pink-400 hover:text-pink-600 flex-shrink-0"
+                    >
+                      ×
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
             <p className="mt-1 text-xs text-gray-400">{t("referenceNote")}</p>
           </div>
 

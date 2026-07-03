@@ -87,9 +87,9 @@
     "datePlaceholder": "Datum wählen",
     "dateNote": "Abholung ist von Montag bis Samstag von 18:00 – 21:00 Uhr möglich. Sonntag ist geschlossen.",
     "timeNote": "Selbstabholung möglich von 18:00 – 21:00 Uhr",
-    "referenceLabel": "Referenzfoto anhängen",
-    "referenceBtn": "Foto der Torte anhängen",
-    "referenceNote": "JPG, PNG oder PDF, max. 10 MB",
+    "referenceLabel": "Referenzfotos (bis zu 3 Bilder)",
+    "referenceBtn": "Fotos hinzufügen (max. 3)",
+    "referenceNote": "JPG oder PNG, max. 10 MB pro Bild",
     "nameLabel": "Ihr Name",
     "namePlaceholder": "Vollständiger Name",
     "emailLabel": "E-Mail",
@@ -105,7 +105,8 @@
     "successMsg": "Deine Anfrage ist bei mir angekommen. Bitte beachte: Deine Bestellung gilt erst dann als bestätigt, wenn du von mir eine persönliche Bestätigung per E-Mail oder Telefon erhalten hast.",
     "minGuests": "Mindestbestellung: 10 Personen",
     "minGuestsError": "Mindestanzahl ist 10 Personen",
-    "sundayError": "Sonntag ist leider nicht möglich. Bitte wählen Sie einen anderen Tag."
+    "sundayError": "Sonntag ist leider nicht möglich. Bitte wählen Sie einen anderen Tag.",
+    "referenceMax": "Maximum erreicht (3 Bilder)"
   },
   "prices": {
     "title": "Preise",

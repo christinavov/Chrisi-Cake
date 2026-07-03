@@ -87,9 +87,9 @@
     "datePlaceholder": "Select a date",
     "dateNote": "Pickup is available Monday to Saturday from 18:00 – 21:00. Closed on Sundays.",
     "timeNote": "Self-pickup possible from 18:00 – 21:00",
-    "referenceLabel": "Attach Reference Photo",
-    "referenceBtn": "Attach cake photo",
-    "referenceNote": "JPG, PNG or PDF, max 10 MB",
+    "referenceLabel": "Reference photos (up to 3 images)",
+    "referenceBtn": "Add photos (max. 3)",
+    "referenceNote": "JPG or PNG, max. 10 MB per image",
     "nameLabel": "Your Name",
     "namePlaceholder": "Full name",
     "emailLabel": "Email",
@@ -105,7 +105,8 @@
     "successMsg": "Your request has been received. Please note: your order is only confirmed once you receive a personal confirmation from me by email or phone.",
     "minGuests": "Minimum order: 10 persons",
     "minGuestsError": "Minimum is 10 persons",
-    "sundayError": "Sunday is not available. Please choose another day."
+    "sundayError": "Sunday is not available. Please choose another day.",
+    "referenceMax": "Maximum reached (3 images)"
   },
   "prices": {
     "title": "Prices",
