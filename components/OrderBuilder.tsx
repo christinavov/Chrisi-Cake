@@ -107,10 +107,13 @@ export default function OrderBuilder() {
     return (
       <section id="order" className="py-20 md:py-28 bg-white/40">
         <div className="max-w-2xl mx-auto px-4 text-center">
-          <div className="bg-white rounded-3xl shadow-xl p-12 border border-pink-100">
-            <CheckCircle2 size={64} className="text-pink-500 mx-auto mb-4" />
-            <h2 className="text-3xl font-script text-pink-700 mb-3">{t("successTitle")}</h2>
-            <p className="text-gray-600">{t("successMsg")}</p>
+          <div className="bg-white rounded-3xl shadow-xl p-12 border border-pink-100 space-y-6">
+            <CheckCircle2 size={64} className="text-pink-500 mx-auto" />
+            <h2 className="text-3xl font-script text-pink-700">{t("successTitle")}</h2>
+            <div className="flex items-start gap-3 bg-amber-50 border-l-4 border-amber-400 rounded-xl p-4 text-left">
+              <AlertTriangle size={20} className="text-amber-500 flex-shrink-0 mt-0.5" />
+              <p className="text-amber-800 font-semibold text-sm">{t("successMsg")}</p>
+            </div>
           </div>
         </div>
       </section>
@@ -276,9 +279,9 @@ export default function OrderBuilder() {
           </div>
 
           {/* Legal note */}
-          <div className="flex items-start gap-2 text-xs text-gray-500 bg-gray-50 rounded-xl p-3">
-            <Info size={14} className="text-gray-400 flex-shrink-0 mt-0.5" />
-            <span>{t("legalNote")}</span>
+          <div className="flex items-start gap-3 bg-amber-50 border-l-4 border-amber-400 rounded-xl p-4">
+            <AlertTriangle size={18} className="text-amber-500 flex-shrink-0 mt-0.5" />
+            <p className="text-amber-800 font-semibold text-sm">{t("legalNote")}</p>
           </div>
 
           {/* Submit */}

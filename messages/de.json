@@ -101,8 +101,8 @@
     "submitBtn": "Buchungsanfrage senden",
     "importantNote": "Ich arbeite ausschließlich mit modernen Dekorationstechniken — kein Fondant (Mastika)!",
     "legalNote": "Ihre Bestellung gilt erst dann als bestätigt, wenn Sie von mir eine persönliche Bestätigung (per E-Mail oder Telefon) erhalten haben.",
-    "successTitle": "Anfrage gesendet!",
-    "successMsg": "Vielen Dank! Ich melde mich so bald wie möglich bei Ihnen.",
+    "successTitle": "Danke für deine Bestellung! 🎂",
+    "successMsg": "Deine Anfrage ist bei mir angekommen. Bitte beachte: Deine Bestellung gilt erst dann als bestätigt, wenn du von mir eine persönliche Bestätigung per E-Mail oder Telefon erhalten hast.",
     "minGuests": "Mindestbestellung: 10 Personen",
     "minGuestsError": "Mindestanzahl ist 10 Personen",
     "sundayError": "Sonntag ist leider nicht möglich. Bitte wählen Sie einen anderen Tag."
