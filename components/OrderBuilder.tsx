@@ -49,6 +49,7 @@ export default function OrderBuilder() {
   const tf = useTranslations("flavors");
 
   const [flavor, setFlavor] = useState("");
+  const [occasion, setOccasion] = useState("");
   const [guests, setGuests] = useState("");
   const [date, setDate] = useState<Date | null>(null);
   const [name, setName] = useState("");
@@ -91,6 +92,7 @@ export default function OrderBuilder() {
           flavor,
           guests,
           date: date ? date.toLocaleDateString("de-CH") : "",
+          occasion: occasion || "—",
           details: details || "—",
         }),
       });
@@ -108,6 +110,7 @@ export default function OrderBuilder() {
           <div className="bg-white rounded-3xl shadow-xl p-12 border border-pink-100 space-y-6">
             <CheckCircle2 size={64} className="text-pink-500 mx-auto" />
             <h2 className="text-3xl font-script text-pink-700">{t("successTitle")}</h2>
+            <p className="text-gray-500 text-sm">{t("responseTime")}</p>
             <div className="flex items-start gap-3 bg-amber-50 border-l-4 border-amber-400 rounded-xl p-4 text-left">
               <AlertTriangle size={20} className="text-amber-500 flex-shrink-0 mt-0.5" />
               <p className="text-amber-800 font-semibold text-sm">{t("successMsg")}</p>
@@ -163,6 +166,23 @@ export default function OrderBuilder() {
                 {tf(`items.${flavor as FlavorKey}.desc`)}
               </p>
             )}
+          </div>
+
+          {/* Occasion */}
+          <div>
+            <label className="block text-sm font-semibold text-pink-800 mb-2">{t("occasionLabel")}</label>
+            <select
+              value={occasion}
+              onChange={(e) => setOccasion(e.target.value)}
+              className="w-full px-4 py-3 border border-pink-200 rounded-xl bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-pink-300 focus:border-pink-400 transition-all"
+            >
+              <option value="">{t("occasionPlaceholder")}</option>
+              <option value="birthday">{t("occasionBirthday")}</option>
+              <option value="wedding">{t("occasionWedding")}</option>
+              <option value="anniversary">{t("occasionAnniversary")}</option>
+              <option value="babyshower">{t("occasionBabyShower")}</option>
+              <option value="other">{t("occasionOther")}</option>
+            </select>
           </div>
 
           {/* Guests */}

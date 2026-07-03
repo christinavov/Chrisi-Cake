@@ -109,7 +109,15 @@
     "referenceMax": "Максимум достигнут (3 фото)",
     "whatsappHint": "📸 Пожалуйста, пришли фото референса в WhatsApp: +41 76 223 61 26",
     "whatsappBlockTitle": "Отправить фото референса в WhatsApp",
-    "whatsappBlockNote": "Нажми здесь чтобы перейти в WhatsApp и отправить фото → +41 76 223 61 26"
+    "whatsappBlockNote": "Нажми здесь чтобы перейти в WhatsApp и отправить фото → +41 76 223 61 26",
+    "occasionLabel": "Повод",
+    "occasionPlaceholder": "Выбрать повод",
+    "occasionBirthday": "🎂 День рождения",
+    "occasionWedding": "💍 Свадьба",
+    "occasionAnniversary": "🥂 Юбилей",
+    "occasionBabyShower": "🍼 Беби-шауэр",
+    "occasionOther": "✨ Другое",
+    "responseTime": "⏱ Я отвечу в течение 24 часов."
   },
   "prices": {
     "title": "Цены",

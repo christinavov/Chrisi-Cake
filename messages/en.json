@@ -109,7 +109,15 @@
     "referenceMax": "Maximum reached (3 images)",
     "whatsappHint": "📸 Please send your reference photos via WhatsApp to: +41 76 223 61 26",
     "whatsappBlockTitle": "Send reference photos via WhatsApp",
-    "whatsappBlockNote": "Tap here to open WhatsApp and send your photos → +41 76 223 61 26"
+    "whatsappBlockNote": "Tap here to open WhatsApp and send your photos → +41 76 223 61 26",
+    "occasionLabel": "Occasion",
+    "occasionPlaceholder": "Select occasion",
+    "occasionBirthday": "🎂 Birthday",
+    "occasionWedding": "💍 Wedding",
+    "occasionAnniversary": "🥂 Anniversary",
+    "occasionBabyShower": "🍼 Baby Shower",
+    "occasionOther": "✨ Other",
+    "responseTime": "⏱ I will get back to you within 24 hours."
   },
   "prices": {
     "title": "Prices",
