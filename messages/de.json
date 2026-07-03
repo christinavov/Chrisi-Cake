@@ -133,7 +133,9 @@
         "desc": "Da jede Torte ein Unikat ist, erstelle ich gerne ein persönliches Angebot"
       }
     ],
-    "ctaLabel": "Jetzt anfragen"
+    "ctaLabel": "Jetzt anfragen",
+    "twintTitle": "💳 Vorauszahlung via Twint",
+    "twintNote": "Ich arbeite ausschließlich mit Vorauszahlung. Nach Bestätigung der Bestellung wird eine Anzahlung von 30 CHF via Twint fällig. Der Restbetrag ist bei der Abholung zu begleichen."
   },
   "faq": {
     "title": "Häufig gestellte Fragen",

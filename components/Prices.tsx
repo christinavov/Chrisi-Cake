@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, CreditCard } from "lucide-react";
 
 const icons = ["🎂", "🏰", "✨", "💌"];
 
@@ -33,6 +33,17 @@ export default function Prices() {
             <p className="text-xs text-gray-500 flex-grow">{item.desc}</p>
           </div>
         ))}
+      </div>
+
+      {/* Twint / Prepayment notice */}
+      <div className="mb-10 flex items-center gap-4 bg-gradient-to-r from-violet-50 to-purple-50 border-2 border-violet-200 rounded-2xl px-6 py-5">
+        <div className="w-12 h-12 bg-violet-100 rounded-xl flex items-center justify-center flex-shrink-0">
+          <CreditCard size={24} className="text-violet-600" />
+        </div>
+        <div>
+          <p className="font-bold text-violet-800 text-base">{t("twintTitle")}</p>
+          <p className="text-violet-700 text-sm mt-0.5">{t("twintNote")}</p>
+        </div>
       </div>
 
       <div className="text-center">

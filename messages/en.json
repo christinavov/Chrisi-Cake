@@ -133,7 +133,9 @@
         "desc": "Since every cake is unique, I'm happy to create a personal quote"
       }
     ],
-    "ctaLabel": "Enquire Now"
+    "ctaLabel": "Enquire Now",
+    "twintTitle": "💳 Prepayment via Twint",
+    "twintNote": "I work exclusively with prepayment. After order confirmation, a deposit of 30 CHF is due via Twint. The remaining balance is paid at pickup."
   },
   "faq": {
     "title": "Frequently Asked Questions",
