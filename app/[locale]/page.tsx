@@ -10,21 +10,22 @@ import Testimonials from "@/components/Testimonials";
 import StorageTips from "@/components/StorageTips";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export default function HomePage() {
   return (
     <main className="min-h-screen">
       <Header />
       <Hero />
-      <About />
-      <Gallery />
-      <Flavors />
-      <OrderBuilder />
-      <Prices />
-      <FAQ />
-      <Testimonials />
-      <StorageTips />
-      <Contact />
+      <ScrollReveal><About /></ScrollReveal>
+      <ScrollReveal><Gallery /></ScrollReveal>
+      <ScrollReveal><Flavors /></ScrollReveal>
+      <ScrollReveal><OrderBuilder /></ScrollReveal>
+      <ScrollReveal><Prices /></ScrollReveal>
+      <ScrollReveal><FAQ /></ScrollReveal>
+      <ScrollReveal><Testimonials /></ScrollReveal>
+      <ScrollReveal><StorageTips /></ScrollReveal>
+      <ScrollReveal><Contact /></ScrollReveal>
       <Footer />
     </main>
   );
