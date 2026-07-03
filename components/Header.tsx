@@ -32,6 +32,7 @@ export default function Header() {
   }, []);
 
   const switchLocale = (newLocale: string) => {
+    document.cookie = `NEXT_LOCALE=${newLocale}; path=/; max-age=31536000; SameSite=lax`;
     const segments = pathname.split("/").filter(Boolean);
     const currentLocales = ["de", "en", "ru", "uk"];
     if (currentLocales.includes(segments[0])) {
