@@ -41,7 +41,7 @@ export default function About() {
           <h2 className="text-4xl md:text-5xl font-script text-pink-700 mb-6">{t("title")}</h2>
 
           <div className="space-y-4 mb-8">
-            <p className="text-gray-700 leading-relaxed text-base border-l-4 border-pink-300 pl-4 italic">
+            <p className="text-gray-700 leading-relaxed text-base border-l-4 border-pink-300 pl-4">
               {t("p1")}
             </p>
             <p className="text-gray-600 leading-relaxed text-base">
