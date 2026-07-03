@@ -74,7 +74,7 @@ export default function OrderBuilder() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!flavor || !guests || !date || !name || !email || !phone || files.length === 0) return;
+    if (!flavor || !guests || !date || !name || !email || !phone) return;
     if (parseInt(guests) < 10) {
       setGuestsError(t("minGuestsError"));
       return;
@@ -210,7 +210,7 @@ export default function OrderBuilder() {
 
           {/* File upload */}
           <div>
-            <label className="block text-sm font-semibold text-pink-800 mb-2">{t("referenceLabel")} *</label>
+            <label className="block text-sm font-semibold text-pink-800 mb-2">{t("referenceLabel")}</label>
             <input
               type="file"
               ref={fileRef}
