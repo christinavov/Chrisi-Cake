@@ -173,8 +173,11 @@ export default function Gallery() {
             <Image
               src={galleryImages[lightboxIndex]}
               alt={`Werk ${lightboxIndex + 1}`}
-              width={900}
-              height={900}
+              width={1200}
+              height={1200}
+              quality={95}
+              priority
+              unoptimized
               className="w-full h-auto max-h-[85vh] object-contain rounded-2xl shadow-2xl"
             />
             <p className="text-white/50 text-sm mt-3">{lightboxIndex + 1} / {galleryImages.length}</p>
