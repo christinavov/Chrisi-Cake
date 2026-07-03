@@ -74,6 +74,25 @@ export default function OrderBuilder() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!flavor || !guests || !date || !name || !email) return;
+
+    const body = new FormData();
+    body.append("name", name);
+    body.append("email", email);
+    body.append("flavor", flavor);
+    body.append("guests", guests);
+    body.append("date", date ? date.toLocaleDateString("de-CH") : "");
+    body.append("_subject", `Neue Bestellung von ${name}`);
+    body.append("_replyto", email);
+    if (file) body.append("reference", file);
+
+    try {
+      await fetch("https://formspree.io/f/xpwzgkbr", {
+        method: "POST",
+        body,
+        headers: { Accept: "application/json" },
+      });
+    } catch {}
+
     setSubmitted(true);
   };
 

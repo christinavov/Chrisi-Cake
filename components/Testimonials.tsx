@@ -53,7 +53,7 @@ export default function Testimonials() {
     formData.append("rating", String(rating));
     formData.append("text", text);
     formData.append("_subject", `Neue Bewertung von ${name} – ${rating}★`);
-    formData.append("_replyto", "christinavov@gmail.com");
+    formData.append("_replyto", "chrisicake8@gmail.com");
     if (photo) formData.append("photo", photo);
 
     try {
