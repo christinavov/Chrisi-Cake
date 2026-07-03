@@ -165,8 +165,10 @@ export default function OrderBuilder() {
                 <AlertTriangle size={12} /> {dateError}
               </p>
             )}
-            <p className="mt-1 text-xs text-gray-400">⏰ {t("timeNote")}</p>
-            <p className="mt-0.5 text-xs text-gray-400">📅 {t("dateNote")}</p>
+            <div className="mt-3 rounded-xl bg-pink-50 border border-pink-200 px-4 py-3 space-y-1">
+              <p className="text-sm font-semibold text-pink-700">⏰ {t("timeNote")}</p>
+              <p className="text-sm font-medium text-pink-600">📅 {t("dateNote")}</p>
+            </div>
           </div>
 
           {/* File upload */}
