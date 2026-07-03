@@ -39,9 +39,18 @@ export default function About() {
         {/* Text side */}
         <div>
           <h2 className="text-4xl md:text-5xl font-script text-pink-700 mb-6">{t("title")}</h2>
-          <p className="text-gray-600 leading-relaxed mb-4">{t("p1")}</p>
-          <p className="text-gray-600 leading-relaxed mb-4">{t("p2")}</p>
-          <p className="text-gray-600 leading-relaxed mb-8">{t("p3")}</p>
+
+          <div className="space-y-4 mb-8">
+            <p className="text-gray-700 leading-relaxed text-base border-l-4 border-pink-300 pl-4 italic">
+              {t("p1")}
+            </p>
+            <p className="text-gray-600 leading-relaxed text-base">
+              {t("p2")}
+            </p>
+            <p className="text-gray-600 leading-relaxed text-base font-medium text-pink-800">
+              {t("p3")}
+            </p>
+          </div>
 
           {/* Badges */}
           <div className="grid grid-cols-2 gap-3">
