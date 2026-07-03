@@ -8,7 +8,6 @@ const exampleCakes = [
   {
     images: [
       "/images/gallery/photo_2026-07-03_21-02-13.jpg",
-      "/images/gallery/photo_2026-07-03_21-01-31.jpg",
     ],
     labelKey: "exampleBerries",
     price: "ab 100 CHF",
