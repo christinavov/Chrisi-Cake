@@ -124,7 +124,7 @@
     "tierOne": "Einstöckig",
     "tierTwo": "Zweistöckig",
     "tierOneNote": "ab 10 Personen · 10 CHF/Person",
-    "tierTwoNote": "ab 20 Personen · 14 CHF/Person",
+    "tierTwoNote": "ab 20 Personen · 13 CHF/Person",
     "minGuestsErrorTwo": "Mindestanzahl für zweistöckige Torte ist 20 Personen"
   },
   "prices": {
@@ -140,7 +140,7 @@
       {
         "label": "Zweistöckige Torten",
         "value": "ab 260.- CHF",
-        "desc": "Ab 20 Personen · 14 CHF/Person"
+        "desc": "Ab 20 Personen · 13 CHF/Person"
       },
       {
         "label": "Zusatzdekorationen",

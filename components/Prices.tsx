@@ -41,7 +41,7 @@ export default function Prices() {
   const [extraBottle, setExtraBottle] = useState(false);
 
   const minGuests = twoTier ? 20 : 10;
-  const pricePerPerson = twoTier ? 14 : 10;
+  const pricePerPerson = twoTier ? 13 : 10;
 
   const handleTwoTier = (val: boolean) => {
     setTwoTier(val);
@@ -131,7 +131,7 @@ export default function Prices() {
               <circle cx="25" cy="28" r="1.5" fill="#f472b6"/>
             </svg>
             <p className="text-sm font-semibold text-gray-700">{t("calcTwoTier")}</p>
-            <p className="text-xs text-pink-500">14 CHF / {t("calcPerson")} · {t("calcMin20")}</p>
+            <p className="text-xs text-pink-500">13 CHF / {t("calcPerson")} · {t("calcMin20")}</p>
           </button>
         </div>
 
