@@ -8,23 +8,23 @@ import { useState } from "react";
 const exampleCakes = [
   {
     images: [
-      "/images/gallery/photo_2026-07-03_21-02-13.jpg",
+      "/images/gallery/photo_2026-07-03_21-02-13.webp",
     ],
     labelKey: "exampleBerries",
     price: "ab 100 CHF",
   },
   {
-    images: ["/images/gallery/photo_2026-07-03_21-02-28.jpg"],
+    images: ["/images/gallery/photo_2026-07-03_21-02-28.webp"],
     labelKey: "examplePrint",
     price: "ab 110 CHF",
   },
   {
-    images: ["/images/gallery/photo_2026-07-03_21-01-28.jpg"],
+    images: ["/images/gallery/photo_2026-07-03_21-01-28.webp"],
     labelKey: "exampleFlowers",
     price: "ab 120 CHF",
   },
   {
-    images: ["/images/gallery/photo_2026-07-03_21-02-33.jpg"],
+    images: ["/images/gallery/photo_2026-07-03_21-02-33.webp"],
     labelKey: "exampleBottle",
     price: "ab 120 CHF",
   },
