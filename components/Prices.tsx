@@ -28,6 +28,11 @@ const exampleCakes = [
     labelKey: "exampleBottle",
     price: "ab 120 CHF",
   },
+  {
+    images: ["/images/gallery/photo_2026-07-03_21-02-20.webp"],
+    labelKey: "exampleTwoTier",
+    price: "ab 270 CHF",
+  },
 ];
 
 export default function Prices() {
