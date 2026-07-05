@@ -30,10 +30,6 @@ export default function About() {
               />
             </div>
           </div>
-          {/* Floating decoration */}
-          <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-gradient-to-br from-pink-400 to-rose-400 rounded-2xl flex items-center justify-center shadow-lg text-white text-3xl">
-            🎂
-          </div>
         </div>
 
         {/* Text side */}
