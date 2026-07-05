@@ -153,7 +153,19 @@
     "examplePrint": "🖨️ Mit essbarem Foto-Druck",
     "exampleFlowers": "🌸 Mit frischen Blumen",
     "exampleBottle": "🍾 Mit Alkoholflasche",
-    "exampleTitle": "✨ Beispiele & Preise"
+    "exampleTitle": "✨ Beispiele & Preise",
+    "calcTitle": "Preisrechner",
+    "calcSubtitle": "Berechnen Sie den ungefähren Preis Ihrer Torte",
+    "calcGuests": "Anzahl der Gäste",
+    "calcPersons": "Personen",
+    "calcMinNote": "Mindestbestellung ab 8–10 Personen. Eine Torte für 10 Personen reicht für diese Personenanzahl.",
+    "calcExtras": "Zusatzoptionen (+Aufpreis)",
+    "extraPrint": "Essbarer Foto-Druck",
+    "extraChoco": "Schokoladendekor (viele Tafeln)",
+    "extraFlowers": "Frische Blumen",
+    "extraBottle": "Alkoholflasche",
+    "calcTotal": "Ungefährer Preis",
+    "calcApprox": "Endgültiger Preis nach persönlicher Absprache"
   },
   "faq": {
     "title": "Häufig gestellte Fragen",

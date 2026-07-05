@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl";
 import { ChevronRight, CreditCard } from "lucide-react";
 import Image from "next/image";
+import { useState } from "react";
 
 const exampleCakes = [
   {
@@ -34,6 +35,16 @@ const icons = ["🎂", "🏰", "✨", "💌"];
 export default function Prices() {
   const t = useTranslations("prices");
   const items = t.raw("items") as Array<{ label: string; value: string; desc: string }>;
+
+  const [guests, setGuests] = useState(10);
+  const [extraPrint, setExtraPrint] = useState(false);
+  const [extraChoco, setExtraChoco] = useState(false);
+  const [extraFlowers, setExtraFlowers] = useState(false);
+  const [extraBottle, setExtraBottle] = useState(false);
+
+  const basePrice = guests * 10;
+  const extrasPrice = (extraPrint ? 10 : 0) + (extraChoco ? 10 : 0) + (extraFlowers ? 20 : 0) + (extraBottle ? 20 : 0);
+  const totalPrice = basePrice + extrasPrice;
 
   const scrollToOrder = () => {
     document.getElementById("order")?.scrollIntoView({ behavior: "smooth" });
@@ -83,6 +94,78 @@ export default function Prices() {
               </div>
             </div>
           ))}
+        </div>
+      </div>
+
+      {/* Price Calculator */}
+      <div className="mb-10 bg-white/90 border-2 border-pink-100 rounded-3xl p-6 md:p-8 shadow-sm">
+        <h3 className="text-2xl md:text-3xl font-script text-pink-700 mb-1 text-center">{t("calcTitle")}</h3>
+        <p className="text-center text-gray-400 text-sm mb-6">{t("calcSubtitle")}</p>
+
+        {/* Guests slider */}
+        <div className="mb-6">
+          <div className="flex justify-between items-center mb-2">
+            <label className="text-sm font-semibold text-pink-800">{t("calcGuests")}</label>
+            <span className="text-lg font-bold text-pink-600">{guests} {t("calcPersons")}</span>
+          </div>
+          <input
+            type="range"
+            min={10}
+            max={80}
+            value={guests}
+            onChange={(e) => setGuests(Number(e.target.value))}
+            className="w-full accent-pink-500 h-2 rounded-full"
+          />
+          <div className="flex justify-between text-xs text-gray-400 mt-1">
+            <span>10</span>
+            <span>80</span>
+          </div>
+          <p className="text-xs text-gray-400 mt-1">* {t("calcMinNote")}</p>
+        </div>
+
+        {/* Extras */}
+        <div className="mb-6">
+          <p className="text-sm font-semibold text-pink-800 mb-3">{t("calcExtras")}</p>
+          <div className="grid sm:grid-cols-2 gap-3">
+            {[
+              { key: "extraPrint", state: extraPrint, set: setExtraPrint, price: 10, emoji: "🖨️" },
+              { key: "extraChoco", state: extraChoco, set: setExtraChoco, price: 10, emoji: "🍫" },
+              { key: "extraFlowers", state: extraFlowers, set: setExtraFlowers, price: 20, emoji: "🌸" },
+              { key: "extraBottle", state: extraBottle, set: setExtraBottle, price: 20, emoji: "🍾" },
+            ].map(({ key, state, set, price, emoji }) => (
+              <button
+                key={key}
+                type="button"
+                onClick={() => set(!state)}
+                className={`flex items-center gap-3 px-4 py-3 rounded-2xl border-2 transition-all text-left ${
+                  state
+                    ? "border-pink-400 bg-pink-50 shadow-sm"
+                    : "border-pink-100 bg-white hover:border-pink-200"
+                }`}
+              >
+                <span className="text-2xl">{emoji}</span>
+                <div className="flex-grow">
+                  <p className="text-sm font-medium text-gray-700">{t(key as Parameters<typeof t>[0])}</p>
+                  <p className="text-xs text-pink-500">+{price} CHF</p>
+                </div>
+                <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${state ? "border-pink-500 bg-pink-500" : "border-gray-300"}`}>
+                  {state && <span className="text-white text-xs">✓</span>}
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Total */}
+        <div className="bg-gradient-to-r from-pink-500 to-rose-500 rounded-2xl p-5 flex items-center justify-between text-white">
+          <div>
+            <p className="text-sm opacity-80">{t("calcTotal")}</p>
+            <p className="text-xs opacity-60 mt-0.5">{t("calcApprox")}</p>
+          </div>
+          <div className="text-right">
+            <p className="text-4xl font-bold">{totalPrice}</p>
+            <p className="text-sm opacity-80">CHF</p>
+          </div>
         </div>
       </div>
 
