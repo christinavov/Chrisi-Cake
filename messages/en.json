@@ -212,6 +212,7 @@
   },
   "testimonials": {
     "title": "What My Customers Say",
+    "viewAll": "View all reviews",
     "items": [
       {
         "name": "Anna M.",

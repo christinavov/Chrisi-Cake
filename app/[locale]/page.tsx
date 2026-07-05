@@ -6,7 +6,7 @@ import Flavors from "@/components/Flavors";
 import OrderBuilder from "@/components/OrderBuilder";
 import Prices from "@/components/Prices";
 import FAQ from "@/components/FAQ";
-import Testimonials from "@/components/Testimonials";
+import TestimonialsPreview from "@/components/TestimonialsPreview";
 import StorageTips from "@/components/StorageTips";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -23,7 +23,7 @@ export default function HomePage() {
       <ScrollReveal><OrderBuilder /></ScrollReveal>
       <ScrollReveal><Prices /></ScrollReveal>
       <ScrollReveal><FAQ /></ScrollReveal>
-      <ScrollReveal><Testimonials /></ScrollReveal>
+      <ScrollReveal><TestimonialsPreview /></ScrollReveal>
       <ScrollReveal><StorageTips /></ScrollReveal>
       <ScrollReveal><Contact /></ScrollReveal>
       <Footer />
