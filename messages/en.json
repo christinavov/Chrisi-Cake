@@ -131,8 +131,8 @@
       },
       {
         "label": "Two-tier cakes",
-        "value": "from 230.- CHF",
-        "desc": "From 18 persons"
+        "value": "from 260.- CHF",
+        "desc": "From 20 persons · 14 CHF/person"
       },
       {
         "label": "Extra decorations",
@@ -164,6 +164,10 @@
     "extraChoco": "Chocolate decor (many chocolate bars)",
     "extraFlowers": "Fresh flowers",
     "extraBottle": "Alcohol bottle",
+    "calcOneTier": "One-tier",
+    "calcTwoTier": "Two-tier",
+    "calcPerson": "person",
+    "calcMin20": "from 20 persons",
     "calcTotal": "Estimated price",
     "calcApprox": "Final price agreed personally"
   },

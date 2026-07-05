@@ -37,12 +37,22 @@ export default function Prices() {
   const items = t.raw("items") as Array<{ label: string; value: string; desc: string }>;
 
   const [guests, setGuests] = useState(10);
+  const [twoTier, setTwoTier] = useState(false);
   const [extraPrint, setExtraPrint] = useState(false);
   const [extraChoco, setExtraChoco] = useState(false);
   const [extraFlowers, setExtraFlowers] = useState(false);
   const [extraBottle, setExtraBottle] = useState(false);
 
-  const basePrice = guests * 10;
+  const minGuests = twoTier ? 20 : 10;
+  const pricePerPerson = twoTier ? 14 : 10;
+
+  const handleTwoTier = (val: boolean) => {
+    setTwoTier(val);
+    if (val && guests < 20) setGuests(20);
+    if (!val && guests > 100) setGuests(100);
+  };
+
+  const basePrice = guests * pricePerPerson;
   const extrasPrice = (extraPrint ? 10 : 0) + (extraChoco ? 10 : 0) + (extraFlowers ? 20 : 0) + (extraBottle ? 20 : 0);
   const totalPrice = basePrice + extrasPrice;
 
@@ -108,7 +118,7 @@ export default function Prices() {
           <div className="flex items-center justify-center gap-6">
             <button
               type="button"
-              onClick={() => setGuests((g) => Math.max(10, g - 1))}
+              onClick={() => setGuests((g) => Math.max(minGuests, g - 1))}
               className="w-12 h-12 rounded-full bg-pink-100 hover:bg-pink-200 text-pink-700 text-2xl font-bold transition-all flex items-center justify-center select-none"
             >−</button>
             <div className="text-center min-w-[100px]">
@@ -122,6 +132,28 @@ export default function Prices() {
             >+</button>
           </div>
           <p className="text-xs text-gray-400 mt-3 text-center">* {t("calcMinNote")}</p>
+        </div>
+
+        {/* Tier selector */}
+        <div className="mb-6 grid grid-cols-2 gap-3">
+          <button
+            type="button"
+            onClick={() => handleTwoTier(false)}
+            className={`flex flex-col items-center gap-1 px-4 py-4 rounded-2xl border-2 transition-all ${!twoTier ? "border-pink-400 bg-pink-50 shadow-sm" : "border-pink-100 bg-white hover:border-pink-200"}`}
+          >
+            <span className="text-3xl">🎂</span>
+            <p className="text-sm font-semibold text-gray-700">{t("calcOneTier")}</p>
+            <p className="text-xs text-pink-500">10 CHF / {t("calcPerson")}</p>
+          </button>
+          <button
+            type="button"
+            onClick={() => handleTwoTier(true)}
+            className={`flex flex-col items-center gap-1 px-4 py-4 rounded-2xl border-2 transition-all ${twoTier ? "border-pink-400 bg-pink-50 shadow-sm" : "border-pink-100 bg-white hover:border-pink-200"}`}
+          >
+            <span className="text-3xl">🏰</span>
+            <p className="text-sm font-semibold text-gray-700">{t("calcTwoTier")}</p>
+            <p className="text-xs text-pink-500">14 CHF / {t("calcPerson")} · {t("calcMin20")}</p>
+          </button>
         </div>
 
         {/* Extras */}

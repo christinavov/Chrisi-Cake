@@ -131,8 +131,8 @@
       },
       {
         "label": "Zweistöckige Torten",
-        "value": "ab 230.- CHF",
-        "desc": "Ab 18 Personen"
+        "value": "ab 260.- CHF",
+        "desc": "Ab 20 Personen · 14 CHF/Person"
       },
       {
         "label": "Zusatzdekorationen",
@@ -164,6 +164,10 @@
     "extraChoco": "Schokoladendekor (viele Tafeln)",
     "extraFlowers": "Frische Blumen",
     "extraBottle": "Alkoholflasche",
+    "calcOneTier": "Einstöckig",
+    "calcTwoTier": "Zweistöckig",
+    "calcPerson": "Person",
+    "calcMin20": "ab 20 Personen",
     "calcTotal": "Ungefährer Preis",
     "calcApprox": "Endgültiger Preis nach persönlicher Absprache"
   },
