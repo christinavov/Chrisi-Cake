@@ -7,11 +7,43 @@ import { usePathname, useRouter } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
 
+const FlagDE = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 3" className="w-6 h-4 rounded-sm overflow-hidden flex-shrink-0">
+    <rect width="5" height="3" y="0" fill="#000"/>
+    <rect width="5" height="2" y="1" fill="#D00"/>
+    <rect width="5" height="1" y="2" fill="#FFCE00"/>
+  </svg>
+);
+const FlagGB = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" className="w-6 h-4 rounded-sm overflow-hidden flex-shrink-0">
+    <rect width="60" height="30" fill="#012169"/>
+    <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" strokeWidth="6"/>
+    <path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" strokeWidth="4"/>
+    <path d="M30,0 V30 M0,15 H60" stroke="#fff" strokeWidth="10"/>
+    <path d="M30,0 V30 M0,15 H60" stroke="#C8102E" strokeWidth="6"/>
+  </svg>
+);
+const FlagRU = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 9 6" className="w-6 h-4 rounded-sm overflow-hidden flex-shrink-0">
+    <rect width="9" height="3" y="0" fill="#fff"/>
+    <rect width="9" height="2" y="2" fill="#0039A6"/>
+    <rect width="9" height="2" y="4" fill="#D52B1E"/>
+  </svg>
+);
+const FlagUA = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2 1" className="w-6 h-4 rounded-sm overflow-hidden flex-shrink-0">
+    <rect width="2" height="1" fill="#005BBB"/>
+    <rect width="2" height=".5" y=".5" fill="#FFD500"/>
+  </svg>
+);
+
+const flags: Record<string, () => JSX.Element> = { de: FlagDE, en: FlagGB, ru: FlagRU, uk: FlagUA };
+
 const locales = [
-  { code: "de", label: "DE", name: "Deutsch", flag: "🇩🇪" },
-  { code: "en", label: "EN", name: "English", flag: "🇬🇧" },
-  { code: "ru", label: "RU", name: "Русский", flag: "🇷🇺" },
-  { code: "uk", label: "UK", name: "Українська", flag: "🇺🇦" },
+  { code: "de", label: "DE", name: "Deutsch" },
+  { code: "en", label: "EN", name: "English" },
+  { code: "ru", label: "RU", name: "Русский" },
+  { code: "uk", label: "UK", name: "Українська" },
 ];
 
 const navItems = ["home", "about", "gallery", "flavors", "order", "prices", "faq", "contact"] as const;
@@ -100,16 +132,18 @@ export default function Header() {
           <div className="flex items-center gap-2">
             {/* Language switcher */}
             <div className="relative">
+              {(() => { const ActiveFlag = flags[locale]; return (
               <button
                 onClick={() => setLangOpen(!langOpen)}
                 className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl border border-pink-200 hover:bg-pink-50 transition-all"
               >
-                <span className="text-xl leading-none">{locales.find((l) => l.code === locale)?.flag}</span>
+                <ActiveFlag />
                 <span className="text-xs font-semibold text-pink-700">{locales.find((l) => l.code === locale)?.label}</span>
               </button>
+              ); })()}
               {langOpen && (
                 <div className="absolute right-0 mt-2 w-44 bg-white rounded-2xl shadow-xl border border-pink-100 py-2 z-50">
-                  {locales.map((l) => (
+                  {locales.map((l) => { const Flag = flags[l.code]; return (
                     <button
                       key={l.code}
                       onClick={() => switchLocale(l.code)}
@@ -117,11 +151,11 @@ export default function Header() {
                         l.code === locale ? "text-pink-600 font-semibold" : "text-gray-700"
                       }`}
                     >
-                      <span className="text-xl leading-none">{l.flag}</span>
+                      <Flag />
                       <span>{l.name}</span>
                       {l.code === locale && <span className="ml-auto text-pink-400">✓</span>}
                     </button>
-                  ))}
+                  ); })}
                 </div>
               )}
             </div>
