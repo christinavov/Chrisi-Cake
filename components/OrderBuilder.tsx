@@ -248,7 +248,19 @@ export default function OrderBuilder() {
               type="number"
               min={minGuests}
               value={guests}
-              onChange={(e) => { setGuests(e.target.value); setGuestsError(""); }}
+              onChange={(e) => {
+                const val = e.target.value;
+                // Allow clearing the field, but clamp on blur
+                setGuests(val);
+                setGuestsError("");
+              }}
+              onBlur={(e) => {
+                const val = parseInt(e.target.value);
+                if (!isNaN(val) && val < minGuests) {
+                  setGuests(String(minGuests));
+                  setGuestsError(twoTier ? t("minGuestsErrorTwo") : t("minGuestsError"));
+                }
+              }}
               placeholder={t("guestsPlaceholder")}
               required
               className={`w-full px-4 py-3 border rounded-xl bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-pink-300 focus:border-pink-400 transition-all placeholder:text-gray-400 ${guestsError ? "border-red-400" : "border-pink-200"}`}
