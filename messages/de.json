@@ -33,46 +33,47 @@
   "flavors": {
     "title": "Geschmackswelten",
     "subtitle": "Entdecken Sie meine Signature-Kreationen",
+    "noGelatin": "🌿 Ich verwende in keiner meiner Füllungen Gelatine",
     "items": {
       "spinatHimbeere": {
         "name": "Spinat Himbeere",
-        "desc": "Saftiger Spinatbiskuit mit leichter Frischkäsecreme und frischen Himbeeren"
+        "desc": "Spinatbiskuit · Himbeerenfüllung · Frischkäsecreme"
       },
       "oreo": {
         "name": "Oreo",
-        "desc": "Schokoladenbiskuit mit zarter Vanillecreme und knusprigen Oreo-Bröseln"
+        "desc": "Schokoladenbiskuit · Milchschokoladen-Ganache · zerbröselte Oreo-Kekse"
       },
       "spinatZitrone": {
         "name": "Spinat Zitrone",
-        "desc": "Luftiger Spinatbiskuit mit erfrischender Zitronencreme"
+        "desc": "Spinatbiskuit · Zitronencurd · Frischkäsecreme"
       },
       "schockiOrange": {
         "name": "Schoki Orange",
-        "desc": "Dunkler Schokoladenbiskuit mit fruchtiger Orangencreme"
+        "desc": "Schokoladenbiskuit · Orangencurd · Frischkäsecreme"
       },
       "caramelBanane": {
         "name": "Caramel Banane",
-        "desc": "Vanillebiskuit mit seidigem Karamell und frischen Bananen"
+        "desc": "Karamellbiskuit · karamellisierte Bananen · Frischkäsecreme"
       },
       "schockiHimbeere": {
         "name": "Schoki Himbeere",
-        "desc": "Intensiver Schokoladenbiskuit mit Frischkäsecreme und Himbeeren"
+        "desc": "Schokoladenbiskuit · Himbeerenfüllung · Frischkäsecreme"
       },
       "snickers": {
         "name": "Snickers",
-        "desc": "Schokoladenbiskuit mit Karamell-Erdnuss-Creme — ein wahrer Genuss"
+        "desc": "Schokoladenbiskuit · Erdnüsse mit Karamell · Frischkäsecreme"
       },
       "rotVelvetErdbeere": {
         "name": "Rot Velvet Erdbeere",
-        "desc": "Klassischer Red-Velvet-Biskuit mit Erdbeerkonfitüre und Vanillecreme"
+        "desc": "Red-Velvet-Biskuit · Erdbeerenfüllung · Frischkäsecreme"
       },
       "vanillaErdbeere": {
         "name": "Vanilla Erdbeere",
-        "desc": "Feiner Vanillebiskuit mit Frischkäsecreme und frischen Erdbeeren"
+        "desc": "Vanillebiskuit · Erdbeerenfüllung · Frischkäsecreme"
       },
       "vanillaHimbeere": {
         "name": "Vanilla Himbeere",
-        "desc": "Zarter Vanillebiskuit mit Frischkäsecreme und frischen Himbeeren"
+        "desc": "Vanillebiskuit · Himbeerenfüllung · Frischkäsecreme"
       }
     }
   },

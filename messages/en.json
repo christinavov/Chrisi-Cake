@@ -33,46 +33,47 @@
   "flavors": {
     "title": "Flavor Worlds",
     "subtitle": "Discover my signature creations",
+    "noGelatin": "🌿 I never use gelatin in any of my fillings",
     "items": {
       "spinatHimbeere": {
         "name": "Spinach Raspberry",
-        "desc": "Moist spinach sponge with light cream cheese frosting and fresh raspberries"
+        "desc": "Spinach sponge · raspberry filling · cream cheese"
       },
       "oreo": {
         "name": "Oreo",
-        "desc": "Chocolate sponge with delicate vanilla cream and crunchy Oreo crumbles"
+        "desc": "Chocolate sponge · milk chocolate ganache · crushed Oreo cookies"
       },
       "spinatZitrone": {
         "name": "Spinach Lemon",
-        "desc": "Airy spinach sponge with refreshing lemon cream"
+        "desc": "Spinach sponge · lemon curd · cream cheese"
       },
       "schockiOrange": {
         "name": "Choco Orange",
-        "desc": "Dark chocolate sponge with fruity orange cream"
+        "desc": "Chocolate sponge · orange curd · cream cheese"
       },
       "caramelBanane": {
         "name": "Caramel Banana",
-        "desc": "Vanilla sponge with silky caramel and fresh bananas"
+        "desc": "Caramel sponge · caramelised bananas · cream cheese"
       },
       "schockiHimbeere": {
         "name": "Choco Raspberry",
-        "desc": "Intense chocolate sponge with cream cheese frosting and raspberries"
+        "desc": "Chocolate sponge · raspberry filling · cream cheese"
       },
       "snickers": {
         "name": "Snickers",
-        "desc": "Chocolate sponge with caramel peanut cream — a true indulgence"
+        "desc": "Chocolate sponge · peanuts with caramel · cream cheese"
       },
       "rotVelvetErdbeere": {
         "name": "Red Velvet Strawberry",
-        "desc": "Classic red velvet sponge with strawberry jam and vanilla cream"
+        "desc": "Red velvet sponge · strawberry filling · cream cheese"
       },
       "vanillaErdbeere": {
         "name": "Vanilla Strawberry",
-        "desc": "Fine vanilla sponge with cream cheese frosting and fresh strawberries"
+        "desc": "Vanilla sponge · strawberry filling · cream cheese"
       },
       "vanillaHimbeere": {
         "name": "Vanilla Raspberry",
-        "desc": "Delicate vanilla sponge with cream cheese frosting and fresh raspberries"
+        "desc": "Vanilla sponge · raspberry filling · cream cheese"
       }
     }
   },
