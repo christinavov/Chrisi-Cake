@@ -126,44 +126,48 @@ export default function GalleryPreview() {
   // Guaranteed-unique initial 12 images
   const [slots, setSlots] = useState<string[]>(() => shuffle(allImages).slice(0, TOTAL));
   // pending: which slot is swapping and what the incoming image is
-  const [pending, setPending] = useState<{ idx: number; src: string } | null>(null);
-  const [wipeActive, setWipeActive] = useState(false);
-  // usedRef tracks ALL images currently visible — no duplicates ever
+  const [pending, setPending] = useState<{ idx: number; src: string; visible: boolean } | null>(null);
   const usedRef = useRef<Set<string>>(new Set(slots));
   const busyRef = useRef(false);
   const [selected, setSelected] = useState<string | null>(null);
+
+  const FADE_MS = 2500;   // duration of the crossfade
+  const INTERVAL_MS = 6000; // time between swaps
 
   useEffect(() => {
     const interval = setInterval(() => {
       if (busyRef.current) return;
 
       const slotIdx = Math.floor(Math.random() * TOTAL);
-      // Pick a new image that is NOT currently displayed in any slot
       const available = allImages.filter((img) => !usedRef.current.has(img));
       if (available.length === 0) return;
       const newImg = available[Math.floor(Math.random() * available.length)];
 
       busyRef.current = true;
-      // Pre-add to usedRef immediately so concurrent ticks can't pick the same image
       usedRef.current.add(newImg);
 
-      setPending({ idx: slotIdx, src: newImg });
-      // Let new image render, then start wipe
-      requestAnimationFrame(() => requestAnimationFrame(() => setWipeActive(true)));
+      // Mount new image at opacity 0
+      setPending({ idx: slotIdx, src: newImg, visible: false });
 
+      // One frame later → start fade in
+      requestAnimationFrame(() =>
+        requestAnimationFrame(() =>
+          setPending((p) => p ? { ...p, visible: true } : p)
+        )
+      );
+
+      // After fade completes → commit as current slot
       setTimeout(() => {
         setSlots((prev) => {
           const updated = [...prev];
-          // Free the old image
           usedRef.current.delete(updated[slotIdx]);
           updated[slotIdx] = newImg;
           return updated;
         });
         setPending(null);
-        setWipeActive(false);
         busyRef.current = false;
-      }, 1100);
-    }, 3800);
+      }, FADE_MS + 100);
+    }, INTERVAL_MS);
 
     return () => clearInterval(interval);
   }, []);
@@ -204,22 +208,13 @@ export default function GalleryPreview() {
                     className="w-full h-auto block"
                     sizes="(max-width: 640px) 50vw, 25vw"
                   />
-                  {/* Incoming image — revealed top-to-bottom via gradient mask wipe */}
+                  {/* Incoming image — slow opacity crossfade */}
                   {isChanging && pending?.src && (
                     <div
                       className="absolute inset-0"
                       style={{
-                        WebkitMaskImage: wipeActive
-                          ? "linear-gradient(to bottom, black 100%, transparent 100%)"
-                          : "linear-gradient(to bottom, black 0%, transparent 0%)",
-                        maskImage: wipeActive
-                          ? "linear-gradient(to bottom, black 100%, transparent 100%)"
-                          : "linear-gradient(to bottom, black 0%, transparent 0%)",
-                        WebkitMaskSize: wipeActive ? "100% 200%" : "100% 200%",
-                        maskSize: "100% 200%",
-                        WebkitMaskPosition: wipeActive ? "0 0" : "0 100%",
-                        maskPosition: wipeActive ? "0 0" : "0 100%",
-                        transition: "mask-position 1s cubic-bezier(0.4,0,0.2,1), -webkit-mask-position 1s cubic-bezier(0.4,0,0.2,1)",
+                        opacity: pending.visible ? 1 : 0,
+                        transition: `opacity ${FADE_MS}ms ease-in-out`,
                       }}
                     >
                       <Image
