@@ -5,6 +5,7 @@ import { getMessages } from "next-intl/server";
 import "../globals.css";
 import ScrollToTop from "@/components/ScrollToTop";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import HashScroll from "@/components/HashScroll";
 
 const inter = Inter({ subsets: ["latin", "cyrillic"], variable: "--font-inter" });
 const dancing = Dancing_Script({ subsets: ["latin"], variable: "--font-dancing" });
@@ -39,6 +40,7 @@ export default async function LocaleLayout({
       <body className={`${inter.variable} ${dancing.variable} font-sans antialiased`}>
         <NextIntlClientProvider messages={messages}>
           {children}
+          <HashScroll />
           <ScrollToTop />
           <WhatsAppButton />
         </NextIntlClientProvider>

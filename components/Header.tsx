@@ -73,6 +73,10 @@ export default function Header() {
     const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: "smooth" });
+    } else {
+      // Not on home page — navigate there and scroll to section
+      const homePath = locale === "de" ? `/#${id}` : `/${locale}#${id}`;
+      window.location.href = homePath;
     }
     setMobileOpen(false);
   };
