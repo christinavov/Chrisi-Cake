@@ -123,9 +123,10 @@ export default function GalleryPreview() {
   const locale = useLocale();
   const galleryPath = locale === "de" ? "/gallery" : `/${locale}/gallery`;
 
+  // Each slot holds [current, next] pair + whether transition is active
   const [slots, setSlots] = useState<string[]>(() => shuffle(allImages).slice(0, TOTAL));
-  const [fadingSlot, setFadingSlot] = useState<number | null>(null);
-  const [nextSrc, setNextSrc] = useState("");
+  const [pending, setPending] = useState<{ idx: number; src: string } | null>(null);
+  const [transitioning, setTransitioning] = useState(false);
   const usedRef = useRef<Set<string>>(new Set(slots));
   const [selected, setSelected] = useState<string | null>(null);
 
@@ -136,10 +137,13 @@ export default function GalleryPreview() {
       if (available.length === 0) return;
       const newImg = available[Math.floor(Math.random() * available.length)];
 
-      setFadingSlot(slotIdx);
-      setNextSrc(newImg);
+      // Place new image underneath (opacity 0), then fade it in
+      setPending({ idx: slotIdx, src: newImg });
+      // Small delay so the new img renders before transition starts
+      requestAnimationFrame(() => requestAnimationFrame(() => setTransitioning(true)));
 
       setTimeout(() => {
+        // Swap complete — commit new image as current
         setSlots((prev) => {
           const updated = [...prev];
           usedRef.current.delete(updated[slotIdx]);
@@ -147,9 +151,10 @@ export default function GalleryPreview() {
           updated[slotIdx] = newImg;
           return updated;
         });
-        setFadingSlot(null);
-      }, 600);
-    }, 3000);
+        setPending(null);
+        setTransitioning(false);
+      }, 900);
+    }, 3500);
 
     return () => clearInterval(interval);
   }, []);
@@ -174,33 +179,33 @@ export default function GalleryPreview() {
           {columns.map((col, ci) =>
             col.map((src, ri) => {
               const slotIdx = ci + ri * COLS;
-              const isFading = fadingSlot === slotIdx;
+              const isChanging = pending?.idx === slotIdx;
               return (
                 <div
                   key={`${ci}-${ri}`}
                   onClick={() => setSelected(src)}
-                  className="group relative overflow-hidden rounded-2xl shadow-sm hover:shadow-lg hover:shadow-pink-200 transition-all duration-300 hover:-translate-y-1 cursor-pointer"
+                  className="group relative overflow-hidden rounded-2xl shadow-sm hover:shadow-lg hover:shadow-pink-200 transition-shadow duration-300 hover:-translate-y-1 cursor-pointer"
                 >
-                  {/* Current image — full natural size */}
+                  {/* Current image — fades out during transition */}
                   <Image
                     src={src}
                     alt={`Chrisi Cake ${slotIdx + 1}`}
                     width={400}
                     height={500}
-                    className={`w-full h-auto object-contain transition-all duration-500 group-hover:scale-[1.02] ${
-                      isFading ? "opacity-0" : "opacity-100"
-                    }`}
+                    style={{ transition: "opacity 0.8s ease" }}
+                    className={`w-full h-auto block ${isChanging && transitioning ? "opacity-0" : "opacity-100"}`}
                     sizes="(max-width: 640px) 50vw, 25vw"
                   />
-                  {/* Next image during swap */}
-                  {isFading && nextSrc && (
+                  {/* Incoming image — fades in on top */}
+                  {isChanging && pending.src && (
                     <div className="absolute inset-0">
                       <Image
-                        src={nextSrc}
-                        alt="preview"
+                        src={pending.src}
+                        alt="next"
                         width={400}
                         height={500}
-                        className="w-full h-auto object-contain"
+                        style={{ transition: "opacity 0.8s ease" }}
+                        className={`w-full h-auto block ${transitioning ? "opacity-100" : "opacity-0"}`}
                         sizes="(max-width: 640px) 50vw, 25vw"
                       />
                     </div>
