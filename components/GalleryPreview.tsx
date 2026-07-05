@@ -97,22 +97,10 @@ const allImages = [
   "/images/gallery/photo_2026-07-03_21-03-11.jpg",
 ];
 
-// Layout: each cell has a col-span and row-span (in a 4-col grid)
-// Total = 12 cells arranged in a visually balanced mosaic
-const layout = [
-  { col: "col-span-2", row: "row-span-2" }, // 0 — large square
-  { col: "col-span-1", row: "row-span-1" }, // 1 — small
-  { col: "col-span-1", row: "row-span-1" }, // 2 — small
-  { col: "col-span-1", row: "row-span-2" }, // 3 — tall
-  { col: "col-span-1", row: "row-span-1" }, // 4 — small
-  { col: "col-span-1", row: "row-span-1" }, // 5 — small
-  { col: "col-span-1", row: "row-span-1" }, // 6 — small
-  { col: "col-span-2", row: "row-span-1" }, // 7 — wide
-  { col: "col-span-1", row: "row-span-1" }, // 8 — small
-  { col: "col-span-1", row: "row-span-2" }, // 9 — tall
-  { col: "col-span-2", row: "row-span-1" }, // 10 — wide
-  { col: "col-span-1", row: "row-span-1" }, // 11 — small
-];
+// 4 columns × 3 items each = 12 slots
+const COLS = 4;
+const PER_COL = 3;
+const TOTAL = COLS * PER_COL;
 
 function shuffle<T>(arr: T[]): T[] {
   const a = [...arr];
@@ -123,24 +111,32 @@ function shuffle<T>(arr: T[]): T[] {
   return a;
 }
 
+// Split flat array into N columns for masonry
+function toColumns(items: string[], n: number): string[][] {
+  const cols: string[][] = Array.from({ length: n }, () => []);
+  items.forEach((item, i) => cols[i % n].push(item));
+  return cols;
+}
+
 export default function GalleryPreview() {
   const t = useTranslations("gallery");
   const locale = useLocale();
   const galleryPath = locale === "de" ? "/gallery" : `/${locale}/gallery`;
 
-  const [slots, setSlots] = useState<string[]>(() => shuffle(allImages).slice(0, 12));
-  const [fadingIndex, setFadingIndex] = useState<number | null>(null);
-  const [nextSrc, setNextSrc] = useState<string>("");
+  const [slots, setSlots] = useState<string[]>(() => shuffle(allImages).slice(0, TOTAL));
+  const [fadingSlot, setFadingSlot] = useState<number | null>(null);
+  const [nextSrc, setNextSrc] = useState("");
   const usedRef = useRef<Set<string>>(new Set(slots));
+  const [selected, setSelected] = useState<string | null>(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const slotIdx = Math.floor(Math.random() * 12);
+      const slotIdx = Math.floor(Math.random() * TOTAL);
       const available = allImages.filter((img) => !usedRef.current.has(img));
       if (available.length === 0) return;
       const newImg = available[Math.floor(Math.random() * available.length)];
 
-      setFadingIndex(slotIdx);
+      setFadingSlot(slotIdx);
       setNextSrc(newImg);
 
       setTimeout(() => {
@@ -151,16 +147,17 @@ export default function GalleryPreview() {
           updated[slotIdx] = newImg;
           return updated;
         });
-        setFadingIndex(null);
+        setFadingSlot(null);
       }, 600);
     }, 3000);
 
     return () => clearInterval(interval);
   }, []);
 
+  const columns = toColumns(slots, COLS);
+
   return (
     <section id="gallery" className="relative py-20 md:py-28 overflow-hidden">
-      {/* Background blobs */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-pink-100 rounded-full blur-3xl opacity-60" />
         <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-rose-100 rounded-full blur-3xl opacity-50" />
@@ -172,51 +169,53 @@ export default function GalleryPreview() {
           <p className="text-gray-500 text-lg">{t("subtitle")}</p>
         </div>
 
-        {/* Mosaic grid — 4 cols, auto rows of 160px */}
-        <div
-          className="grid gap-2 md:gap-3 mb-10"
-          style={{
-            gridTemplateColumns: "repeat(4, 1fr)",
-            gridAutoRows: "160px",
-          }}
-        >
-          {slots.map((src, i) => {
-            const cell = layout[i];
-            return (
-              <a
-                key={i}
-                href={galleryPath}
-                className={`${cell.col} ${cell.row} group relative overflow-hidden rounded-2xl shadow-sm hover:shadow-lg hover:shadow-pink-200 transition-all duration-300 hover:-translate-y-1`}
-              >
-                <Image
-                  src={src}
-                  alt={`Chrisi Cake ${i + 1}`}
-                  fill
-                  className={`object-cover transition-all duration-500 group-hover:scale-105 ${
-                    fadingIndex === i ? "opacity-0" : "opacity-100"
-                  }`}
-                  sizes="(max-width: 640px) 50vw, 25vw"
-                />
-                {fadingIndex === i && nextSrc && (
+        {/* Masonry: 4 columns on desktop, 2 on mobile */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3 items-start mb-10">
+          {columns.map((col, ci) =>
+            col.map((src, ri) => {
+              const slotIdx = ci + ri * COLS;
+              const isFading = fadingSlot === slotIdx;
+              return (
+                <div
+                  key={`${ci}-${ri}`}
+                  onClick={() => setSelected(src)}
+                  className="group relative overflow-hidden rounded-2xl shadow-sm hover:shadow-lg hover:shadow-pink-200 transition-all duration-300 hover:-translate-y-1 cursor-pointer"
+                >
+                  {/* Current image — full natural size */}
                   <Image
-                    src={nextSrc}
-                    alt="Chrisi Cake preview"
-                    fill
-                    className="object-cover"
+                    src={src}
+                    alt={`Chrisi Cake ${slotIdx + 1}`}
+                    width={400}
+                    height={500}
+                    className={`w-full h-auto object-contain transition-all duration-500 group-hover:scale-[1.02] ${
+                      isFading ? "opacity-0" : "opacity-100"
+                    }`}
                     sizes="(max-width: 640px) 50vw, 25vw"
                   />
-                )}
-                <div
-                  className="absolute inset-0 rounded-2xl pointer-events-none z-10"
-                  style={{ boxShadow: "inset 0 0 30px 10px rgba(255, 228, 235, 0.35)" }}
-                />
-                <div className="absolute inset-0 bg-pink-300/0 group-hover:bg-pink-300/10 transition-colors duration-300 rounded-2xl z-10" />
-              </a>
-            );
-          })}
+                  {/* Next image during swap */}
+                  {isFading && nextSrc && (
+                    <div className="absolute inset-0">
+                      <Image
+                        src={nextSrc}
+                        alt="preview"
+                        width={400}
+                        height={500}
+                        className="w-full h-auto object-contain"
+                        sizes="(max-width: 640px) 50vw, 25vw"
+                      />
+                    </div>
+                  )}
+                  <div
+                    className="absolute inset-0 rounded-2xl pointer-events-none"
+                    style={{ boxShadow: "inset 0 0 24px 8px rgba(255,228,235,0.3)" }}
+                  />
+                  <div className="absolute inset-0 bg-pink-300/0 group-hover:bg-pink-300/10 transition-colors duration-300 rounded-2xl" />
+                </div>
+              );
+            })
+          )}
         </div>
 
-        {/* CTA button */}
         <div className="text-center">
           <a
             href={galleryPath}
@@ -226,6 +225,30 @@ export default function GalleryPreview() {
           </a>
         </div>
       </div>
+
+      {/* Lightbox */}
+      {selected && (
+        <div
+          onClick={() => setSelected(null)}
+          className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
+        >
+          <div className="relative max-w-2xl w-full">
+            <Image
+              src={selected}
+              alt="Chrisi Cake"
+              width={800}
+              height={800}
+              className="w-full h-auto rounded-2xl shadow-2xl"
+            />
+            <button
+              onClick={() => setSelected(null)}
+              className="absolute top-3 right-3 bg-white/90 rounded-full w-9 h-9 flex items-center justify-center text-pink-700 font-bold text-lg hover:bg-white transition"
+            >
+              ×
+            </button>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
