@@ -39,7 +39,7 @@ const isPast = (date: Date) => {
 };
 const isTooSoon = (date: Date) => {
   const minDate = new Date();
-  minDate.setDate(minDate.getDate() + 5);
+  minDate.setDate(minDate.getDate() + 3);
   minDate.setHours(0, 0, 0, 0);
   return date < minDate;
 };
@@ -281,7 +281,7 @@ export default function OrderBuilder() {
               selected={date}
               onChange={handleDateChange}
               filterDate={filterDate}
-              minDate={(() => { const d = new Date(); d.setDate(d.getDate() + 5); return d; })()}
+              minDate={(() => { const d = new Date(); d.setDate(d.getDate() + 3); return d; })()}
               placeholderText={t("datePlaceholder")}
               dateFormat="dd.MM.yyyy"
               className="w-full"
