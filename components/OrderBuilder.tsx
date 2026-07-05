@@ -25,8 +25,8 @@ const flavorKeys: FlavorKey[] = [
   "schockiOrange",
   "caramelBanane",
   "schockiHimbeere",
-  "snickers",
   "rotVelvetErdbeere",
+  "snickers",
   "vanillaErdbeere",
   "vanillaHimbeere",
 ];
