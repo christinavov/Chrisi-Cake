@@ -4,14 +4,14 @@ import { useState, useEffect } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { Menu, X, Globe } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import Image from "next/image";
 
 const locales = [
-  { code: "de", label: "DE", name: "Deutsch" },
-  { code: "en", label: "EN", name: "English" },
-  { code: "ru", label: "RU", name: "Русский" },
-  { code: "uk", label: "UK", name: "Українська" },
+  { code: "de", label: "DE", name: "Deutsch", flag: "🇩🇪" },
+  { code: "en", label: "EN", name: "English", flag: "🇬🇧" },
+  { code: "ru", label: "RU", name: "Русский", flag: "🇷🇺" },
+  { code: "uk", label: "UK", name: "Українська", flag: "🇺🇦" },
 ];
 
 const navItems = ["home", "about", "gallery", "flavors", "order", "prices", "faq", "contact"] as const;
@@ -102,23 +102,24 @@ export default function Header() {
             <div className="relative">
               <button
                 onClick={() => setLangOpen(!langOpen)}
-                className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-pink-700 hover:bg-pink-50 rounded-lg border border-pink-200 transition-all"
+                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl border border-pink-200 hover:bg-pink-50 transition-all"
               >
-                <Globe size={14} />
-                <span>{locales.find((l) => l.code === locale)?.label}</span>
+                <span className="text-xl leading-none">{locales.find((l) => l.code === locale)?.flag}</span>
+                <span className="text-xs font-semibold text-pink-700">{locales.find((l) => l.code === locale)?.label}</span>
               </button>
               {langOpen && (
-                <div className="absolute right-0 mt-2 w-40 bg-white rounded-xl shadow-xl border border-pink-100 py-1 z-50">
+                <div className="absolute right-0 mt-2 w-44 bg-white rounded-2xl shadow-xl border border-pink-100 py-2 z-50">
                   {locales.map((l) => (
                     <button
                       key={l.code}
                       onClick={() => switchLocale(l.code)}
-                      className={`w-full text-left px-4 py-2 text-sm hover:bg-pink-50 transition-colors ${
+                      className={`w-full flex items-center gap-3 px-4 py-2.5 text-sm hover:bg-pink-50 transition-colors ${
                         l.code === locale ? "text-pink-600 font-semibold" : "text-gray-700"
                       }`}
                     >
-                      <span className="font-bold mr-2">{l.label}</span>
-                      {l.name}
+                      <span className="text-xl leading-none">{l.flag}</span>
+                      <span>{l.name}</span>
+                      {l.code === locale && <span className="ml-auto text-pink-400">✓</span>}
                     </button>
                   ))}
                 </div>
