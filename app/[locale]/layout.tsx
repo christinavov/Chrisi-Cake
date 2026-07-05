@@ -11,7 +11,7 @@ const inter = Inter({ subsets: ["latin", "cyrillic"], variable: "--font-inter" }
 const dancing = Dancing_Script({ subsets: ["latin"], variable: "--font-dancing" });
 
 export const metadata: Metadata = {
-  title: "Chrisi Cake – Torten auf Bestellung | Bern, Schweiz",
+  title: "Chrisi Cake",
   description:
     "Handgefertigte Torten auf Bestellung in Bern. Moderne Dekorationstechniken, frische Zutaten, kein Fondant. Mindestbestellung ab 10 Personen.",
   keywords: "Torte, Hochzeitstorte, Geburtstagstorte, Bern, Schweiz, custom cake, auf Bestellung",
