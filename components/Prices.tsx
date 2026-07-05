@@ -65,31 +65,6 @@ export default function Prices() {
         <p className="text-gray-500 max-w-2xl mx-auto">{t("intro")}</p>
       </div>
 
-      {/* Example cakes */}
-      <div className="mb-10">
-        <div className="text-center mb-6">
-          <h3 className="text-2xl md:text-3xl font-script text-pink-700 mb-1">{t("exampleTitle")}</h3>
-          <p className="text-gray-500 text-sm">* {t("exampleNote")}</p>
-        </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {exampleCakes.map((cake, i) => (
-            <div key={i} className="bg-white/90 border border-pink-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300">
-              <div className={`grid ${cake.images.length > 1 ? "grid-cols-2" : "grid-cols-1"} gap-0.5`}>
-                {cake.images.map((src, j) => (
-                  <div key={j} className="relative aspect-square">
-                    <Image src={src} alt={t(cake.labelKey)} fill className="object-cover" />
-                  </div>
-                ))}
-              </div>
-              <div className="p-4 text-center">
-                <p className="text-sm font-medium text-gray-700 mb-1">{t(cake.labelKey)}</p>
-                <p className="text-xl font-bold text-pink-600">{cake.price}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
       {/* Price Calculator */}
       <div className="mb-10 bg-white/90 border-2 border-pink-100 rounded-3xl p-6 md:p-8 shadow-sm">
         <h3 className="text-2xl md:text-3xl font-script text-pink-700 mb-1 text-center">{t("calcTitle")}</h3>
@@ -203,6 +178,31 @@ export default function Prices() {
             <p className="text-4xl font-bold">{totalPrice}</p>
             <p className="text-sm opacity-80">CHF</p>
           </div>
+        </div>
+      </div>
+
+      {/* Example cakes */}
+      <div className="mb-10">
+        <div className="text-center mb-6">
+          <h3 className="text-2xl md:text-3xl font-script text-pink-700 mb-1">{t("exampleTitle")}</h3>
+          <p className="text-gray-500 text-sm">* {t("exampleNote")}</p>
+        </div>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {exampleCakes.map((cake, i) => (
+            <div key={i} className="bg-white/90 border border-pink-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300">
+              <div className={`grid ${cake.images.length > 1 ? "grid-cols-2" : "grid-cols-1"} gap-0.5`}>
+                {cake.images.map((src, j) => (
+                  <div key={j} className="relative aspect-square">
+                    <Image src={src} alt={t(cake.labelKey)} fill className="object-cover" />
+                  </div>
+                ))}
+              </div>
+              <div className="p-4 text-center">
+                <p className="text-sm font-medium text-gray-700 mb-1">{t(cake.labelKey)}</p>
+                <p className="text-xl font-bold text-pink-600">{cake.price}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
