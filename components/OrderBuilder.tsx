@@ -111,6 +111,9 @@ export default function OrderBuilder() {
     } catch {}
 
     setSubmitted(true);
+    setTimeout(() => {
+      document.getElementById("order")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 50);
   };
 
   const filterDate = (d: Date) => !isSunday(d) && !isPast(d);
