@@ -41,7 +41,7 @@
       },
       "oreo": {
         "name": "Oreo",
-        "desc": "Schokoladenbiskuit · Milchschokoladen-Ganache · zerbröselte Oreo-Kekse"
+        "desc": "Schokoladenbiskuit · Milchschokoladen-Ganache · zerbröselte Oreo-Kekse · Frischkäsecreme"
       },
       "spinatZitrone": {
         "name": "Spinat Zitrone",
@@ -53,7 +53,7 @@
       },
       "caramelBanane": {
         "name": "Caramel Banane",
-        "desc": "Karamellbiskuit · karamellisierte Bananen · Frischkäsecreme"
+        "desc": "Karamellbiskuit · karamellisierte Bananen · gesalzenes Karamell · Frischkäsecreme"
       },
       "schockiHimbeere": {
         "name": "Schoki Himbeere",
@@ -61,7 +61,7 @@
       },
       "snickers": {
         "name": "Snickers",
-        "desc": "Schokoladenbiskuit · Erdnüsse mit Karamell · Frischkäsecreme"
+        "desc": "Schokoladenbiskuit · Erdnüsse mit gesalzenem Karamell · Frischkäsecreme"
       },
       "rotVelvetErdbeere": {
         "name": "Rot Velvet Erdbeere",

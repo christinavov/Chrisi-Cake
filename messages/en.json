@@ -41,7 +41,7 @@
       },
       "oreo": {
         "name": "Oreo",
-        "desc": "Chocolate sponge · milk chocolate ganache · crushed Oreo cookies"
+        "desc": "Chocolate sponge · milk chocolate ganache · crushed Oreo cookies · cream cheese"
       },
       "spinatZitrone": {
         "name": "Spinach Lemon",
@@ -53,7 +53,7 @@
       },
       "caramelBanane": {
         "name": "Caramel Banana",
-        "desc": "Caramel sponge · caramelised bananas · cream cheese"
+        "desc": "Caramel sponge · caramelised bananas · salted caramel · cream cheese"
       },
       "schockiHimbeere": {
         "name": "Choco Raspberry",
@@ -61,7 +61,7 @@
       },
       "snickers": {
         "name": "Snickers",
-        "desc": "Chocolate sponge · peanuts with caramel · cream cheese"
+        "desc": "Chocolate sponge · peanuts with salted caramel · cream cheese"
       },
       "rotVelvetErdbeere": {
         "name": "Red Velvet Strawberry",
