@@ -49,7 +49,7 @@ export default function Prices() {
   const handleTwoTier = (val: boolean) => {
     setTwoTier(val);
     if (val && guests < 20) setGuests(20);
-    if (!val && guests > 100) setGuests(100);
+    if (!val) setGuests(10);
   };
 
   const basePrice = guests * pricePerPerson;
