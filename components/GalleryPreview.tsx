@@ -1,26 +1,148 @@
 "use client";
 
-import { useTranslations } from "next-intl";
-import { useLocale } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
 
-const previewImages = [
+const allImages = [
   "/images/gallery/photo_2026-07-03_21-01-13.jpg",
+  "/images/gallery/photo_2026-07-03_21-01-14.jpg",
+  "/images/gallery/photo_2026-07-03_21-01-15.jpg",
+  "/images/gallery/photo_2026-07-03_21-01-16.jpg",
   "/images/gallery/photo_2026-07-03_21-01-17.jpg",
+  "/images/gallery/photo_2026-07-03_21-01-19.jpg",
+  "/images/gallery/photo_2026-07-03_21-01-20.jpg",
+  "/images/gallery/photo_2026-07-03_21-01-21.jpg",
   "/images/gallery/photo_2026-07-03_21-01-22.jpg",
+  "/images/gallery/photo_2026-07-03_21-01-23.jpg",
+  "/images/gallery/photo_2026-07-03_21-01-24.jpg",
+  "/images/gallery/photo_2026-07-03_21-01-25.jpg",
+  "/images/gallery/photo_2026-07-03_21-01-27.jpg",
   "/images/gallery/photo_2026-07-03_21-01-28.jpg",
+  "/images/gallery/photo_2026-07-03_21-01-29.jpg",
+  "/images/gallery/photo_2026-07-03_21-01-30.jpg",
+  "/images/gallery/photo_2026-07-03_21-01-31.jpg",
+  "/images/gallery/photo_2026-07-03_21-01-32.jpg",
+  "/images/gallery/photo_2026-07-03_21-01-34.jpg",
   "/images/gallery/photo_2026-07-03_21-01-35.jpg",
+  "/images/gallery/photo_2026-07-03_21-01-37.jpg",
+  "/images/gallery/photo_2026-07-03_21-01-38.jpg",
+  "/images/gallery/photo_2026-07-03_21-01-39.jpg",
+  "/images/gallery/photo_2026-07-03_21-01-40.jpg",
+  "/images/gallery/photo_2026-07-03_21-01-42.jpg",
+  "/images/gallery/photo_2026-07-03_21-01-43.jpg",
   "/images/gallery/photo_2026-07-03_21-01-44.jpg",
+  "/images/gallery/photo_2026-07-03_21-01-45.jpg",
+  "/images/gallery/photo_2026-07-03_21-01-47.jpg",
+  "/images/gallery/photo_2026-07-03_21-01-48.jpg",
+  "/images/gallery/photo_2026-07-03_21-01-50.jpg",
+  "/images/gallery/photo_2026-07-03_21-01-53.jpg",
+  "/images/gallery/photo_2026-07-03_21-01-54.jpg",
+  "/images/gallery/photo_2026-07-03_21-01-55.jpg",
+  "/images/gallery/photo_2026-07-03_21-01-56.jpg",
+  "/images/gallery/photo_2026-07-03_21-01-58.jpg",
+  "/images/gallery/photo_2026-07-03_21-01-59.jpg",
+  "/images/gallery/photo_2026-07-03_21-02-00.jpg",
+  "/images/gallery/photo_2026-07-03_21-02-01.jpg",
+  "/images/gallery/photo_2026-07-03_21-02-03.jpg",
+  "/images/gallery/photo_2026-07-03_21-02-04.jpg",
+  "/images/gallery/photo_2026-07-03_21-02-05.jpg",
+  "/images/gallery/photo_2026-07-03_21-02-06.jpg",
+  "/images/gallery/photo_2026-07-03_21-02-07.jpg",
+  "/images/gallery/photo_2026-07-03_21-02-09.jpg",
+  "/images/gallery/photo_2026-07-03_21-02-10.jpg",
+  "/images/gallery/photo_2026-07-03_21-02-12.jpg",
   "/images/gallery/photo_2026-07-03_21-02-13.jpg",
+  "/images/gallery/photo_2026-07-03_21-02-14.jpg",
+  "/images/gallery/photo_2026-07-03_21-02-15.jpg",
+  "/images/gallery/photo_2026-07-03_21-02-16.jpg",
+  "/images/gallery/photo_2026-07-03_21-02-17.jpg",
+  "/images/gallery/photo_2026-07-03_21-02-19.jpg",
+  "/images/gallery/photo_2026-07-03_21-02-20.jpg",
+  "/images/gallery/photo_2026-07-03_21-02-21.jpg",
+  "/images/gallery/photo_2026-07-03_21-02-24.jpg",
+  "/images/gallery/photo_2026-07-03_21-02-26.jpg",
+  "/images/gallery/photo_2026-07-03_21-02-27.jpg",
   "/images/gallery/photo_2026-07-03_21-02-28.jpg",
+  "/images/gallery/photo_2026-07-03_21-02-30.jpg",
+  "/images/gallery/photo_2026-07-03_21-02-31.jpg",
+  "/images/gallery/photo_2026-07-03_21-02-32.jpg",
   "/images/gallery/photo_2026-07-03_21-02-33.jpg",
+  "/images/gallery/photo_2026-07-03_21-02-34.jpg",
+  "/images/gallery/photo_2026-07-03_21-02-35.jpg",
+  "/images/gallery/photo_2026-07-03_21-02-36.jpg",
+  "/images/gallery/photo_2026-07-03_21-02-38.jpg",
+  "/images/gallery/photo_2026-07-03_21-02-39.jpg",
+  "/images/gallery/photo_2026-07-03_21-02-40.jpg",
+  "/images/gallery/photo_2026-07-03_21-02-41.jpg",
+  "/images/gallery/photo_2026-07-03_21-02-43.jpg",
+  "/images/gallery/photo_2026-07-03_21-02-44.jpg",
+  "/images/gallery/photo_2026-07-03_21-02-46.jpg",
+  "/images/gallery/photo_2026-07-03_21-02-47.jpg",
+  "/images/gallery/photo_2026-07-03_21-02-48.jpg",
+  "/images/gallery/photo_2026-07-03_21-02-50.jpg",
+  "/images/gallery/photo_2026-07-03_21-02-51.jpg",
+  "/images/gallery/photo_2026-07-03_21-02-52.jpg",
+  "/images/gallery/photo_2026-07-03_21-02-54.jpg",
+  "/images/gallery/photo_2026-07-03_21-02-55.jpg",
+  "/images/gallery/photo_2026-07-03_21-02-56.jpg",
+  "/images/gallery/photo_2026-07-03_21-02-58.jpg",
+  "/images/gallery/photo_2026-07-03_21-02-59.jpg",
+  "/images/gallery/photo_2026-07-03_21-03-00.jpg",
+  "/images/gallery/photo_2026-07-03_21-03-02.jpg",
+  "/images/gallery/photo_2026-07-03_21-03-03.jpg",
+  "/images/gallery/photo_2026-07-03_21-03-04.jpg",
+  "/images/gallery/photo_2026-07-03_21-03-06.jpg",
+  "/images/gallery/photo_2026-07-03_21-03-11.jpg",
 ];
+
+function shuffle<T>(arr: T[]): T[] {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
 
 export default function GalleryPreview() {
   const t = useTranslations("gallery");
   const locale = useLocale();
   const galleryPath = locale === "de" ? "/gallery" : `/${locale}/gallery`;
+
+  const [slots, setSlots] = useState<string[]>(() => shuffle(allImages).slice(0, 9));
+  const [fadingIndex, setFadingIndex] = useState<number | null>(null);
+  const [nextSrc, setNextSrc] = useState<string>("");
+  const usedRef = useRef<Set<string>>(new Set(slots));
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // Pick a random slot to replace
+      const slotIdx = Math.floor(Math.random() * 9);
+
+      // Pick a new image not currently shown
+      const available = allImages.filter((img) => !usedRef.current.has(img));
+      if (available.length === 0) return;
+      const newImg = available[Math.floor(Math.random() * available.length)];
+
+      setFadingIndex(slotIdx);
+      setNextSrc(newImg);
+
+      setTimeout(() => {
+        setSlots((prev) => {
+          const updated = [...prev];
+          usedRef.current.delete(updated[slotIdx]);
+          usedRef.current.add(newImg);
+          updated[slotIdx] = newImg;
+          return updated;
+        });
+        setFadingIndex(null);
+      }, 600);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <section id="gallery" className="relative py-20 md:py-28 overflow-hidden">
@@ -36,26 +158,39 @@ export default function GalleryPreview() {
           <p className="text-gray-500 text-lg">{t("subtitle")}</p>
         </div>
 
-        {/* 3x3 grid preview */}
+        {/* 3x3 grid preview with auto-rotating images */}
         <div className="grid grid-cols-3 gap-2 md:gap-3 mb-10">
-          {previewImages.map((src, i) => (
+          {slots.map((src, i) => (
             <a
-              key={src}
+              key={i}
               href={galleryPath}
               className="group relative overflow-hidden rounded-2xl shadow-sm hover:shadow-lg hover:shadow-pink-200 transition-all duration-300 hover:-translate-y-1 aspect-square"
             >
+              {/* Current image */}
               <Image
                 src={src}
                 alt={`Chrisi Cake ${i + 1}`}
                 fill
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                className={`object-cover transition-all duration-500 group-hover:scale-105 ${
+                  fadingIndex === i ? "opacity-0" : "opacity-100"
+                }`}
                 sizes="(max-width: 640px) 33vw, (max-width: 1024px) 33vw, 25vw"
               />
+              {/* Next image fading in underneath */}
+              {fadingIndex === i && nextSrc && (
+                <Image
+                  src={nextSrc}
+                  alt={`Chrisi Cake preview`}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 640px) 33vw, (max-width: 1024px) 33vw, 25vw"
+                />
+              )}
               <div
-                className="absolute inset-0 rounded-2xl pointer-events-none"
+                className="absolute inset-0 rounded-2xl pointer-events-none z-10"
                 style={{ boxShadow: "inset 0 0 30px 10px rgba(255, 228, 235, 0.4)" }}
               />
-              <div className="absolute inset-0 bg-pink-300/0 group-hover:bg-pink-300/10 transition-colors duration-300 rounded-2xl" />
+              <div className="absolute inset-0 bg-pink-300/0 group-hover:bg-pink-300/10 transition-colors duration-300 rounded-2xl z-10" />
             </a>
           ))}
         </div>
