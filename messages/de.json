@@ -119,7 +119,13 @@
     "occasionAnniversary": "🥂 Jubiläum",
     "occasionBabyShower": "🍼 Babyshower",
     "occasionOther": "✨ Sonstiges",
-    "responseTime": "⏱ Ich melde mich innerhalb von 24 Stunden bei dir."
+    "responseTime": "⏱ Ich melde mich innerhalb von 24 Stunden bei dir.",
+    "tierLabel": "Tortenart",
+    "tierOne": "Einstöckig",
+    "tierTwo": "Zweistöckig",
+    "tierOneNote": "ab 10 Personen · 10 CHF/Person",
+    "tierTwoNote": "ab 20 Personen · 14 CHF/Person",
+    "minGuestsErrorTwo": "Mindestanzahl für zweistöckige Torte ist 20 Personen"
   },
   "prices": {
     "title": "Preise",

@@ -143,22 +143,13 @@ export default function Prices() {
           >
             {/* One-tier cake icon */}
             <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-              {/* candles */}
-              <rect x="12" y="5" width="3" height="7" rx="1.5" fill="#f9a8d4"/>
-              <rect x="23" y="5" width="3" height="7" rx="1.5" fill="#f9a8d4"/>
-              <ellipse cx="13.5" cy="5" rx="1.5" ry="2" fill="#fbbf24"/>
-              <ellipse cx="24.5" cy="5" rx="1.5" ry="2" fill="#fbbf24"/>
-              {/* cake body */}
-              <rect x="5" y="17" width="28" height="14" rx="4" fill="#fce7f3"/>
-              <rect x="5" y="17" width="28" height="5" rx="2" fill="#fbcfe8"/>
-              {/* frosting drips */}
-              <path d="M10 17 Q12 22 14 17 Q16 22 18 17 Q20 22 22 17 Q24 22 26 17 Q28 22 30 17" stroke="white" strokeWidth="2" fill="none" strokeLinecap="round"/>
-              {/* base */}
-              <rect x="3" y="29" width="32" height="4" rx="2" fill="#f9a8d4"/>
-              {/* decoration dots */}
-              <circle cx="13" cy="24" r="1.5" fill="#f472b6"/>
-              <circle cx="19" cy="24" r="1.5" fill="#f472b6"/>
-              <circle cx="25" cy="24" r="1.5" fill="#f472b6"/>
+              <rect x="5" y="12" width="28" height="18" rx="4" fill="#fce7f3"/>
+              <rect x="5" y="12" width="28" height="6" rx="3" fill="#fbcfe8"/>
+              <path d="M9 12 Q12 18 15 12 Q18 18 21 12 Q24 18 27 18 Q30 18 33 12" stroke="white" strokeWidth="2" fill="none" strokeLinecap="round"/>
+              <rect x="3" y="28" width="32" height="5" rx="2.5" fill="#f9a8d4"/>
+              <circle cx="13" cy="22" r="2" fill="#f472b6"/>
+              <circle cx="19" cy="22" r="2" fill="#f472b6"/>
+              <circle cx="25" cy="22" r="2" fill="#f472b6"/>
             </svg>
             <p className="text-sm font-semibold text-gray-700">{t("calcOneTier")}</p>
             <p className="text-xs text-pink-500">10 CHF / {t("calcPerson")}</p>
@@ -170,23 +161,16 @@ export default function Prices() {
           >
             {/* Two-tier cake icon */}
             <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-              {/* candle */}
-              <rect x="17" y="2" width="3" height="6" rx="1.5" fill="#f9a8d4"/>
-              <ellipse cx="18.5" cy="2" rx="1.5" ry="2" fill="#fbbf24"/>
-              {/* top tier */}
-              <rect x="9" y="13" width="20" height="10" rx="3" fill="#fce7f3"/>
-              <rect x="9" y="13" width="20" height="4" rx="2" fill="#fbcfe8"/>
-              <path d="M13 13 Q15 17 17 13 Q19 17 21 13 Q23 17 25 13" stroke="white" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
-              {/* bottom tier */}
-              <rect x="4" y="24" width="30" height="10" rx="3" fill="#fce7f3"/>
-              <rect x="4" y="24" width="30" height="4" rx="2" fill="#fbcfe8"/>
-              <path d="M8 24 Q10 28 12 24 Q14 28 16 24 Q18 28 20 24 Q22 28 24 24 Q26 28 28 24 Q30 28 32 24" stroke="white" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
-              {/* base */}
-              <rect x="2" y="33" width="34" height="3.5" rx="1.75" fill="#f9a8d4"/>
-              {/* dots */}
-              <circle cx="12" cy="29" r="1.2" fill="#f472b6"/>
-              <circle cx="19" cy="29" r="1.2" fill="#f472b6"/>
-              <circle cx="26" cy="29" r="1.2" fill="#f472b6"/>
+              <rect x="9" y="6" width="20" height="13" rx="3" fill="#fce7f3"/>
+              <rect x="9" y="6" width="20" height="5" rx="2.5" fill="#fbcfe8"/>
+              <path d="M12 6 Q14.5 11 17 6 Q19.5 11 22 6 Q24.5 11 27 6" stroke="white" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+              <rect x="4" y="20" width="30" height="13" rx="3" fill="#fce7f3"/>
+              <rect x="4" y="20" width="30" height="5" rx="2.5" fill="#fbcfe8"/>
+              <path d="M7 20 Q10 25 13 20 Q16 25 19 20 Q22 25 25 20 Q28 25 31 20" stroke="white" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+              <rect x="2" y="32" width="34" height="4" rx="2" fill="#f9a8d4"/>
+              <circle cx="13" cy="28" r="1.5" fill="#f472b6"/>
+              <circle cx="19" cy="28" r="1.5" fill="#f472b6"/>
+              <circle cx="25" cy="28" r="1.5" fill="#f472b6"/>
             </svg>
             <p className="text-sm font-semibold text-gray-700">{t("calcTwoTier")}</p>
             <p className="text-xs text-pink-500">14 CHF / {t("calcPerson")} · {t("calcMin20")}</p>

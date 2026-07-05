@@ -50,6 +50,7 @@ export default function OrderBuilder() {
 
   const [flavor, setFlavor] = useState("");
   const [occasion, setOccasion] = useState("");
+  const [twoTier, setTwoTier] = useState(false);
   const [guests, setGuests] = useState("");
   const [date, setDate] = useState<Date | null>(null);
   const [name, setName] = useState("");
@@ -59,6 +60,16 @@ export default function OrderBuilder() {
   const [submitted, setSubmitted] = useState(false);
   const [dateError, setDateError] = useState("");
   const [guestsError, setGuestsError] = useState("");
+
+  const minGuests = twoTier ? 20 : 10;
+
+  const handleTierChange = (val: boolean) => {
+    setTwoTier(val);
+    setGuestsError("");
+    // Auto-adjust guests if below new minimum
+    if (val && guests && parseInt(guests) < 20) setGuests("20");
+    if (!val && guests && parseInt(guests) === 20) setGuests("10");
+  };
 
   const handleDateChange = (d: Date | null) => {
     setDateError("");
@@ -74,8 +85,8 @@ export default function OrderBuilder() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!flavor || !guests || !date || !name || !email || !phone) return;
-    if (parseInt(guests) < 10) {
-      setGuestsError(t("minGuestsError"));
+    if (parseInt(guests) < minGuests) {
+      setGuestsError(twoTier ? t("minGuestsErrorTwo") : t("minGuestsError"));
       return;
     }
 
@@ -90,6 +101,7 @@ export default function OrderBuilder() {
           email,
           phone,
           flavor,
+          tier: twoTier ? "Zweistöckig" : "Einstöckig",
           guests,
           date: date ? date.toLocaleDateString("de-CH") : "",
           occasion: occasion || "—",
@@ -168,6 +180,50 @@ export default function OrderBuilder() {
             )}
           </div>
 
+          {/* Tier selector */}
+          <div>
+            <label className="block text-sm font-semibold text-pink-800 mb-3">{t("tierLabel")} *</label>
+            <div className="grid grid-cols-2 gap-3">
+              <button
+                type="button"
+                onClick={() => handleTierChange(false)}
+                className={`flex flex-col items-center gap-2 px-4 py-4 rounded-2xl border-2 transition-all ${!twoTier ? "border-pink-400 bg-pink-50 shadow-sm" : "border-pink-100 bg-white hover:border-pink-200"}`}
+              >
+                <svg width="40" height="40" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="5" y="12" width="28" height="18" rx="4" fill="#fce7f3"/>
+                  <rect x="5" y="12" width="28" height="6" rx="3" fill="#fbcfe8"/>
+                  <path d="M9 12 Q12 18 15 12 Q18 18 21 12 Q24 18 27 18 Q30 18 33 12" stroke="white" strokeWidth="2" fill="none" strokeLinecap="round"/>
+                  <rect x="3" y="28" width="32" height="5" rx="2.5" fill="#f9a8d4"/>
+                  <circle cx="13" cy="22" r="2" fill="#f472b6"/>
+                  <circle cx="19" cy="22" r="2" fill="#f472b6"/>
+                  <circle cx="25" cy="22" r="2" fill="#f472b6"/>
+                </svg>
+                <p className="text-sm font-semibold text-gray-700">{t("tierOne")}</p>
+                <p className="text-xs text-pink-500">{t("tierOneNote")}</p>
+              </button>
+              <button
+                type="button"
+                onClick={() => handleTierChange(true)}
+                className={`flex flex-col items-center gap-2 px-4 py-4 rounded-2xl border-2 transition-all ${twoTier ? "border-pink-400 bg-pink-50 shadow-sm" : "border-pink-100 bg-white hover:border-pink-200"}`}
+              >
+                <svg width="40" height="40" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="9" y="6" width="20" height="13" rx="3" fill="#fce7f3"/>
+                  <rect x="9" y="6" width="20" height="5" rx="2.5" fill="#fbcfe8"/>
+                  <path d="M12 6 Q14.5 11 17 6 Q19.5 11 22 6 Q24.5 11 27 6" stroke="white" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+                  <rect x="4" y="20" width="30" height="13" rx="3" fill="#fce7f3"/>
+                  <rect x="4" y="20" width="30" height="5" rx="2.5" fill="#fbcfe8"/>
+                  <path d="M7 20 Q10 25 13 20 Q16 25 19 20 Q22 25 25 20 Q28 25 31 20" stroke="white" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+                  <rect x="2" y="32" width="34" height="4" rx="2" fill="#f9a8d4"/>
+                  <circle cx="13" cy="28" r="1.5" fill="#f472b6"/>
+                  <circle cx="19" cy="28" r="1.5" fill="#f472b6"/>
+                  <circle cx="25" cy="28" r="1.5" fill="#f472b6"/>
+                </svg>
+                <p className="text-sm font-semibold text-gray-700">{t("tierTwo")}</p>
+                <p className="text-xs text-pink-500">{t("tierTwoNote")}</p>
+              </button>
+            </div>
+          </div>
+
           {/* Occasion */}
           <div>
             <label className="block text-sm font-semibold text-pink-800 mb-2">{t("occasionLabel")}</label>
@@ -190,7 +246,7 @@ export default function OrderBuilder() {
             <label className="block text-sm font-semibold text-pink-800 mb-2">{t("guestsLabel")} *</label>
             <input
               type="number"
-              min={10}
+              min={minGuests}
               value={guests}
               onChange={(e) => { setGuests(e.target.value); setGuestsError(""); }}
               placeholder={t("guestsPlaceholder")}
@@ -202,7 +258,7 @@ export default function OrderBuilder() {
                 <AlertTriangle size={12} /> {guestsError}
               </p>
             ) : (
-              <p className="mt-1 text-xs text-gray-400">⚠️ {t("minGuests")}</p>
+              <p className="mt-1 text-xs text-gray-400">⚠️ {twoTier ? t("tierTwoNote") : t("minGuests")}</p>
             )}
           </div>
 

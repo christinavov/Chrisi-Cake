@@ -119,7 +119,13 @@
     "occasionAnniversary": "🥂 Ювілей",
     "occasionBabyShower": "🍼 Бебі-шауер",
     "occasionOther": "✨ Інше",
-    "responseTime": "⏱ Я відповім протягом 24 годин."
+    "responseTime": "⏱ Я відповім протягом 24 годин.",
+    "tierLabel": "Вид торта",
+    "tierOne": "Одноярусний",
+    "tierTwo": "Двоярусний",
+    "tierOneNote": "від 10 осіб · 10 CHF/особу",
+    "tierTwoNote": "від 20 осіб · 14 CHF/особу",
+    "minGuestsErrorTwo": "Мінімум для двоярусного торта — 20 осіб"
   },
   "prices": {
     "title": "Ціни",
