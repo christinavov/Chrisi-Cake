@@ -28,7 +28,8 @@
   },
   "gallery": {
     "title": "My Work",
-    "subtitle": "Every cake is a little piece of art – handcrafted with love"
+    "subtitle": "Every cake is a little piece of art – handcrafted with love",
+    "viewAll": "View all works"
   },
   "flavors": {
     "title": "Flavor Worlds",

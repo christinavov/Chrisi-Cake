@@ -1,7 +1,7 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
-import Gallery from "@/components/Gallery";
+import GalleryPreview from "@/components/GalleryPreview";
 import Flavors from "@/components/Flavors";
 import OrderBuilder from "@/components/OrderBuilder";
 import Prices from "@/components/Prices";
@@ -18,7 +18,7 @@ export default function HomePage() {
       <Header />
       <Hero />
       <ScrollReveal><About /></ScrollReveal>
-      <ScrollReveal><Gallery /></ScrollReveal>
+      <ScrollReveal><GalleryPreview /></ScrollReveal>
       <ScrollReveal><Flavors /></ScrollReveal>
       <ScrollReveal><OrderBuilder /></ScrollReveal>
       <ScrollReveal><Prices /></ScrollReveal>

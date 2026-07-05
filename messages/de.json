@@ -28,7 +28,8 @@
   },
   "gallery": {
     "title": "Meine Werke",
-    "subtitle": "Jede Torte ist ein kleines Kunstwerk – handgefertigt mit Liebe"
+    "subtitle": "Jede Torte ist ein kleines Kunstwerk – handgefertigt mit Liebe",
+    "viewAll": "Alle Werke ansehen"
   },
   "flavors": {
     "title": "Geschmackswelten",
