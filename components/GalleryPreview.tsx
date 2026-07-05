@@ -123,38 +123,47 @@ export default function GalleryPreview() {
   const locale = useLocale();
   const galleryPath = locale === "de" ? "/gallery" : `/${locale}/gallery`;
 
-  // Each slot holds [current, next] pair + whether transition is active
+  // Guaranteed-unique initial 12 images
   const [slots, setSlots] = useState<string[]>(() => shuffle(allImages).slice(0, TOTAL));
+  // pending: which slot is swapping and what the incoming image is
   const [pending, setPending] = useState<{ idx: number; src: string } | null>(null);
-  const [transitioning, setTransitioning] = useState(false);
+  const [wipeActive, setWipeActive] = useState(false);
+  // usedRef tracks ALL images currently visible — no duplicates ever
   const usedRef = useRef<Set<string>>(new Set(slots));
+  const busyRef = useRef(false);
   const [selected, setSelected] = useState<string | null>(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
+      if (busyRef.current) return;
+
       const slotIdx = Math.floor(Math.random() * TOTAL);
+      // Pick a new image that is NOT currently displayed in any slot
       const available = allImages.filter((img) => !usedRef.current.has(img));
       if (available.length === 0) return;
       const newImg = available[Math.floor(Math.random() * available.length)];
 
-      // Place new image underneath (opacity 0), then fade it in
+      busyRef.current = true;
+      // Pre-add to usedRef immediately so concurrent ticks can't pick the same image
+      usedRef.current.add(newImg);
+
       setPending({ idx: slotIdx, src: newImg });
-      // Small delay so the new img renders before transition starts
-      requestAnimationFrame(() => requestAnimationFrame(() => setTransitioning(true)));
+      // Let new image render, then start wipe
+      requestAnimationFrame(() => requestAnimationFrame(() => setWipeActive(true)));
 
       setTimeout(() => {
-        // Swap complete — commit new image as current
         setSlots((prev) => {
           const updated = [...prev];
+          // Free the old image
           usedRef.current.delete(updated[slotIdx]);
-          usedRef.current.add(newImg);
           updated[slotIdx] = newImg;
           return updated;
         });
         setPending(null);
-        setTransitioning(false);
-      }, 900);
-    }, 3500);
+        setWipeActive(false);
+        busyRef.current = false;
+      }, 1100);
+    }, 3800);
 
     return () => clearInterval(interval);
   }, []);
@@ -186,26 +195,39 @@ export default function GalleryPreview() {
                   onClick={() => setSelected(src)}
                   className="group relative overflow-hidden rounded-2xl shadow-sm hover:shadow-lg hover:shadow-pink-200 transition-shadow duration-300 hover:-translate-y-1 cursor-pointer"
                 >
-                  {/* Current image — fades out during transition */}
+                  {/* Current image — always present, keeps the cell height */}
                   <Image
                     src={src}
                     alt={`Chrisi Cake ${slotIdx + 1}`}
                     width={400}
                     height={500}
-                    style={{ transition: "opacity 0.8s ease" }}
-                    className={`w-full h-auto block ${isChanging && transitioning ? "opacity-0" : "opacity-100"}`}
+                    className="w-full h-auto block"
                     sizes="(max-width: 640px) 50vw, 25vw"
                   />
-                  {/* Incoming image — fades in on top */}
-                  {isChanging && pending.src && (
-                    <div className="absolute inset-0">
+                  {/* Incoming image — revealed top-to-bottom via gradient mask wipe */}
+                  {isChanging && pending?.src && (
+                    <div
+                      className="absolute inset-0"
+                      style={{
+                        WebkitMaskImage: wipeActive
+                          ? "linear-gradient(to bottom, black 100%, transparent 100%)"
+                          : "linear-gradient(to bottom, black 0%, transparent 0%)",
+                        maskImage: wipeActive
+                          ? "linear-gradient(to bottom, black 100%, transparent 100%)"
+                          : "linear-gradient(to bottom, black 0%, transparent 0%)",
+                        WebkitMaskSize: wipeActive ? "100% 200%" : "100% 200%",
+                        maskSize: "100% 200%",
+                        WebkitMaskPosition: wipeActive ? "0 0" : "0 100%",
+                        maskPosition: wipeActive ? "0 0" : "0 100%",
+                        transition: "mask-position 1s cubic-bezier(0.4,0,0.2,1), -webkit-mask-position 1s cubic-bezier(0.4,0,0.2,1)",
+                      }}
+                    >
                       <Image
                         src={pending.src}
                         alt="next"
                         width={400}
                         height={500}
-                        style={{ transition: "opacity 0.8s ease" }}
-                        className={`w-full h-auto block ${transitioning ? "opacity-100" : "opacity-0"}`}
+                        className="w-full h-auto block"
                         sizes="(max-width: 640px) 50vw, 25vw"
                       />
                     </div>
