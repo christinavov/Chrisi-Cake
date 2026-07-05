@@ -118,13 +118,23 @@ export default function Header() {
           {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center gap-1">
             {navItems.map((item) => (
-              <button
-                key={item}
-                onClick={() => scrollTo(sectionIds[item])}
-                className="px-3 py-2 text-sm font-medium text-pink-800 hover:text-pink-600 hover:bg-pink-50 rounded-lg transition-all duration-200"
-              >
-                {t(item)}
-              </button>
+              item === "gallery" ? (
+                <a
+                  key={item}
+                  href={locale === "de" ? "/gallery" : `/${locale}/gallery`}
+                  className="px-3 py-2 text-sm font-medium text-pink-800 hover:text-pink-600 hover:bg-pink-50 rounded-lg transition-all duration-200"
+                >
+                  {t(item)}
+                </a>
+              ) : (
+                <button
+                  key={item}
+                  onClick={() => scrollTo(sectionIds[item])}
+                  className="px-3 py-2 text-sm font-medium text-pink-800 hover:text-pink-600 hover:bg-pink-50 rounded-lg transition-all duration-200"
+                >
+                  {t(item)}
+                </button>
+              )
             ))}
           </nav>
 
@@ -174,13 +184,23 @@ export default function Header() {
         {mobileOpen && (
           <div className="lg:hidden border-t border-pink-100 py-3 pb-4">
             {navItems.map((item) => (
-              <button
-                key={item}
-                onClick={() => scrollTo(sectionIds[item])}
-                className="block w-full text-left px-4 py-3 text-sm font-medium text-pink-800 hover:bg-pink-50 rounded-lg transition-colors"
-              >
-                {t(item)}
-              </button>
+              item === "gallery" ? (
+                <a
+                  key={item}
+                  href={locale === "de" ? "/gallery" : `/${locale}/gallery`}
+                  className="block w-full text-left px-4 py-3 text-sm font-medium text-pink-800 hover:bg-pink-50 rounded-lg transition-colors"
+                >
+                  {t(item)}
+                </a>
+              ) : (
+                <button
+                  key={item}
+                  onClick={() => scrollTo(sectionIds[item])}
+                  className="block w-full text-left px-4 py-3 text-sm font-medium text-pink-800 hover:bg-pink-50 rounded-lg transition-colors"
+                >
+                  {t(item)}
+                </button>
+              )
             ))}
           </div>
         )}
