@@ -87,8 +87,8 @@
     "guestsPlaceholder": "Minimum 10 persons",
     "dateLabel": "Pickup Date",
     "datePlaceholder": "Select a date",
-    "dateNote": "Pickup is available Monday to Saturday from 18:00 – 21:00. Closed on Sundays.",
-    "timeNote": "Self-pickup possible from 18:00 – 21:00",
+    "dateNote": "Pickup is available Monday to Saturday from 18:00 – 20:00. No delivery. Closed on Sundays.",
+    "timeNote": "Self-pickup possible from 18:00 – 20:00 (no delivery)",
     "referenceLabel": "Reference photos (up to 3 images)",
     "referenceBtn": "Add photos (max. 3)",
     "referenceNote": "Photos can also be sent via WhatsApp or email after placing the order.",
@@ -188,11 +188,11 @@
       },
       {
         "q": "When can I pick up my order?",
-        "a": "Pickup is available Monday to Saturday from 18:00 – 21:00."
+        "a": "Pickup is available Monday to Saturday from 18:00 – 20:00. No delivery is offered."
       },
       {
         "q": "Are you open on Sundays?",
-        "a": "Please note that I do not work on Sundays and no pickups or deliveries are possible on this day."
+        "a": "Please note that I do not work on Sundays and no pickups are possible on this day."
       },
       {
         "q": "How far in advance do I need to order?",
