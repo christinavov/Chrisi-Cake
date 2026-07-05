@@ -102,25 +102,26 @@ export default function Prices() {
         <h3 className="text-2xl md:text-3xl font-script text-pink-700 mb-1 text-center">{t("calcTitle")}</h3>
         <p className="text-center text-gray-400 text-sm mb-6">{t("calcSubtitle")}</p>
 
-        {/* Guests slider */}
+        {/* Guests counter */}
         <div className="mb-6">
-          <div className="flex justify-between items-center mb-2">
-            <label className="text-sm font-semibold text-pink-800">{t("calcGuests")}</label>
-            <span className="text-lg font-bold text-pink-600">{guests} {t("calcPersons")}</span>
+          <label className="block text-sm font-semibold text-pink-800 mb-3">{t("calcGuests")}</label>
+          <div className="flex items-center justify-center gap-6">
+            <button
+              type="button"
+              onClick={() => setGuests((g) => Math.max(10, g - 1))}
+              className="w-12 h-12 rounded-full bg-pink-100 hover:bg-pink-200 text-pink-700 text-2xl font-bold transition-all flex items-center justify-center select-none"
+            >−</button>
+            <div className="text-center min-w-[100px]">
+              <span className="text-5xl font-bold text-pink-600">{guests}</span>
+              <p className="text-sm text-gray-400 mt-1">{t("calcPersons")}</p>
+            </div>
+            <button
+              type="button"
+              onClick={() => setGuests((g) => Math.min(100, g + 1))}
+              className="w-12 h-12 rounded-full bg-pink-100 hover:bg-pink-200 text-pink-700 text-2xl font-bold transition-all flex items-center justify-center select-none"
+            >+</button>
           </div>
-          <input
-            type="range"
-            min={10}
-            max={80}
-            value={guests}
-            onChange={(e) => setGuests(Number(e.target.value))}
-            className="w-full accent-pink-500 h-2 rounded-full"
-          />
-          <div className="flex justify-between text-xs text-gray-400 mt-1">
-            <span>10</span>
-            <span>80</span>
-          </div>
-          <p className="text-xs text-gray-400 mt-1">* {t("calcMinNote")}</p>
+          <p className="text-xs text-gray-400 mt-3 text-center">* {t("calcMinNote")}</p>
         </div>
 
         {/* Extras */}
