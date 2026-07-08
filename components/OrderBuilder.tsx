@@ -82,33 +82,36 @@ export default function OrderBuilder() {
     setDate(d);
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!flavor || !guests || !date || !name || !email || !phone) return;
+    if (!flavor || !guests || !date || !name || !phone) return;
     if (parseInt(guests) < minGuests) {
       setGuestsError(twoTier ? t("minGuestsErrorTwo") : t("minGuestsError"));
       return;
     }
 
-    try {
-      await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
-          access_key: "9acbede1-9652-4427-9603-023f4a7940e8",
-          subject: `Neue Bestellung von ${name}`,
-          name,
-          email,
-          phone,
-          flavor,
-          tier: twoTier ? "Zweistöckig" : "Einstöckig",
-          guests,
-          date: date ? date.toLocaleDateString("de-CH") : "",
-          occasion: occasion || "—",
-          details: details || "—",
-        }),
-      });
-    } catch {}
+    const flavorName = tf(`items.${flavor as FlavorKey}.name`);
+    const tierLabel = twoTier ? "Zweistöckig (2 Etagen)" : "Einstöckig (1 Etage)";
+    const dateStr = date ? date.toLocaleDateString("de-CH") : "—";
+    const occasionLabel = occasion || "—";
+    const emailLine = email ? `\nE-Mail: ${email}` : "";
+    const detailsLine = details ? `\nWünsche: ${details}` : "";
+
+    const msg = [
+      "🎂 *Neue Tortenbestellung*",
+      "",
+      `👤 Name: ${name}`,
+      `📞 Telefon: ${phone}${emailLine}`,
+      "",
+      `🍰 Geschmack: ${flavorName}`,
+      `🎂 Tortenart: ${tierLabel}`,
+      `👥 Gäste: ${guests} Personen`,
+      `📅 Abholdatum: ${dateStr}`,
+      `🎉 Anlass: ${occasionLabel}${detailsLine}`,
+    ].join("\n");
+
+    const waUrl = `https://wa.me/41762236126?text=${encodeURIComponent(msg)}`;
+    window.open(waUrl, "_blank");
 
     setSubmitted(true);
     setTimeout(() => {
@@ -123,21 +126,13 @@ export default function OrderBuilder() {
       <section id="order" className="py-20 md:py-28 bg-white/40">
         <div className="max-w-2xl mx-auto px-4 text-center">
           <div className="bg-white rounded-3xl shadow-xl p-12 border border-pink-100 space-y-6">
-            <CheckCircle2 size={64} className="text-pink-500 mx-auto" />
+            <CheckCircle2 size={64} className="text-green-500 mx-auto" />
             <h2 className="text-3xl font-script text-pink-700">{t("successTitle")}</h2>
-            <p className="text-gray-500 text-sm">{t("responseTime")}</p>
-            <div className="flex items-start gap-3 bg-amber-50 border-l-4 border-amber-400 rounded-xl p-4 text-left">
-              <AlertTriangle size={20} className="text-amber-500 flex-shrink-0 mt-0.5" />
-              <p className="text-amber-800 font-semibold text-sm">{t("successMsg")}</p>
+            <p className="text-gray-600 text-sm">{t("successMsg")}</p>
+            <div className="flex items-start gap-3 bg-green-50 border-l-4 border-green-400 rounded-xl p-4 text-left">
+              <MessageCircle size={20} className="text-green-600 flex-shrink-0 mt-0.5" />
+              <p className="text-green-800 font-semibold text-sm">{t("whatsappHint")}</p>
             </div>
-            <a
-              href="https://wa.me/41762236126"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 w-full py-3 px-4 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-xl transition-all text-sm"
-            >
-              📸 {t("whatsappHint")}
-            </a>
           </div>
         </div>
       </section>
@@ -334,13 +329,12 @@ export default function OrderBuilder() {
             {/* Email + Phone */}
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-semibold text-pink-800 mb-2">{t("emailLabel")} *</label>
+                <label className="block text-sm font-semibold text-pink-800 mb-2">{t("emailLabel")}</label>
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder={t("emailPlaceholder")}
-                  required
                   className="w-full px-4 py-3 border border-pink-200 rounded-xl bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-pink-300 focus:border-pink-400 transition-all placeholder:text-gray-400"
                 />
               </div>
