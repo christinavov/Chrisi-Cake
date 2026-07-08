@@ -14,10 +14,11 @@ body {
   background: linear-gradient(
     160deg,
     #fff0f6 0%,
-    #fde8f3 25%,
-    #fce7f3 50%,
-    #fdf2f8 75%,
-    #fff5fa 100%
+    #f8e8ff 20%,
+    #eedcff 40%,
+    #e8d5ff 60%,
+    #f3d8f8 80%,
+    #fde8f3 100%
   );
   background-attachment: fixed;
   min-height: 100vh;
