@@ -39,11 +39,11 @@ export default function Hero() {
         </div>
 
         {/* Title */}
-        <h1 className="font-script text-6xl md:text-8xl text-pink-700 mb-3 drop-shadow-sm">
+        <h1 className="font-script text-7xl md:text-9xl bg-gradient-to-r from-purple-600 via-pink-600 to-rose-500 bg-clip-text text-transparent mb-3 drop-shadow-sm">
           {t("title")}
         </h1>
 
-        <p className="text-xl md:text-2xl font-semibold text-pink-500 mb-4 tracking-wide uppercase">
+        <p className="text-xl md:text-2xl font-semibold text-purple-500 mb-4 tracking-wide uppercase">
           {t("subtitle")}
         </p>
 
