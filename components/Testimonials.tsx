@@ -1,7 +1,6 @@
 "use client";
 
 import { useTranslations, useLocale } from "next-intl";
-import Image from "next/image";
 import { useState } from "react";
 import { ArrowRight } from "lucide-react";
 
@@ -46,13 +45,11 @@ export default function Testimonials() {
             onClick={() => setSelected(src)}
             className="cursor-pointer rounded-2xl overflow-hidden border border-pink-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 bg-white"
           >
-            <Image
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src={src}
               alt="Kundenbewertung"
-              width={500}
-              height={700}
-              className="w-full h-auto"
-              style={{ objectFit: "contain" }}
+              className="w-full h-auto block"
             />
           </div>
         ))}
@@ -76,13 +73,11 @@ export default function Testimonials() {
           className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
         >
           <div className="relative max-w-2xl w-full">
-            <Image
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src={selected}
               alt="Bewertung"
-              width={800}
-              height={1000}
-              className="w-full h-auto rounded-2xl shadow-2xl"
-              style={{ objectFit: "contain" }}
+              className="w-full h-auto rounded-2xl shadow-2xl block"
             />
             <button
               onClick={() => setSelected(null)}
