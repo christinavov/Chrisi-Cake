@@ -37,19 +37,19 @@ export default function Testimonials() {
         <p className="text-gray-500 mt-3 text-lg">{t("subtitle")}</p>
       </div>
 
-      {/* 6 preview photos — 3 columns, natural height, no crop */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-8">
+      {/* 6 preview photos — 2 columns, full natural size, no crop */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
         {previewImages.map((src) => (
           <div
             key={src}
             onClick={() => setSelected(src)}
-            className="cursor-pointer rounded-2xl overflow-hidden border border-pink-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 bg-white"
+            className="cursor-pointer rounded-2xl border border-pink-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 bg-white"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={src}
               alt="Kundenbewertung"
-              className="w-full h-auto block"
+              className="w-full h-auto block rounded-2xl"
             />
           </div>
         ))}
