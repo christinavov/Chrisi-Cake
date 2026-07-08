@@ -62,13 +62,13 @@ export default function OrderBuilder() {
   const [guestsError, setGuestsError] = useState("");
 
   const minGuests = twoTier ? 20 : 10;
-  const maxGuests = twoTier ? undefined : 20;
+  const maxGuests = twoTier ? undefined : 23;
 
   const handleTierChange = (val: boolean) => {
     setTwoTier(val);
     setGuestsError("");
     if (val && guests && parseInt(guests) < 20) setGuests("20");
-    if (!val && guests && parseInt(guests) > 20) setGuests("20");
+    if (!val && guests && parseInt(guests) > 23) setGuests("23");
   };
 
   const handleDateChange = (d: Date | null) => {
@@ -89,7 +89,7 @@ export default function OrderBuilder() {
       setGuestsError(twoTier ? t("minGuestsErrorTwo") : t("minGuestsError"));
       return;
     }
-    if (!twoTier && parseInt(guests) > 20) {
+    if (!twoTier && parseInt(guests) > 23) {
       setGuestsError(t("maxGuestsErrorOne"));
       return;
     }
@@ -282,8 +282,8 @@ export default function OrderBuilder() {
                   if (val < minGuests) {
                     setGuests(String(minGuests));
                     setGuestsError(twoTier ? t("minGuestsErrorTwo") : t("minGuestsError"));
-                  } else if (!twoTier && val > 20) {
-                    setGuests("20");
+                  } else if (!twoTier && val > 23) {
+                    setGuests("23");
                     setGuestsError(t("maxGuestsErrorOne"));
                   }
                 }
