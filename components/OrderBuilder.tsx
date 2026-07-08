@@ -57,6 +57,7 @@ export default function OrderBuilder() {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [details, setDetails] = useState("");
+  const [pickupTime, setPickupTime] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [dateError, setDateError] = useState("");
   const [guestsError, setGuestsError] = useState("");
@@ -84,7 +85,7 @@ export default function OrderBuilder() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!flavor || !guests || !date || !name || !phone) return;
+    if (!flavor || !guests || !date || !pickupTime || !name || !phone) return;
     if (parseInt(guests) < minGuests) {
       setGuestsError(twoTier ? t("minGuestsErrorTwo") : t("minGuestsError"));
       return;
@@ -117,7 +118,7 @@ export default function OrderBuilder() {
       `*Geschmack:* ${flavorName}`,
       `*Tortenart:* ${tierLabel}`,
       `*Gaeste:* ${guests} Personen`,
-      `*Abholdatum:* ${dateStr}`,
+      `*Abholdatum:* ${dateStr}${pickupTime ? ` um ${pickupTime} Uhr` : ""}`,
       `*Anlass:* ${occasionLabel}${detailsLine}`,
     ].join("\n");
 
@@ -312,6 +313,27 @@ export default function OrderBuilder() {
             <div className="mt-3 rounded-xl bg-pink-50 border border-pink-200 px-4 py-3 space-y-1">
               <p className="text-sm font-semibold text-pink-700">⏰ {t("timeNote")}</p>
               <p className="text-sm font-medium text-pink-600">📅 {t("dateNote")}</p>
+            </div>
+
+            {/* Pickup time */}
+            <div className="mt-4">
+              <label className="block text-sm font-semibold text-pink-800 mb-2">{t("pickupTimeLabel")} *</label>
+              <div className="grid grid-cols-3 gap-3">
+                {["18:00", "19:00", "20:00"].map((time) => (
+                  <button
+                    key={time}
+                    type="button"
+                    onClick={() => setPickupTime(time)}
+                    className={`py-3 rounded-xl border-2 text-sm font-semibold transition-all ${
+                      pickupTime === time
+                        ? "border-pink-400 bg-pink-50 text-pink-700 shadow-sm"
+                        : "border-pink-100 bg-white text-gray-600 hover:border-pink-200"
+                    }`}
+                  >
+                    {time}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
 

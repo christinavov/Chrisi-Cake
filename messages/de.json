@@ -126,6 +126,7 @@
     "tierTwo": "Zweistöckig",
     "tierOneNote": "10–25 Personen · 10 CHF/Person",
     "tierTwoNote": "ab 20 Personen · 13 CHF/Person",
+    "pickupTimeLabel": "Abholzeit",
     "minGuestsErrorTwo": "Mindestanzahl für zweistöckige Torte ist 20 Personen",
     "maxGuestsErrorOne": "Einstöckige Torte ist für max. 25 Personen. Wählen Sie zweistöckig für mehr."
   },
