@@ -61,6 +61,7 @@ export default function OrderBuilder() {
   const [submitted, setSubmitted] = useState(false);
   const [dateError, setDateError] = useState("");
   const [guestsError, setGuestsError] = useState("");
+  const [timeError, setTimeError] = useState(false);
 
   const minGuests = twoTier ? 20 : 10;
   const maxGuests = twoTier ? undefined : 25;
@@ -85,7 +86,9 @@ export default function OrderBuilder() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!pickupTime) { setTimeError(true); }
     if (!flavor || !guests || !date || !pickupTime || !name || !phone) return;
+    setTimeError(false);
     if (parseInt(guests) < minGuests) {
       setGuestsError(twoTier ? t("minGuestsErrorTwo") : t("minGuestsError"));
       return;
@@ -323,10 +326,12 @@ export default function OrderBuilder() {
                   <button
                     key={time}
                     type="button"
-                    onClick={() => setPickupTime(time)}
+                    onClick={() => { setPickupTime(time); setTimeError(false); }}
                     className={`py-3 rounded-xl border-2 text-sm font-semibold transition-all ${
                       pickupTime === time
                         ? "border-pink-400 bg-pink-50 text-pink-700 shadow-sm"
+                        : timeError
+                        ? "border-red-300 bg-white text-gray-600 hover:border-pink-200"
                         : "border-pink-100 bg-white text-gray-600 hover:border-pink-200"
                     }`}
                   >
@@ -334,6 +339,11 @@ export default function OrderBuilder() {
                   </button>
                 ))}
               </div>
+              {timeError && (
+                <p className="mt-1 text-xs text-red-500 flex items-center gap-1">
+                  <AlertTriangle size={12} /> {t("pickupTimeError")}
+                </p>
+              )}
             </div>
           </div>
 
