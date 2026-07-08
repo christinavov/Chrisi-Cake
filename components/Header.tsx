@@ -46,7 +46,7 @@ const locales = [
   { code: "uk", label: "UK", name: "Українська" },
 ];
 
-const navItems = ["home", "about", "gallery", "flavors", "order", "prices", "faq", "contact"] as const;
+const navItems = ["home", "about", "gallery", "flavors", "order", "prices", "faq", "testimonials", "contact"] as const;
 
 export default function Header() {
   const t = useTranslations("nav");
@@ -89,6 +89,7 @@ export default function Header() {
     order: "order",
     prices: "prices",
     faq: "faq",
+    testimonials: "testimonials",
     contact: "contact",
   };
 

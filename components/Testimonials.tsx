@@ -31,7 +31,7 @@ export default function Testimonials() {
   const reviewsHref = locale === "de" ? "/reviews" : "/en/reviews";
 
   return (
-    <section className="py-20 md:py-28 px-4 max-w-6xl mx-auto">
+    <section id="testimonials" className="py-20 md:py-28 px-4 max-w-6xl mx-auto">
       <div className="text-center mb-10">
         <h2 className="text-4xl md:text-5xl font-script text-pink-700">{t("title")}</h2>
         <p className="text-gray-500 mt-3 text-lg">{t("subtitle")}</p>
