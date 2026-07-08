@@ -62,13 +62,13 @@ export default function OrderBuilder() {
   const [guestsError, setGuestsError] = useState("");
 
   const minGuests = twoTier ? 20 : 10;
+  const maxGuests = twoTier ? undefined : 20;
 
   const handleTierChange = (val: boolean) => {
     setTwoTier(val);
     setGuestsError("");
-    // Auto-adjust guests if below new minimum
     if (val && guests && parseInt(guests) < 20) setGuests("20");
-    if (!val && guests && parseInt(guests) === 20) setGuests("10");
+    if (!val && guests && parseInt(guests) > 20) setGuests("20");
   };
 
   const handleDateChange = (d: Date | null) => {
@@ -87,6 +87,10 @@ export default function OrderBuilder() {
     if (!flavor || !guests || !date || !name || !phone) return;
     if (parseInt(guests) < minGuests) {
       setGuestsError(twoTier ? t("minGuestsErrorTwo") : t("minGuestsError"));
+      return;
+    }
+    if (!twoTier && parseInt(guests) > 20) {
+      setGuestsError(t("maxGuestsErrorOne"));
       return;
     }
 
@@ -266,18 +270,22 @@ export default function OrderBuilder() {
             <input
               type="number"
               min={minGuests}
+              max={maxGuests}
               value={guests}
               onChange={(e) => {
-                const val = e.target.value;
-                // Allow clearing the field, but clamp on blur
-                setGuests(val);
+                setGuests(e.target.value);
                 setGuestsError("");
               }}
               onBlur={(e) => {
                 const val = parseInt(e.target.value);
-                if (!isNaN(val) && val < minGuests) {
-                  setGuests(String(minGuests));
-                  setGuestsError(twoTier ? t("minGuestsErrorTwo") : t("minGuestsError"));
+                if (!isNaN(val)) {
+                  if (val < minGuests) {
+                    setGuests(String(minGuests));
+                    setGuestsError(twoTier ? t("minGuestsErrorTwo") : t("minGuestsError"));
+                  } else if (!twoTier && val > 20) {
+                    setGuests("20");
+                    setGuestsError(t("maxGuestsErrorOne"));
+                  }
                 }
               }}
               placeholder={t("guestsPlaceholder")}

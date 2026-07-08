@@ -124,9 +124,10 @@
     "tierLabel": "Cake type",
     "tierOne": "One-tier",
     "tierTwo": "Two-tier",
-    "tierOneNote": "from 10 persons · 10 CHF/person",
+    "tierOneNote": "10–20 persons · 10 CHF/person",
     "tierTwoNote": "from 20 persons · 13 CHF/person",
-    "minGuestsErrorTwo": "Minimum for a two-tier cake is 20 persons"
+    "minGuestsErrorTwo": "Minimum for a two-tier cake is 20 persons",
+    "maxGuestsErrorOne": "One-tier cake is for max. 20 persons. Choose two-tier for more."
   },
   "prices": {
     "title": "Prices",
