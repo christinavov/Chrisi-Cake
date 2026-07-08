@@ -329,7 +329,7 @@ export default function OrderBuilder() {
             {/* Email + Phone */}
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-semibold text-pink-800 mb-2">{t("emailLabel")}</label>
+                <label className="block text-sm font-semibold text-pink-800 mb-2">{t("emailLabel")} <span className="text-gray-400 font-normal text-xs">(optional)</span></label>
                 <input
                   type="email"
                   value={email}
