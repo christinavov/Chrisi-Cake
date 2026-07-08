@@ -91,9 +91,16 @@ export default function OrderBuilder() {
     }
 
     const flavorName = tf(`items.${flavor as FlavorKey}.name`);
-    const tierLabel = twoTier ? "Zweistöckig (2 Etagen)" : "Einstöckig (1 Etage)";
+    const tierLabel = twoTier ? "🎂 Zweistöckig (2 Etagen)" : "🎂 Einstöckig (1 Etage)";
     const dateStr = date ? date.toLocaleDateString("de-CH") : "—";
-    const occasionLabel = occasion || "—";
+    const occasionMap: Record<string, string> = {
+      birthday: "🎂 Geburtstag",
+      wedding: "💍 Hochzeit",
+      anniversary: "🥂 Jubiläum",
+      babyshower: "🍼 Babyshower",
+      other: "✨ Sonstiges",
+    };
+    const occasionLabel = occasion ? (occasionMap[occasion] ?? occasion) : "—";
     const emailLine = email ? `\nE-Mail: ${email}` : "";
     const detailsLine = details ? `\nWünsche: ${details}` : "";
 
