@@ -46,6 +46,7 @@ export default function Prices() {
   const [extraBottle, setExtraBottle] = useState(false);
 
   const minGuests = twoTier ? 20 : 10;
+  const maxGuests = twoTier ? 200 : 25;
   const pricePerPerson = twoTier ? 13 : 10;
 
   const handleTwoTier = (val: boolean) => {
@@ -53,6 +54,9 @@ export default function Prices() {
     if (val && guests < 20) setGuests(20);
     if (!val) setGuests(10);
   };
+
+  const decrement = () => setGuests((g) => Math.max(minGuests, g - 5));
+  const increment = () => setGuests((g) => Math.min(maxGuests, g + 5));
 
   const basePrice = guests * pricePerPerson;
   const extrasPrice = (extraPrint ? 10 : 0) + (extraChoco ? 10 : 0) + (extraFlowers ? 20 : 0) + (extraBottle ? 20 : 0);
@@ -81,8 +85,9 @@ export default function Prices() {
           <div className="flex items-center justify-center gap-6">
             <button
               type="button"
-              onClick={() => setGuests((g) => Math.max(minGuests, g - 1))}
-              className="w-12 h-12 rounded-full bg-pink-100 hover:bg-pink-200 text-pink-700 text-2xl font-bold transition-all flex items-center justify-center select-none"
+              onClick={decrement}
+              disabled={guests <= minGuests}
+              className="w-12 h-12 rounded-full bg-pink-100 hover:bg-pink-200 text-pink-700 text-2xl font-bold transition-all flex items-center justify-center select-none disabled:opacity-40 disabled:cursor-not-allowed"
             >−</button>
             <div className="text-center min-w-[100px]">
               <span className="text-5xl font-bold text-pink-600">{guests}</span>
@@ -90,8 +95,9 @@ export default function Prices() {
             </div>
             <button
               type="button"
-              onClick={() => setGuests((g) => Math.min(100, g + 1))}
-              className="w-12 h-12 rounded-full bg-pink-100 hover:bg-pink-200 text-pink-700 text-2xl font-bold transition-all flex items-center justify-center select-none"
+              onClick={increment}
+              disabled={guests >= maxGuests}
+              className="w-12 h-12 rounded-full bg-pink-100 hover:bg-pink-200 text-pink-700 text-2xl font-bold transition-all flex items-center justify-center select-none disabled:opacity-40 disabled:cursor-not-allowed"
             >+</button>
           </div>
           <p className="text-xs text-gray-400 mt-3 text-center">* {t("calcMinNote")}</p>
