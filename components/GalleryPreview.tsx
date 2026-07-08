@@ -183,7 +183,7 @@ export default function GalleryPreview() {
 
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-14">
-          <h2 className="text-5xl md:text-6xl font-script bg-gradient-to-r from-purple-600 via-pink-600 to-rose-500 bg-clip-text text-transparent mb-3 drop-shadow-sm">{t("title")}</h2>
+          <h2 className="text-4xl md:text-5xl font-script text-pink-700 mb-3">{t("title")}</h2>
           <p className="text-gray-500 text-lg">{t("subtitle")}</p>
         </div>
 

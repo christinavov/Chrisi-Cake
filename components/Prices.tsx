@@ -65,8 +65,8 @@ export default function Prices() {
   return (
     <section id="prices" className="py-20 md:py-28 px-4 max-w-7xl mx-auto">
       <div className="text-center mb-12">
-        <h2 className="text-5xl md:text-6xl font-script bg-gradient-to-r from-purple-600 via-pink-600 to-rose-500 bg-clip-text text-transparent mb-3 drop-shadow-sm">{t("title")}</h2>
-        <p className="text-2xl font-semibold text-purple-500 mb-4">{t("subtitle")}</p>
+        <h2 className="text-4xl md:text-5xl font-script text-pink-700 mb-3">{t("title")}</h2>
+        <p className="text-2xl font-semibold text-pink-500 mb-4">{t("subtitle")}</p>
         <p className="text-gray-500 max-w-2xl mx-auto">{t("intro")}</p>
       </div>
 
