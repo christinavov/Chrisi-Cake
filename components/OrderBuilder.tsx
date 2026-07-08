@@ -111,14 +111,14 @@ export default function OrderBuilder() {
     const msg = [
       "*Neue Tortenbestellung*",
       "",
-      `Name: ${name}`,
-      `Telefon: ${phone}${emailLine}`,
+      `*Name:* ${name}`,
+      `*Telefon:* ${phone}${emailLine}`,
       "",
-      `Geschmack: ${flavorName}`,
-      `Tortenart: ${tierLabel}`,
-      `Gaeste: ${guests} Personen`,
-      `Abholdatum: ${dateStr}`,
-      `Anlass: ${occasionLabel}${detailsLine}`,
+      `*Geschmack:* ${flavorName}`,
+      `*Tortenart:* ${tierLabel}`,
+      `*Gaeste:* ${guests} Personen`,
+      `*Abholdatum:* ${dateStr}`,
+      `*Anlass:* ${occasionLabel}${detailsLine}`,
     ].join("\n");
 
     const waUrl = `https://wa.me/41762236126?text=${encodeURIComponent(msg)}`;
