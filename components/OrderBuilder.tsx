@@ -62,13 +62,13 @@ export default function OrderBuilder() {
   const [guestsError, setGuestsError] = useState("");
 
   const minGuests = twoTier ? 20 : 10;
-  const maxGuests = twoTier ? undefined : 23;
+  const maxGuests = twoTier ? undefined : 25;
 
   const handleTierChange = (val: boolean) => {
     setTwoTier(val);
     setGuestsError("");
     if (val && guests && parseInt(guests) < 20) setGuests("20");
-    if (!val && guests && parseInt(guests) > 23) setGuests("23");
+    if (!val && guests && parseInt(guests) > 25) setGuests("25");
   };
 
   const handleDateChange = (d: Date | null) => {
@@ -89,7 +89,7 @@ export default function OrderBuilder() {
       setGuestsError(twoTier ? t("minGuestsErrorTwo") : t("minGuestsError"));
       return;
     }
-    if (!twoTier && parseInt(guests) > 23) {
+    if (!twoTier && parseInt(guests) > 25) {
       setGuestsError(t("maxGuestsErrorOne"));
       return;
     }
@@ -271,19 +271,23 @@ export default function OrderBuilder() {
               type="number"
               min={minGuests}
               max={maxGuests}
+              step={5}
               value={guests}
               onChange={(e) => {
                 setGuests(e.target.value);
                 setGuestsError("");
               }}
               onBlur={(e) => {
-                const val = parseInt(e.target.value);
-                if (!isNaN(val)) {
+                const raw = parseInt(e.target.value);
+                if (!isNaN(raw)) {
+                  // round to nearest multiple of 5
+                  let val = Math.round(raw / 5) * 5;
+                  if (val < minGuests) val = minGuests;
+                  if (!twoTier && val > 25) val = 25;
+                  setGuests(String(val));
                   if (val < minGuests) {
-                    setGuests(String(minGuests));
                     setGuestsError(twoTier ? t("minGuestsErrorTwo") : t("minGuestsError"));
-                  } else if (!twoTier && val > 23) {
-                    setGuests("23");
+                  } else if (!twoTier && raw > 25) {
                     setGuestsError(t("maxGuestsErrorOne"));
                   }
                 }
