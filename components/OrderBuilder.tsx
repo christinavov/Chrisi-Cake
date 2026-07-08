@@ -90,31 +90,45 @@ export default function OrderBuilder() {
       return;
     }
 
+    const e_cake   = String.fromCodePoint(0x1F382); // 🎂
+    const e_person = String.fromCodePoint(0x1F464); // 👤
+    const e_phone  = String.fromCodePoint(0x1F4DE); // 📞
+    const e_slice  = String.fromCodePoint(0x1F370); // 🍰
+    const e_group  = String.fromCodePoint(0x1F465); // 👥
+    const e_cal    = String.fromCodePoint(0x1F4C5); // 📅
+    const e_party  = String.fromCodePoint(0x1F389); // 🎉
+    const e_ring   = String.fromCodePoint(0x1F48D); // 💍
+    const e_clink  = String.fromCodePoint(0x1F942); // 🥂
+    const e_bottle = String.fromCodePoint(0x1F37C); // 🍼
+    const e_star   = String.fromCodePoint(0x2728);  // ✨
+
     const flavorName = tf(`items.${flavor as FlavorKey}.name`);
-    const tierLabel = twoTier ? "🎂 Zweistöckig (2 Etagen)" : "🎂 Einstöckig (1 Etage)";
+    const tierLabel = twoTier
+      ? `${e_cake} Zweistöckig (2 Etagen)`
+      : `${e_cake} Einstöckig (1 Etage)`;
     const dateStr = date ? date.toLocaleDateString("de-CH") : "—";
     const occasionMap: Record<string, string> = {
-      birthday: "🎂 Geburtstag",
-      wedding: "💍 Hochzeit",
-      anniversary: "🥂 Jubiläum",
-      babyshower: "🍼 Babyshower",
-      other: "✨ Sonstiges",
+      birthday:   `${e_cake} Geburtstag`,
+      wedding:    `${e_ring} Hochzeit`,
+      anniversary:`${e_clink} Jubiläum`,
+      babyshower: `${e_bottle} Babyshower`,
+      other:      `${e_star} Sonstiges`,
     };
     const occasionLabel = occasion ? (occasionMap[occasion] ?? occasion) : "—";
     const emailLine = email ? `\nE-Mail: ${email}` : "";
     const detailsLine = details ? `\nWünsche: ${details}` : "";
 
     const msg = [
-      "🎂 *Neue Tortenbestellung*",
+      `${e_cake} *Neue Tortenbestellung*`,
       "",
-      `👤 Name: ${name}`,
-      `📞 Telefon: ${phone}${emailLine}`,
+      `${e_person} Name: ${name}`,
+      `${e_phone} Telefon: ${phone}${emailLine}`,
       "",
-      `🍰 Geschmack: ${flavorName}`,
-      `🎂 Tortenart: ${tierLabel}`,
-      `👥 Gäste: ${guests} Personen`,
-      `📅 Abholdatum: ${dateStr}`,
-      `🎉 Anlass: ${occasionLabel}${detailsLine}`,
+      `${e_slice} Geschmack: ${flavorName}`,
+      `${e_cake} Tortenart: ${tierLabel}`,
+      `${e_group} Gäste: ${guests} Personen`,
+      `${e_cal} Abholdatum: ${dateStr}`,
+      `${e_party} Anlass: ${occasionLabel}${detailsLine}`,
     ].join("\n");
 
     const waUrl = `https://wa.me/41762236126?text=${encodeURIComponent(msg)}`;
