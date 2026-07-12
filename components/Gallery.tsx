@@ -121,28 +121,22 @@ export default function Gallery() {
           <p className="text-gray-500 text-lg">{t("subtitle")}</p>
         </div>
 
-        {/* Masonry grid */}
-        <div className="columns-2 sm:columns-3 lg:columns-4 xl:columns-5 gap-3 space-y-3">
+        {/* Uniform grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2">
           {galleryImages.map((src, i) => (
             <div
               key={src}
               onClick={() => openLightbox(i)}
-              className="break-inside-avoid group relative cursor-pointer overflow-hidden rounded-2xl shadow-sm hover:shadow-lg hover:shadow-pink-200 transition-all duration-300 hover:-translate-y-1"
+              className="group relative cursor-pointer overflow-hidden rounded-2xl shadow-sm hover:shadow-lg hover:shadow-pink-200 transition-all duration-300 hover:-translate-y-0.5 bg-white/60"
             >
               <Image
                 src={src}
                 alt={`Chrisi Cake ${i + 1}`}
                 width={400}
                 height={400}
-                className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+                className="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-105"
                 sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
               />
-              {/* Vignette edges */}
-              <div
-                className="absolute inset-0 rounded-2xl pointer-events-none"
-                style={{ boxShadow: "inset 0 0 30px 10px rgba(255, 228, 235, 0.5)" }}
-              />
-              {/* Hover pink tint */}
               <div className="absolute inset-0 bg-pink-300/0 group-hover:bg-pink-300/10 transition-colors duration-300 rounded-2xl" />
             </div>
           ))}
