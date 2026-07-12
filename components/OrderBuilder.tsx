@@ -489,13 +489,15 @@ export default function OrderBuilder() {
           <div id="field-guests">
             <label className="block text-sm font-semibold text-pink-800 mb-2">{t("guestsLabel")} *</label>
             <input
-              type="number"
+              type="text"
+              inputMode="numeric"
+              pattern="[0-9]*"
               min={minGuests}
               max={maxGuests}
-              step={5}
               value={guests}
               onChange={(e) => {
-                setGuests(e.target.value);
+                const val = e.target.value.replace(/\D/g, "");
+                setGuests(val);
                 setGuestsError("");
                 setErrors((p) => ({ ...p, guests: false }));
               }}
