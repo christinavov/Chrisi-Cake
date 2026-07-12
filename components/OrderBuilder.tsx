@@ -307,21 +307,12 @@ export default function OrderBuilder() {
 
     if (window.innerWidth >= 768) {
       window.open(url, "_blank", "noopener,noreferrer");
+    } else {
+      window.location.href = url;
     }
-
-    setTimeout(() => {
-      document.getElementById("order-success")?.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 100);
   };
 
   const filterDate = (d: Date) => !isSunday(d) && !isPast(d);
-
-  useEffect(() => {
-    if (submitted && waUrl && window.innerWidth < 768) {
-      const t = setTimeout(() => { window.location.href = waUrl; }, 300);
-      return () => clearTimeout(t);
-    }
-  }, [submitted, waUrl]);
 
   if (submitted) {
     return (
