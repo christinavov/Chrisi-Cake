@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { AlertTriangle, CheckCircle2, MessageCircle, Info } from "lucide-react";
+import { AlertTriangle, CheckCircle2, MessageCircle, Info, ChevronDown } from "lucide-react";
 
 const COUNTRIES = [
   { code: "CH", name: "Schweiz",        dial: "+41",  flag: "🇨🇭" },
@@ -166,6 +166,8 @@ export default function OrderBuilder() {
   const tf = useTranslations("flavors");
 
   const [flavor, setFlavor] = useState("");
+  const [flavorOpen, setFlavorOpen] = useState(false);
+  const flavorRef = useRef<HTMLDivElement>(null);
   const [occasion, setOccasion] = useState("");
   const [twoTier, setTwoTier] = useState(false);
   const [guests, setGuests] = useState("");
@@ -181,6 +183,16 @@ export default function OrderBuilder() {
   const [guestsError, setGuestsError] = useState("");
   const [timeError, setTimeError] = useState(false);
   const [errors, setErrors] = useState<Record<string, boolean>>({});
+
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (flavorRef.current && !flavorRef.current.contains(e.target as Node)) {
+        setFlavorOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
 
   const minGuests = twoTier ? 20 : 10;
   const maxGuests = twoTier ? undefined : 25;
@@ -307,21 +319,51 @@ export default function OrderBuilder() {
         </div>
 
         <form onSubmit={handleSubmit} className="bg-white/90 rounded-3xl shadow-xl border border-pink-100 p-6 md:p-10 space-y-6">
-          {/* Flavor */}
-          <div id="field-flavor">
+          {/* Flavor — custom dropdown */}
+          <div id="field-flavor" ref={flavorRef} className="relative">
             <label className="block text-sm font-semibold text-pink-800 mb-2">{t("flavorLabel")} *</label>
-            <select
-              value={flavor}
-              onChange={(e) => { setFlavor(e.target.value); setErrors((p) => ({ ...p, flavor: false })); }}
-              className={`w-full px-4 py-3 border rounded-xl bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-pink-300 focus:border-pink-400 transition-all ${errors.flavor ? "border-red-400 ring-1 ring-red-300" : "border-pink-200"}`}
+            <button
+              type="button"
+              onClick={() => setFlavorOpen((o) => !o)}
+              className={`w-full px-4 py-3 border rounded-xl bg-white text-left flex items-center justify-between transition-all focus:outline-none focus:ring-2 focus:ring-pink-300 focus:border-pink-400 ${errors.flavor ? "border-red-400 ring-1 ring-red-300" : flavorOpen ? "border-pink-400 ring-2 ring-pink-200" : "border-pink-200"}`}
             >
-              <option value="">{t("flavorPlaceholder")}</option>
-              {flavorKeys.map((k) => (
-                <option key={k} value={k}>
-                  {tf(`items.${k}.name`)} — {flavorPrices[k]} CHF/Person
-                </option>
-              ))}
-            </select>
+              {flavor ? (
+                <span className="flex items-center gap-2 flex-1 min-w-0">
+                  <span className="text-gray-800 font-medium truncate">{tf(`items.${flavor as FlavorKey}.name`)}</span>
+                  <span className="ml-auto text-pink-500 font-semibold text-sm whitespace-nowrap">{flavorPrices[flavor]} CHF/Person</span>
+                </span>
+              ) : (
+                <span className="text-gray-400">{t("flavorPlaceholder")}</span>
+              )}
+              <ChevronDown size={18} className={`ml-2 flex-shrink-0 text-pink-400 transition-transform duration-200 ${flavorOpen ? "rotate-180" : ""}`} />
+            </button>
+
+            {flavorOpen && (
+              <div className="absolute z-50 mt-1 w-full bg-white border border-pink-200 rounded-2xl shadow-xl shadow-pink-100 overflow-hidden">
+                <div className="max-h-64 overflow-y-auto py-1">
+                  {flavorKeys.map((k) => (
+                    <button
+                      key={k}
+                      type="button"
+                      onClick={() => { setFlavor(k); setFlavorOpen(false); setErrors((p) => ({ ...p, flavor: false })); }}
+                      className={`w-full flex items-center justify-between px-4 py-2.5 text-left transition-colors ${
+                        flavor === k
+                          ? "bg-pink-50 text-pink-700"
+                          : "hover:bg-pink-50/70 text-gray-700"
+                      }`}
+                    >
+                      <span className={`font-medium text-sm ${flavor === k ? "text-pink-700" : "text-gray-800"}`}>
+                        {tf(`items.${k}.name`)}
+                      </span>
+                      <span className="ml-4 text-xs font-semibold text-pink-400 whitespace-nowrap font-mono">
+                        {flavorPrices[k]} CHF
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
             {flavor ? (
               <p className="mt-2 text-xs text-gray-500 flex items-start gap-1">
                 <Info size={12} className="mt-0.5 flex-shrink-0 text-pink-400" />
