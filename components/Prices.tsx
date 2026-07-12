@@ -114,7 +114,7 @@ export default function Prices() {
                 }`}
               >
                 <span className="text-xs font-medium text-gray-700 leading-tight">{tf(`items.${key}.name`)}</span>
-                <span className="text-xs font-bold text-pink-500 ml-2 flex-shrink-0">{price} ₣</span>
+                <span className="text-xs font-bold text-pink-500 ml-2 flex-shrink-0">{price} CHF</span>
               </button>
             ))}
           </div>
