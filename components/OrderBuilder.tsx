@@ -183,8 +183,18 @@ export default function OrderBuilder() {
   const selectedCountry = COUNTRIES.find((c) => c.dial === countryCode) ?? COUNTRIES[0];
   const [details, setDetails] = useState("");
   const [pickupTime, setPickupTime] = useState("");
-  const [submitted, setSubmitted] = useState(false);
-  const [waUrl, setWaUrl] = useState("");
+  const [submitted, setSubmitted] = useState(() => {
+    if (typeof window !== "undefined") {
+      return sessionStorage.getItem("orderSubmitted") === "1";
+    }
+    return false;
+  });
+  const [waUrl, setWaUrl] = useState(() => {
+    if (typeof window !== "undefined") {
+      return sessionStorage.getItem("orderWaUrl") || "";
+    }
+    return "";
+  });
   const [dateError, setDateError] = useState("");
   const [guestsError, setGuestsError] = useState("");
   const [timeError, setTimeError] = useState(false);
@@ -304,6 +314,8 @@ export default function OrderBuilder() {
     const url = `https://wa.me/41762236126?text=${encodeURIComponent(msg)}`;
     setWaUrl(url);
     setSubmitted(true);
+    sessionStorage.setItem("orderSubmitted", "1");
+    sessionStorage.setItem("orderWaUrl", url);
 
     if (window.innerWidth >= 768) {
       window.open(url, "_blank", "noopener,noreferrer");
@@ -325,7 +337,7 @@ export default function OrderBuilder() {
             <div className="pt-1">
               <p className="text-gray-500 text-sm mb-4">{t("successStorageHint")}</p>
               <button
-                onClick={() => document.getElementById("storage")?.scrollIntoView({ behavior: "smooth" })}
+                onClick={() => { sessionStorage.removeItem("orderSubmitted"); sessionStorage.removeItem("orderWaUrl"); document.getElementById("storage")?.scrollIntoView({ behavior: "smooth" }); }}
                 className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-pink-500 to-rose-500 text-white font-semibold rounded-full shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
               >
                 {t("successStorageBtn")} →
@@ -583,21 +595,6 @@ export default function OrderBuilder() {
             </div>
           </div>
 
-          {/* WhatsApp reference block */}
-          <a
-            href="https://wa.me/41762236126"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-4 bg-green-50 border-2 border-green-200 hover:border-green-400 hover:bg-green-100 rounded-2xl px-5 py-4 transition-all group"
-          >
-            <div className="w-12 h-12 bg-green-500 group-hover:bg-green-600 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors">
-              <MessageCircle size={24} className="text-white" />
-            </div>
-            <div>
-              <p className="font-bold text-green-800 text-sm">{t("whatsappBlockTitle")}</p>
-              <p className="text-green-700 text-xs mt-0.5">{t("whatsappBlockNote")}</p>
-            </div>
-          </a>
 
           <div className="border-t border-pink-100 pt-6 space-y-4">
             {/* Name */}
