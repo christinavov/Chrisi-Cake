@@ -3,7 +3,7 @@
 import { useTranslations, useLocale } from "next-intl";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useRef, useCallback } from "react";
 
 const allImages = [
   "/images/gallery/photo_2026-07-03_21-01-13.webp",
@@ -98,6 +98,8 @@ const allImages = [
 ];
 
 const TOTAL = 12;
+const SWAP_INTERVAL = 2500;
+const FADE_DURATION = 600;
 
 function shuffle<T>(arr: T[]): T[] {
   const a = [...arr];
@@ -108,14 +110,41 @@ function shuffle<T>(arr: T[]): T[] {
   return a;
 }
 
-
 export default function GalleryPreview() {
   const t = useTranslations("gallery");
   const locale = useLocale();
   const galleryPath = locale === "de" ? "/gallery" : `/${locale}/gallery`;
 
-  const slots = useMemo(() => shuffle(allImages).slice(0, TOTAL), []);
+  const initialSlots = useMemo(() => shuffle(allImages).slice(0, TOTAL), []);
+  const [slots, setSlots] = useState<string[]>(initialSlots);
+  const [fadingIndex, setFadingIndex] = useState<number | null>(null);
   const [selected, setSelected] = useState<string | null>(null);
+  const slotsRef = useRef<string[]>(initialSlots);
+  const usedRef = useRef<Set<string>>(new Set(initialSlots));
+
+  const swapOne = useCallback(() => {
+    const available = allImages.filter(img => !usedRef.current.has(img));
+    if (available.length === 0) return;
+    const slotIdx = Math.floor(Math.random() * TOTAL);
+    const newImg = available[Math.floor(Math.random() * available.length)];
+    const oldImg = slotsRef.current[slotIdx];
+
+    setFadingIndex(slotIdx);
+    setTimeout(() => {
+      const next = [...slotsRef.current];
+      next[slotIdx] = newImg;
+      slotsRef.current = next;
+      usedRef.current.delete(oldImg);
+      usedRef.current.add(newImg);
+      setSlots(next);
+      setFadingIndex(null);
+    }, FADE_DURATION);
+  }, []);
+
+  useEffect(() => {
+    const id = setInterval(swapOne, SWAP_INTERVAL);
+    return () => clearInterval(id);
+  }, [swapOne]);
 
   return (
     <section id="gallery" className="relative py-20 md:py-28 overflow-hidden">
@@ -133,8 +162,9 @@ export default function GalleryPreview() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3 items-start mb-10">
           {slots.map((src, i) => (
             <div
-              key={src}
-              onClick={() => setSelected(src)}
+              key={i}
+              data-src={src}
+              onClick={e => setSelected(e.currentTarget.dataset.src!)}
               className="group relative overflow-hidden rounded-2xl shadow-sm transition-all duration-300 hover:-translate-y-1 cursor-pointer"
               onMouseEnter={e => (e.currentTarget.style.boxShadow = "0 0 0 2px rgba(236,72,153,0.7), 0 0 20px 6px rgba(249,168,212,0.8), 0 0 45px 16px rgba(251,207,232,0.5)")}
               onMouseLeave={e => (e.currentTarget.style.boxShadow = "")}
@@ -146,6 +176,7 @@ export default function GalleryPreview() {
                 height={500}
                 className="w-full h-auto block"
                 sizes="(max-width: 640px) 50vw, 25vw"
+                style={{ opacity: fadingIndex === i ? 0 : 1, transition: `opacity ${FADE_DURATION}ms ease-in-out` }}
               />
               <div className="absolute inset-0 bg-pink-300/0 group-hover:bg-pink-300/10 transition-colors duration-300 rounded-2xl" />
             </div>
