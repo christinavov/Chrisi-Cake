@@ -617,7 +617,8 @@ export default function OrderBuilder() {
                       onClick={() => setCountryOpen((o) => !o)}
                       className="flex items-center gap-1.5 px-3 py-3 bg-pink-50 border-r border-pink-200 rounded-l-xl h-full focus:outline-none hover:bg-pink-100 transition-colors"
                     >
-                      <span className="text-lg leading-none">{selectedCountry.flag}</span>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={`https://flagcdn.com/w20/${selectedCountry.code.toLowerCase()}.png`} width={20} height={15} alt={selectedCountry.name} className="rounded-sm object-cover" />
                       <span className="text-sm font-semibold text-pink-700">{selectedCountry.dial}</span>
                       <ChevronDown size={14} className={`text-pink-400 transition-transform duration-200 ${countryOpen ? "rotate-180" : ""}`} />
                     </button>
@@ -636,7 +637,8 @@ export default function OrderBuilder() {
                                   : "hover:bg-pink-50/70 text-gray-700"
                               }`}
                             >
-                              <span className="text-lg leading-none">{flag}</span>
+                              {/* eslint-disable-next-line @next/next/no-img-element */}
+                              <img src={`https://flagcdn.com/w20/${code.toLowerCase()}.png`} width={20} height={15} alt={name} className="rounded-sm object-cover flex-shrink-0" />
                               <span className="flex-1 text-sm font-medium truncate">{name}</span>
                               <span className="text-xs text-pink-400 font-mono font-semibold">{dial}</span>
                             </button>
