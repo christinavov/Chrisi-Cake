@@ -24,7 +24,7 @@ export default function Hero() {
       <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
         {/* Logo */}
         <div className="flex justify-center mb-4 md:mb-5">
-          <div className="w-52 h-52 md:w-64 md:h-64 rounded-full overflow-hidden border border-white/40" style={{ boxShadow: "0 0 30px 14px rgba(249,168,212,0.9), 0 0 65px 35px rgba(251,207,232,0.65), 0 0 110px 65px rgba(252,231,243,0.45), 0 0 160px 90px rgba(253,242,248,0.25)" }}>
+          <div className="w-52 h-52 md:w-64 md:h-64 rounded-full overflow-hidden border border-white/40" style={{ boxShadow: "0 0 25px 10px rgba(249,168,212,0.8), 0 0 55px 25px rgba(251,207,232,0.45)" }}>
             <Image
               src="/images/logo.jpg"
               alt="Chrisi Cake"
