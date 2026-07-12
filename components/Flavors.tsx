@@ -56,7 +56,14 @@ const flavorKeys: FlavorKey[] = [
 
 export default function Flavors() {
   const t = useTranslations("flavors");
+  const tOrder = useTranslations("order");
   const [expanded, setExpanded] = useState<FlavorKey | null>(null);
+
+  const selectFlavor = (key: FlavorKey, e: React.MouseEvent) => {
+    e.stopPropagation();
+    localStorage.setItem("selectedFlavor", key);
+    document.getElementById("order")?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <section id="flavors" className="py-20 md:py-28 bg-white/60">
@@ -89,9 +96,17 @@ export default function Flavors() {
                     {t(`items.${key}.name`)}
                   </p>
                   {isOpen && (
-                    <p className="text-xs text-gray-500 mt-2 text-center leading-relaxed">
-                      {t(`items.${key}.desc`)}
-                    </p>
+                    <>
+                      <p className="text-xs text-gray-500 mt-2 text-center leading-relaxed">
+                        {t(`items.${key}.desc`)}
+                      </p>
+                      <button
+                        onClick={(e) => selectFlavor(key, e)}
+                        className="mt-3 w-full py-2 bg-gradient-to-r from-pink-500 to-rose-500 text-white text-xs font-semibold rounded-xl hover:opacity-90 transition-all"
+                      >
+                        {tOrder("submitBtn")} →
+                      </button>
+                    </>
                   )}
                 </div>
               </div>

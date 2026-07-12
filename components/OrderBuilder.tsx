@@ -167,7 +167,13 @@ export default function OrderBuilder() {
   const t = useTranslations("order");
   const tf = useTranslations("flavors");
 
-  const [flavor, setFlavor] = useState("");
+  const [flavor, setFlavor] = useState(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("selectedFlavor");
+      if (saved) { localStorage.removeItem("selectedFlavor"); return saved; }
+    }
+    return "";
+  });
   const [flavorOpen, setFlavorOpen] = useState(false);
   const flavorRef = useRef<HTMLDivElement>(null);
   const [occasion, setOccasion] = useState("");
