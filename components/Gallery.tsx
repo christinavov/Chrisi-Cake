@@ -134,13 +134,14 @@ export default function Gallery() {
           <p className="text-gray-500 text-lg">{t("subtitle")}</p>
         </div>
 
-        {/* Masonry columns — original aspect ratio */}
-        <div className="columns-2 sm:columns-3 lg:columns-4 gap-2">
+        {/* Masonry — natural proportions */}
+        <div style={{ columnCount: 2, columnGap: "8px" }} className="sm:[column-count:3] lg:[column-count:4]">
           {galleryImages.map((src, i) => (
             <div
               key={src}
               onClick={() => openLightbox(i)}
-              className="group relative break-inside-avoid mb-2 cursor-pointer overflow-hidden rounded-2xl shadow-sm transition-all duration-300 hover:-translate-y-0.5"
+              style={{ breakInside: "avoid", marginBottom: "8px", display: "block" }}
+              className="group cursor-pointer rounded-2xl shadow-sm transition-all duration-300 hover:-translate-y-0.5"
               onMouseEnter={e => (e.currentTarget.style.boxShadow = "0 0 0 2px rgba(236,72,153,0.7), 0 0 20px 6px rgba(249,168,212,0.8), 0 0 45px 16px rgba(251,207,232,0.5)")}
               onMouseLeave={e => (e.currentTarget.style.boxShadow = "")}
             >
@@ -148,10 +149,9 @@ export default function Gallery() {
               <img
                 src={src}
                 alt={`Chrisi Cake ${i + 1}`}
-                className="w-full h-auto block transition-transform duration-500 group-hover:scale-105"
+                style={{ width: "100%", height: "auto", display: "block", borderRadius: "1rem" }}
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-pink-300/0 group-hover:bg-pink-300/10 transition-colors duration-300 rounded-2xl" />
             </div>
           ))}
         </div>
