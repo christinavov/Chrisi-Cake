@@ -197,6 +197,11 @@ export default function OrderBuilder() {
   const minGuests = twoTier ? 20 : 10;
   const maxGuests = twoTier ? undefined : 25;
 
+  const flavorPrice = flavor ? flavorPrices[flavor] : null;
+  const guestsNum = guests ? parseInt(guests) : null;
+  const pricePerPerson = flavorPrice !== null ? flavorPrice + (twoTier ? 3 : 0) : null;
+  const totalPrice = pricePerPerson !== null && guestsNum !== null && !isNaN(guestsNum) ? pricePerPerson * guestsNum : null;
+
   const handleTierChange = (val: boolean) => {
     setTwoTier(val);
     setGuestsError("");
@@ -262,6 +267,11 @@ export default function OrderBuilder() {
     const emailLine = email ? `\nE-Mail: ${email}` : "";
     const detailsLine = details ? `\nWünsche: ${details}` : "";
 
+    const calcFlavorPrice = flavorPrices[flavor] ?? 0;
+    const calcPricePerPerson = calcFlavorPrice + (twoTier ? 3 : 0);
+    const calcTotal = calcPricePerPerson * parseInt(guests);
+    const priceLine = `\n\n*Geschätzter Preis:* ${calcFlavorPrice} CHF${twoTier ? " + 3 CHF (2-stöckig)" : ""} × ${guests} Personen = *${calcTotal} CHF*`;
+
     const msg = [
       "*Neue Tortenbestellung*",
       "",
@@ -272,7 +282,7 @@ export default function OrderBuilder() {
       `*Tortenart:* ${tierLabel}`,
       `*Gaeste:* ${guests} Personen`,
       `*Abholdatum:* ${dateStr}${pickupTime ? ` um ${pickupTime} Uhr` : ""}`,
-      `*Anlass:* ${occasionLabel}${detailsLine}`,
+      `*Anlass:* ${occasionLabel}${detailsLine}${priceLine}`,
     ].join("\n");
 
     const waUrl = `https://wa.me/41762236126?text=${encodeURIComponent(msg)}`;
@@ -476,6 +486,20 @@ export default function OrderBuilder() {
               <p className="mt-1 text-xs text-gray-400">⚠️ {twoTier ? t("tierTwoNote") : t("minGuests")}</p>
             )}
           </div>
+
+          {/* Price summary */}
+          {totalPrice !== null && (
+            <div className="bg-gradient-to-r from-pink-50 to-rose-50 border border-pink-200 rounded-2xl px-5 py-4">
+              <p className="text-xs font-semibold text-pink-400 uppercase tracking-wider mb-2">Geschätzter Preis</p>
+              <div className="flex items-end justify-between gap-2">
+                <div className="text-sm text-gray-600 space-y-0.5">
+                  <p>{flavorPrice} CHF/Person{twoTier ? <span className="text-pink-500"> + 3 CHF (2-stöckig)</span> : null} × {guestsNum} Personen</p>
+                </div>
+                <p className="text-3xl font-bold text-pink-600 leading-none">{totalPrice} <span className="text-lg font-semibold">CHF</span></p>
+              </div>
+              <p className="text-xs text-gray-400 mt-2">* Endpreis wird bei der Bestätigung mitgeteilt</p>
+            </div>
+          )}
 
           {/* Date */}
           <div id="field-date">
