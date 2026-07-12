@@ -25,13 +25,13 @@ export default function Hero() {
 
       <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
         {/* Logo */}
-        <div className="flex justify-center mb-6 md:mb-8">
-          <div className="w-36 h-36 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-white" style={{ boxShadow: "0 0 25px 12px rgba(249,168,212,0.85), 0 0 55px 28px rgba(251,207,232,0.6), 0 0 90px 50px rgba(252,231,243,0.4), 0 0 130px 70px rgba(253,242,248,0.2)" }}>
+        <div className="flex justify-center mb-4 md:mb-5">
+          <div className="w-52 h-52 md:w-64 md:h-64 rounded-full overflow-hidden border border-white/40" style={{ boxShadow: "0 0 30px 14px rgba(249,168,212,0.9), 0 0 65px 35px rgba(251,207,232,0.65), 0 0 110px 65px rgba(252,231,243,0.45), 0 0 160px 90px rgba(253,242,248,0.25)" }}>
             <Image
               src="/images/logo.jpg"
               alt="Chrisi Cake"
-              width={192}
-              height={192}
+              width={256}
+              height={256}
               className="object-cover w-full h-full"
               priority
             />
@@ -39,7 +39,7 @@ export default function Hero() {
         </div>
 
         {/* Title */}
-        <h1 className="font-script text-6xl md:text-8xl text-pink-700 mb-3 drop-shadow-sm">
+        <h1 className="font-script text-4xl md:text-5xl text-pink-700 mb-3 drop-shadow-sm">
           {t("title")}
         </h1>
 
@@ -55,7 +55,7 @@ export default function Hero() {
           </span>
         </div>
 
-        <p className="text-lg md:text-xl text-pink-800/70 max-w-2xl mx-auto mb-8 leading-relaxed font-medium italic tracking-wide">
+        <p className="text-lg md:text-xl text-pink-800/70 max-w-2xl mx-auto mb-8 leading-relaxed font-medium tracking-wide">
           {t("description")}
         </p>
 
