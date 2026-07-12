@@ -305,9 +305,10 @@ export default function OrderBuilder() {
     setWaUrl(url);
     setSubmitted(true);
 
-    // On desktop open WhatsApp automatically; on mobile let user tap the button
     if (window.innerWidth >= 768) {
       window.open(url, "_blank", "noopener,noreferrer");
+    } else {
+      window.location.href = url;
     }
 
     setTimeout(() => {
