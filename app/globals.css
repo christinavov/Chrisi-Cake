@@ -29,6 +29,11 @@ body {
   }
 }
 
+/* Bright pink glow on hover for nav/interactive elements */
+button:hover, a:hover {
+  transition: all 0.25s ease;
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 6px;

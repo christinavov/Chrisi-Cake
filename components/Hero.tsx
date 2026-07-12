@@ -23,6 +23,11 @@ export default function Hero() {
         <div className="absolute bottom-0 left-1/3 w-72 h-72 bg-pink-100/60 rounded-full blur-3xl" />
       </div>
 
+      {/* Pink vignette corners */}
+      <div className="absolute inset-0 pointer-events-none z-10" style={{
+        background: "radial-gradient(ellipse at center, transparent 45%, rgba(236,72,153,0.18) 75%, rgba(190,24,93,0.38) 100%)"
+      }} />
+
       <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
         {/* Logo */}
         <div className="flex justify-center mb-4 md:mb-5">
@@ -63,7 +68,10 @@ export default function Hero() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <button
             onClick={scrollToOrder}
-            className="px-8 py-4 bg-gradient-to-r from-pink-500 to-rose-500 text-white font-semibold rounded-full shadow-lg shadow-pink-200 hover:shadow-xl hover:shadow-pink-300 hover:-translate-y-0.5 transition-all duration-300 text-lg"
+            className="px-8 py-4 bg-gradient-to-r from-pink-500 to-rose-500 text-white font-semibold rounded-full shadow-lg shadow-pink-300 hover:from-pink-400 hover:to-rose-400 hover:-translate-y-1 hover:scale-105 transition-all duration-300 text-lg"
+            style={{ boxShadow: "0 4px 20px rgba(236,72,153,0.4)" }}
+            onMouseEnter={e => (e.currentTarget.style.boxShadow = "0 8px 35px rgba(236,72,153,0.7), 0 0 60px rgba(251,207,232,0.4)")}
+            onMouseLeave={e => (e.currentTarget.style.boxShadow = "0 4px 20px rgba(236,72,153,0.4)")}
           >
             {t("cta")}
           </button>
