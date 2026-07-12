@@ -415,7 +415,7 @@ export default function OrderBuilder() {
                 <input
                   type="tel"
                   value={phone}
-                  onChange={(e) => { setPhone(e.target.value); setErrors((p) => ({ ...p, phone: false })); }}
+                  onChange={(e) => { const v = e.target.value.replace(/[^0-9+\s\-()]/g, ""); setPhone(v); setErrors((p) => ({ ...p, phone: false })); }}
                   placeholder={t("phonePlaceholder")}
                   className={`w-full px-4 py-3 border rounded-xl bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-pink-300 focus:border-pink-400 transition-all placeholder:text-gray-400 ${errors.phone ? "border-red-400 ring-1 ring-red-300" : "border-pink-200"}`}
                 />
