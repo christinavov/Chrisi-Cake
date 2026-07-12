@@ -57,6 +57,9 @@ export default function About() {
 
           <div className="space-y-4 mb-8">
             <p className="text-pink-600 leading-relaxed text-xl md:text-2xl font-semibold border-l-4 border-pink-400 pl-4">
+              {t("p1intro")}
+            </p>
+            <p className="text-gray-700 leading-relaxed text-base border-l-4 border-pink-300 pl-4">
               {t("p1")}
             </p>
             <p className="text-gray-600 leading-relaxed text-base">
