@@ -127,16 +127,15 @@ export default function Gallery() {
             <div
               key={src}
               onClick={() => openLightbox(i)}
-              className="group relative cursor-pointer overflow-hidden rounded-2xl shadow-sm transition-all duration-300 hover:-translate-y-0.5 bg-white/60"
+              className="group relative aspect-square cursor-pointer overflow-hidden rounded-2xl shadow-sm transition-all duration-300 hover:-translate-y-0.5"
               onMouseEnter={e => (e.currentTarget.style.boxShadow = "0 0 0 2px rgba(236,72,153,0.7), 0 0 20px 6px rgba(249,168,212,0.8), 0 0 45px 16px rgba(251,207,232,0.5)")}
               onMouseLeave={e => (e.currentTarget.style.boxShadow = "")}
             >
               <Image
                 src={src}
                 alt={`Chrisi Cake ${i + 1}`}
-                width={400}
-                height={400}
-                className="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-105"
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
                 sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
               />
               <div className="absolute inset-0 bg-pink-300/0 group-hover:bg-pink-300/10 transition-colors duration-300 rounded-2xl" />
