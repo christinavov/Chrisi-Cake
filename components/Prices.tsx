@@ -98,24 +98,32 @@ export default function Prices() {
         <h3 className="text-2xl md:text-3xl font-script text-pink-700 mb-1 text-center">{t("calcTitle")}</h3>
         <p className="text-center text-gray-400 text-sm mb-6">{t("calcSubtitle")}</p>
 
-        {/* Flavor selector */}
+        {/* Flavor selector — 3 columns by price */}
         <div className="mb-6">
           <label className="block text-sm font-semibold text-pink-800 mb-3">{t("calcFlavorLabel")}</label>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-            {flavorList.map(({ key, price }) => (
-              <button
-                key={key}
-                type="button"
-                onClick={() => setFlavor(key)}
-                className={`flex items-center justify-between px-3 py-2.5 rounded-xl border-2 transition-all text-left ${
-                  flavor === key
-                    ? "border-pink-400 bg-pink-50 shadow-sm"
-                    : "border-pink-100 bg-white hover:border-pink-200"
-                }`}
-              >
-                <span className="text-xs font-medium text-gray-700 leading-tight">{tf(`items.${key}.name`)}</span>
-                <span className="text-xs font-bold text-pink-500 ml-2 flex-shrink-0">{price} CHF</span>
-              </button>
+          <div className="grid grid-cols-3 gap-3">
+            {[10, 11, 12].map((priceGroup) => (
+              <div key={priceGroup}>
+                <div className="text-center text-xs font-bold text-white bg-gradient-to-r from-pink-400 to-rose-400 rounded-lg py-1 mb-2">
+                  {priceGroup} CHF / {t("calcPerson")}
+                </div>
+                <div className="flex flex-col gap-1.5">
+                  {flavorList.filter(f => f.price === priceGroup).map(({ key }) => (
+                    <button
+                      key={key}
+                      type="button"
+                      onClick={() => setFlavor(key)}
+                      className={`w-full px-2.5 py-2 rounded-xl border-2 transition-all text-left text-xs font-medium leading-tight ${
+                        flavor === key
+                          ? "border-pink-400 bg-pink-50 text-pink-700 shadow-sm"
+                          : "border-pink-100 bg-white text-gray-700 hover:border-pink-200"
+                      }`}
+                    >
+                      {tf(`items.${key}.name`)}
+                    </button>
+                  ))}
+                </div>
+              </div>
             ))}
           </div>
         </div>

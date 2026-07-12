@@ -111,6 +111,12 @@ const COUNTRIES = [
   { code: "DO", name: "Dom. Republik",  dial: "+1",   flag: "🇩🇴" },
 ];
 
+const flavorPrices: Record<string, number> = {
+  spinatHimbeere: 11, oreo: 11, spinatZitrone: 11, schockiOrange: 11,
+  caramelBanane: 12, snickers: 12, kokosMango: 12, schokoMango: 12, blaubeereLemon: 12,
+  schockiHimbeere: 10, rotVelvetErdbeere: 10, vanillaErdbeere: 10, vanillaHimbeere: 10,
+};
+
 type FlavorKey =
   | "spinatHimbeere"
   | "oreo"
@@ -312,7 +318,7 @@ export default function OrderBuilder() {
               <option value="">{t("flavorPlaceholder")}</option>
               {flavorKeys.map((k) => (
                 <option key={k} value={k}>
-                  {tf(`items.${k}.name`)}
+                  {tf(`items.${k}.name`)} — {flavorPrices[k]} CHF/Person
                 </option>
               ))}
             </select>
