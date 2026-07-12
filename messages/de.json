@@ -79,15 +79,15 @@
       },
       "kokosMango": {
         "name": "Kokos Mango Maracuja",
-        "desc": "Kokos-Biskuit · Mango-Maracuja-Füllung · Kokos-Frischkäse"
+        "desc": "Kokos-Biskuit · Mango-Maracuja-Füllung · Kokos-Frischkäsecreme"
       },
       "schokoMango": {
         "name": "Schoko Mango Maracuja",
-        "desc": "Schokoladen-Biskuit · Mango-Maracuja-Füllung · Frischkäse"
+        "desc": "Schokoladen-Biskuit · Mango-Maracuja-Füllung · Frischkäsecreme"
       },
       "blaubeereLemon": {
         "name": "Heidelbeere Zitrone",
-        "desc": "Vanille-Biskuit · Heidelbeerfüllung · Lemon Curd · Frischkäse"
+        "desc": "Vanille-Biskuit · Heidelbeerfüllung · Lemon Curd · Frischkäsecreme"
       }
     }
   },
