@@ -127,7 +127,9 @@ export default function Gallery() {
             <div
               key={src}
               onClick={() => openLightbox(i)}
-              className="group relative cursor-pointer overflow-hidden rounded-2xl shadow-sm hover:shadow-lg hover:shadow-pink-200 transition-all duration-300 hover:-translate-y-0.5 bg-white/60"
+              className="group relative cursor-pointer overflow-hidden rounded-2xl shadow-sm transition-all duration-300 hover:-translate-y-0.5 bg-white/60"
+              onMouseEnter={e => (e.currentTarget.style.boxShadow = "0 0 0 2px rgba(236,72,153,0.7), 0 0 20px 6px rgba(249,168,212,0.8), 0 0 45px 16px rgba(251,207,232,0.5)")}
+              onMouseLeave={e => (e.currentTarget.style.boxShadow = "")}
             >
               <Image
                 src={src}
