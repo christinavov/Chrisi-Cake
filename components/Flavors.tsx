@@ -101,9 +101,9 @@ export default function Flavors() {
                   )}
                   <button
                     onClick={(e) => selectFlavor(key, e)}
-                    className="mt-2 w-full py-1.5 bg-gradient-to-r from-pink-500 to-rose-500 text-white text-xs font-semibold rounded-xl hover:opacity-90 transition-all"
+                    className="mt-2 w-full py-1.5 bg-pink-100 text-pink-700 text-xs font-semibold rounded-xl hover:bg-pink-200 transition-all"
                   >
-                    {t("select")} →
+                    {t("select")}
                   </button>
                 </div>
               </div>
