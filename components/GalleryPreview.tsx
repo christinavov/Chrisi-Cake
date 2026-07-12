@@ -197,7 +197,9 @@ export default function GalleryPreview() {
                 <div
                   key={`${ci}-${ri}`}
                   onClick={() => setSelected(src)}
-                  className="group relative overflow-hidden rounded-2xl shadow-sm hover:shadow-lg hover:shadow-pink-200 transition-shadow duration-300 hover:-translate-y-1 cursor-pointer"
+                  className="group relative overflow-hidden rounded-2xl shadow-sm transition-all duration-300 hover:-translate-y-1 cursor-pointer"
+                  onMouseEnter={e => (e.currentTarget.style.boxShadow = "0 0 0 2px rgba(236,72,153,0.7), 0 0 20px 6px rgba(249,168,212,0.8), 0 0 45px 16px rgba(251,207,232,0.5)")}
+                  onMouseLeave={e => (e.currentTarget.style.boxShadow = "")}
                 >
                   {/* Current image — always present, keeps the cell height */}
                   <Image
