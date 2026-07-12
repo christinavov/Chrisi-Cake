@@ -89,6 +89,10 @@
       "blaubeereLemon": {
         "name": "Heidelbeere Zitrone",
         "desc": "Vanille-Biskuit · Heidelbeerfüllung · Lemon Curd · Frischkäsecreme"
+      },
+      "makMalinaLimon": {
+        "name": "Mohn Himbeere Zitrone",
+        "desc": "Mohn-Biskuit · Frischkäsecreme · Lemon Curd · Himbeerfüllung"
       }
     }
   },

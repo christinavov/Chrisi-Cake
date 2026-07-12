@@ -15,6 +15,7 @@ const flavorList = [
   { key: "kokosMango",       price: 12 },
   { key: "schokoMango",      price: 12 },
   { key: "blaubeereLemon",   price: 12 },
+  { key: "makMalinaLimon",   price: 12 },
   { key: "schockiHimbeere",  price: 10 },
   { key: "rotVelvetErdbeere",price: 10 },
   { key: "vanillaErdbeere",  price: 10 },

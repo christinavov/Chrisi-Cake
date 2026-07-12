@@ -113,7 +113,7 @@ const COUNTRIES = [
 
 const flavorPrices: Record<string, number> = {
   spinatHimbeere: 11, oreo: 11, spinatZitrone: 11, schockiOrange: 11,
-  caramelBanane: 12, snickers: 12, kokosMango: 12, schokoMango: 12, blaubeereLemon: 12,
+  caramelBanane: 12, snickers: 12, kokosMango: 12, schokoMango: 12, blaubeereLemon: 12, makMalinaLimon: 12,
   schockiHimbeere: 10, rotVelvetErdbeere: 10, vanillaErdbeere: 10, vanillaHimbeere: 10,
 };
 
@@ -130,7 +130,8 @@ type FlavorKey =
   | "vanillaHimbeere"
   | "kokosMango"
   | "schokoMango"
-  | "blaubeereLemon";
+  | "blaubeereLemon"
+  | "makMalinaLimon";
 
 const flavorKeys: FlavorKey[] = [
   "spinatHimbeere",
@@ -146,6 +147,7 @@ const flavorKeys: FlavorKey[] = [
   "kokosMango",
   "schokoMango",
   "blaubeereLemon",
+  "makMalinaLimon",
 ];
 
 const isSunday = (date: Date) => date.getDay() === 0;
