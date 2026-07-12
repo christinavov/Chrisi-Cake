@@ -56,6 +56,7 @@ export default function OrderBuilder() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [countryCode, setCountryCode] = useState("+41");
   const [details, setDetails] = useState("");
   const [pickupTime, setPickupTime] = useState("");
   const [submitted, setSubmitted] = useState(false);
@@ -136,7 +137,7 @@ export default function OrderBuilder() {
       "*Neue Tortenbestellung*",
       "",
       `*Name:* ${name}`,
-      `*Telefon:* ${phone}${emailLine}`,
+      `*Telefon:* ${countryCode} ${phone}${emailLine}`,
       "",
       `*Geschmack:* ${flavorName}`,
       `*Tortenart:* ${tierLabel}`,
@@ -412,13 +413,38 @@ export default function OrderBuilder() {
               </div>
               <div id="field-phone">
                 <label className="block text-sm font-semibold text-pink-800 mb-2">{t("phoneLabel")} *</label>
-                <input
-                  type="tel"
-                  value={phone}
-                  onChange={(e) => { const v = e.target.value.replace(/[^0-9+\s\-()]/g, ""); setPhone(v); setErrors((p) => ({ ...p, phone: false })); }}
-                  placeholder={t("phonePlaceholder")}
-                  className={`w-full px-4 py-3 border rounded-xl bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-pink-300 focus:border-pink-400 transition-all placeholder:text-gray-400 ${errors.phone ? "border-red-400 ring-1 ring-red-300" : "border-pink-200"}`}
-                />
+                <div className={`flex border rounded-xl overflow-hidden bg-white transition-all ${errors.phone ? "border-red-400 ring-1 ring-red-300" : "border-pink-200"} focus-within:ring-2 focus-within:ring-pink-300 focus-within:border-pink-400`}>
+                  <select
+                    value={countryCode}
+                    onChange={(e) => setCountryCode(e.target.value)}
+                    className="px-2 py-3 bg-pink-50 text-gray-800 text-sm font-medium border-r border-pink-200 focus:outline-none cursor-pointer"
+                  >
+                    <option value="+41">🇨🇭 +41</option>
+                    <option value="+49">🇩🇪 +49</option>
+                    <option value="+43">🇦🇹 +43</option>
+                    <option value="+33">🇫🇷 +33</option>
+                    <option value="+39">🇮🇹 +39</option>
+                    <option value="+380">🇺🇦 +380</option>
+                    <option value="+7">🇷🇺 +7</option>
+                    <option value="+44">🇬🇧 +44</option>
+                    <option value="+1">🇺🇸 +1</option>
+                    <option value="+48">🇵🇱 +48</option>
+                    <option value="+90">🇹🇷 +90</option>
+                    <option value="+34">🇪🇸 +34</option>
+                    <option value="+31">🇳🇱 +31</option>
+                    <option value="+32">🇧🇪 +32</option>
+                    <option value="+420">🇨🇿 +420</option>
+                    <option value="+36">🇭🇺 +36</option>
+                    <option value="+40">🇷🇴 +40</option>
+                  </select>
+                  <input
+                    type="tel"
+                    value={phone}
+                    onChange={(e) => { const v = e.target.value.replace(/[^0-9\s\-()]/g, ""); setPhone(v); setErrors((p) => ({ ...p, phone: false })); }}
+                    placeholder="76 223 61 26"
+                    className="flex-1 px-3 py-3 bg-white text-gray-800 focus:outline-none placeholder:text-gray-400 text-sm"
+                  />
+                </div>
                 {errors.phone && <p className="mt-1 text-xs text-red-500 flex items-center gap-1"><AlertTriangle size={12} /> {t("fieldRequired")}</p>}
               </div>
             </div>
