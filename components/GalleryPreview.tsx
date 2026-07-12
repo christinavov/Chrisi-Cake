@@ -97,10 +97,7 @@ const allImages = [
   "/images/gallery/photo_2026-07-03_21-03-11.webp",
 ];
 
-// 4 columns × 3 items each = 12 slots
-const COLS = 4;
-const PER_COL = 3;
-const TOTAL = COLS * PER_COL;
+const TOTAL = 12;
 
 function shuffle<T>(arr: T[]): T[] {
   const a = [...arr];
@@ -111,12 +108,6 @@ function shuffle<T>(arr: T[]): T[] {
   return a;
 }
 
-// Split flat array into N columns for masonry
-function toColumns(items: string[], n: number): string[][] {
-  const cols: string[][] = Array.from({ length: n }, () => []);
-  items.forEach((item, i) => cols[i % n].push(item));
-  return cols;
-}
 
 export default function GalleryPreview() {
   const t = useTranslations("gallery");
@@ -172,8 +163,6 @@ export default function GalleryPreview() {
     return () => clearInterval(interval);
   }, []);
 
-  const columns = toColumns(slots, COLS);
-
   return (
     <section id="gallery" className="relative py-20 md:py-28 overflow-hidden">
       <div className="absolute inset-0 -z-10">
@@ -187,57 +176,53 @@ export default function GalleryPreview() {
           <p className="text-gray-500 text-lg">{t("subtitle")}</p>
         </div>
 
-        {/* Masonry: 4 columns on desktop, 2 on mobile */}
+        {/* Grid: flat list, correct index per slot */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3 items-start mb-10">
-          {columns.map((col, ci) =>
-            col.map((src, ri) => {
-              const slotIdx = ci + ri * COLS;
-              const isChanging = pending?.idx === slotIdx;
-              return (
-                <div
-                  key={`${ci}-${ri}`}
-                  onClick={() => setSelected(isChanging && pending?.visible ? pending.src : src)}
-                  className="group relative overflow-hidden rounded-2xl shadow-sm transition-all duration-300 hover:-translate-y-1 cursor-pointer"
-                  onMouseEnter={e => (e.currentTarget.style.boxShadow = "0 0 0 2px rgba(236,72,153,0.7), 0 0 20px 6px rgba(249,168,212,0.8), 0 0 45px 16px rgba(251,207,232,0.5)")}
-                  onMouseLeave={e => (e.currentTarget.style.boxShadow = "")}
-                >
-                  {/* Current image — always present, keeps the cell height */}
-                  <Image
-                    src={src}
-                    alt={`Chrisi Cake ${slotIdx + 1}`}
-                    width={400}
-                    height={500}
-                    className="w-full h-auto block"
-                    sizes="(max-width: 640px) 50vw, 25vw"
-                  />
-                  {/* Incoming image — slow opacity crossfade */}
-                  {isChanging && pending?.src && (
-                    <div
-                      className="absolute inset-0"
-                      style={{
-                        opacity: pending.visible ? 1 : 0,
-                        transition: `opacity ${FADE_MS}ms ease-in-out`,
-                      }}
-                    >
-                      <Image
-                        src={pending.src}
-                        alt="next"
-                        width={400}
-                        height={500}
-                        className="w-full h-auto block"
-                        sizes="(max-width: 640px) 50vw, 25vw"
-                      />
-                    </div>
-                  )}
+          {slots.map((src, slotIdx) => {
+            const isChanging = pending?.idx === slotIdx;
+            const visibleSrc = isChanging && pending?.visible ? pending.src : src;
+            return (
+              <div
+                key={slotIdx}
+                onClick={() => setSelected(visibleSrc)}
+                className="group relative overflow-hidden rounded-2xl shadow-sm transition-all duration-300 hover:-translate-y-1 cursor-pointer"
+                onMouseEnter={e => (e.currentTarget.style.boxShadow = "0 0 0 2px rgba(236,72,153,0.7), 0 0 20px 6px rgba(249,168,212,0.8), 0 0 45px 16px rgba(251,207,232,0.5)")}
+                onMouseLeave={e => (e.currentTarget.style.boxShadow = "")}
+              >
+                <Image
+                  src={src}
+                  alt={`Chrisi Cake ${slotIdx + 1}`}
+                  width={400}
+                  height={500}
+                  className="w-full h-auto block"
+                  sizes="(max-width: 640px) 50vw, 25vw"
+                />
+                {isChanging && pending?.src && (
                   <div
-                    className="absolute inset-0 rounded-2xl pointer-events-none"
-                    style={{ boxShadow: "inset 0 0 24px 8px rgba(255,228,235,0.3)" }}
-                  />
-                  <div className="absolute inset-0 bg-pink-300/0 group-hover:bg-pink-300/10 transition-colors duration-300 rounded-2xl" />
-                </div>
-              );
-            })
-          )}
+                    className="absolute inset-0"
+                    style={{
+                      opacity: pending.visible ? 1 : 0,
+                      transition: `opacity ${FADE_MS}ms ease-in-out`,
+                    }}
+                  >
+                    <Image
+                      src={pending.src}
+                      alt="next"
+                      width={400}
+                      height={500}
+                      className="w-full h-auto block"
+                      sizes="(max-width: 640px) 50vw, 25vw"
+                    />
+                  </div>
+                )}
+                <div
+                  className="absolute inset-0 rounded-2xl pointer-events-none"
+                  style={{ boxShadow: "inset 0 0 24px 8px rgba(255,228,235,0.3)" }}
+                />
+                <div className="absolute inset-0 bg-pink-300/0 group-hover:bg-pink-300/10 transition-colors duration-300 rounded-2xl" />
+              </div>
+            );
+          })}
         </div>
 
         <div className="text-center">
@@ -262,6 +247,7 @@ export default function GalleryPreview() {
               alt="Chrisi Cake"
               width={800}
               height={800}
+              unoptimized
               className="w-full h-auto rounded-2xl shadow-2xl"
             />
             <button
