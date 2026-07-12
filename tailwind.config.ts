@@ -37,6 +37,7 @@ const config: Config = {
       fontFamily: {
         sans: ["var(--font-inter)", "sans-serif"],
         script: ["var(--font-dancing)", "cursive"],
+        logo: ["var(--font-fredoka)", "sans-serif"],
       },
       backgroundImage: {
         "pink-gradient": "linear-gradient(135deg, #fdf2f8 0%, #fce7f3 30%, #fbcfe8 60%, #fdf2f8 100%)",

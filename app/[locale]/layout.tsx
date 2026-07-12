@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Dancing_Script } from "next/font/google";
+import { Inter, Dancing_Script, Fredoka } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import "../globals.css";
@@ -9,6 +9,7 @@ import HashScroll from "@/components/HashScroll";
 
 const inter = Inter({ subsets: ["latin", "cyrillic"], variable: "--font-inter" });
 const dancing = Dancing_Script({ subsets: ["latin"], variable: "--font-dancing" });
+const fredoka = Fredoka({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-fredoka" });
 
 export const metadata: Metadata = {
   title: "Chrisi Cake",
@@ -37,7 +38,7 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} className="scroll-smooth">
-      <body className={`${inter.variable} ${dancing.variable} font-sans antialiased`}>
+      <body className={`${inter.variable} ${dancing.variable} ${fredoka.variable} font-sans antialiased`}>
         <NextIntlClientProvider messages={messages}>
           {children}
           <HashScroll />
