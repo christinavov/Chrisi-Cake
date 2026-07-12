@@ -135,24 +135,17 @@ export default function Gallery() {
         </div>
 
         {/* Masonry — natural proportions */}
-        <style>{`
-          .masonry-grid { columns: 2; column-gap: 8px; }
-          @media (min-width: 640px)  { .masonry-grid { columns: 3; } }
-          @media (min-width: 1024px) { .masonry-grid { columns: 4; } }
-          .masonry-item { break-inside: avoid; margin-bottom: 8px; display: block; }
-          .masonry-item img { width: 100%; height: auto; display: block; border-radius: 1rem; }
-        `}</style>
-        <div className="masonry-grid">
+        <div className="columns-2 sm:columns-3 lg:columns-4 gap-2">
           {galleryImages.map((src, i) => (
             <div
               key={src}
               onClick={() => openLightbox(i)}
-              className="masonry-item group cursor-pointer rounded-2xl shadow-sm transition-all duration-300 hover:-translate-y-0.5"
+              className="break-inside-avoid mb-2 group cursor-pointer rounded-2xl shadow-sm transition-all duration-300 hover:-translate-y-0.5"
               onMouseEnter={e => (e.currentTarget.style.boxShadow = "0 0 0 2px rgba(236,72,153,0.7), 0 0 20px 6px rgba(249,168,212,0.8), 0 0 45px 16px rgba(251,207,232,0.5)")}
               onMouseLeave={e => (e.currentTarget.style.boxShadow = "")}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={src} alt={`Chrisi Cake ${i + 1}`} loading="lazy" />
+              <img src={src} alt={`Chrisi Cake ${i + 1}`} loading="lazy" className="w-full h-auto block rounded-2xl" />
             </div>
           ))}
         </div>
