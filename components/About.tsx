@@ -35,17 +35,19 @@ export default function About() {
       <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
         {/* Image side */}
         <div className="relative flex justify-center">
-          <div className="relative w-72 h-72 md:w-96 md:h-96">
-            <div className="absolute inset-0 bg-gradient-to-br from-pink-200 to-rose-200 rounded-3xl rotate-6 opacity-60" />
-            <div className="absolute inset-0 bg-white rounded-3xl shadow-xl overflow-hidden">
-              <Image
-                src={aboutPhotos[current]}
-                alt="Chrisi Cake"
-                fill
-                className="object-contain"
-                style={{ opacity: fading ? 0 : 1, transition: "opacity 0.8s ease-in-out" }}
-              />
-            </div>
+          <div className="relative w-80 md:w-[26rem]">
+            <Image
+              src={aboutPhotos[current]}
+              alt="Chrisi Cake"
+              width={600}
+              height={800}
+              className="w-full h-auto rounded-3xl"
+              style={{
+                opacity: fading ? 0 : 1,
+                transition: "opacity 0.8s ease-in-out",
+                boxShadow: "0 0 0 2px rgba(236,72,153,0.4), 0 0 30px 10px rgba(249,168,212,0.6), 0 0 70px 25px rgba(251,207,232,0.35)",
+              }}
+            />
             {/* Dots indicator */}
             <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
               {aboutPhotos.map((_, i) => (
