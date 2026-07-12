@@ -76,6 +76,18 @@
       "vanillaHimbeere": {
         "name": "Vanilla Himbeere",
         "desc": "Vanillebiskuit · Himbeerenfüllung · Frischkäsecreme"
+      },
+      "kokosMango": {
+        "name": "Kokos Mango Maracuja",
+        "desc": "Kokos-Biskuit · Mango-Maracuja-Füllung · Kokos-Frischkäse"
+      },
+      "schokoMango": {
+        "name": "Schoko Mango Maracuja",
+        "desc": "Schokoladen-Biskuit · Mango-Maracuja-Füllung · Frischkäse"
+      },
+      "blaubeereLemon": {
+        "name": "Heidelbeere Zitrone",
+        "desc": "Vanille-Biskuit · Heidelbeerfüllung · Lemon Curd · Frischkäse"
       }
     }
   },

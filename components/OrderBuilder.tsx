@@ -16,7 +16,10 @@ type FlavorKey =
   | "snickers"
   | "rotVelvetErdbeere"
   | "vanillaErdbeere"
-  | "vanillaHimbeere";
+  | "vanillaHimbeere"
+  | "kokosMango"
+  | "schokoMango"
+  | "blaubeereLemon";
 
 const flavorKeys: FlavorKey[] = [
   "spinatHimbeere",
@@ -29,6 +32,9 @@ const flavorKeys: FlavorKey[] = [
   "snickers",
   "vanillaErdbeere",
   "vanillaHimbeere",
+  "kokosMango",
+  "schokoMango",
+  "blaubeereLemon",
 ];
 
 const isSunday = (date: Date) => date.getDay() === 0;

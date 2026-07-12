@@ -76,6 +76,18 @@
       "vanillaHimbeere": {
         "name": "Vanilla Raspberry",
         "desc": "Vanilla sponge · raspberry filling · cream cheese"
+      },
+      "kokosMango": {
+        "name": "Coconut Mango Passionfruit",
+        "desc": "Coconut sponge · mango-passionfruit filling · coconut cream cheese"
+      },
+      "schokoMango": {
+        "name": "Choco Mango Passionfruit",
+        "desc": "Chocolate sponge · mango-passionfruit filling · cream cheese"
+      },
+      "blaubeereLemon": {
+        "name": "Blueberry Lemon",
+        "desc": "Vanilla sponge · blueberry filling · lemon curd · cream cheese"
       }
     }
   },

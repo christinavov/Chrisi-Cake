@@ -14,7 +14,10 @@ type FlavorKey =
   | "snickers"
   | "rotVelvetErdbeere"
   | "vanillaErdbeere"
-  | "vanillaHimbeere";
+  | "vanillaHimbeere"
+  | "kokosMango"
+  | "schokoMango"
+  | "blaubeereLemon";
 
 const flavorImages: Record<FlavorKey, string> = {
   spinatHimbeere: "/images/flavors/spinatHimbeere.jpg",
@@ -27,6 +30,9 @@ const flavorImages: Record<FlavorKey, string> = {
   rotVelvetErdbeere: "/images/flavors/rotVelvetErdbeere.jpg",
   vanillaErdbeere: "/images/flavors/vanillaErdbeere.jpg",
   vanillaHimbeere: "/images/flavors/vanillaHimbeere.jpg",
+  kokosMango: "/images/flavors/kokosMango.jpg",
+  schokoMango: "/images/flavors/schokoMango.jpg",
+  blaubeereLemon: "/images/flavors/blaubeereLemon.jpg",
 };
 
 const flavorKeys: FlavorKey[] = [
@@ -40,6 +46,9 @@ const flavorKeys: FlavorKey[] = [
   "rotVelvetErdbeere",
   "vanillaErdbeere",
   "vanillaHimbeere",
+  "kokosMango",
+  "schokoMango",
+  "blaubeereLemon",
 ];
 
 export default function Flavors() {
