@@ -115,7 +115,10 @@ export default function Header() {
                 onError={() => {}}
               />
             </div>
-            <span className="font-logo text-xl md:text-2xl font-semibold bg-gradient-to-r from-teal-500 via-cyan-400 to-sky-400 bg-clip-text text-transparent">
+            <span
+              className="font-logo text-xl md:text-2xl bg-gradient-to-r from-[#1a2fa0] via-[#5b6ee8] to-[#8ab4f8] bg-clip-text text-transparent"
+              style={{ filter: "drop-shadow(0 0 6px rgba(255,255,255,1)) drop-shadow(0 0 14px rgba(255,255,255,0.7))" }}
+            >
               Chrisi Cake
             </span>
           </button>
