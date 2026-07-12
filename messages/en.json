@@ -126,6 +126,7 @@
     "tierTwo": "Two-tier",
     "tierOneNote": "10–25 persons · 10 CHF/person",
     "tierTwoNote": "from 20 persons · 13 CHF/person",
+    "fieldRequired": "This field is required",
     "pickupTimeLabel": "Pickup Time",
     "pickupTimeError": "Please select a pickup time",
     "minGuestsErrorTwo": "Minimum for a two-tier cake is 20 persons",

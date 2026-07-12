@@ -126,6 +126,7 @@
     "tierTwo": "Двухярусный",
     "tierOneNote": "10–25 человек · 10 CHF/чел",
     "tierTwoNote": "от 20 человек · 13 CHF/чел",
+    "fieldRequired": "Это поле обязательно",
     "pickupTimeLabel": "Время самовывоза",
     "pickupTimeError": "Пожалуйста, выберите время самовывоза",
     "minGuestsErrorTwo": "Минимум для двухярусного торта — 20 человек",

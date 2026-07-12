@@ -62,6 +62,7 @@ export default function OrderBuilder() {
   const [dateError, setDateError] = useState("");
   const [guestsError, setGuestsError] = useState("");
   const [timeError, setTimeError] = useState(false);
+  const [errors, setErrors] = useState<Record<string, boolean>>({});
 
   const minGuests = twoTier ? 20 : 10;
   const maxGuests = twoTier ? undefined : 25;
@@ -86,15 +87,34 @@ export default function OrderBuilder() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!pickupTime) { setTimeError(true); }
-    if (!flavor || !guests || !date || !pickupTime || !name || !phone) return;
-    setTimeError(false);
-    if (parseInt(guests) < minGuests) {
+
+    const newErrors: Record<string, boolean> = {};
+    if (!flavor) newErrors.flavor = true;
+    if (!guests) newErrors.guests = true;
+    if (guests && parseInt(guests) < minGuests) {
+      newErrors.guests = true;
       setGuestsError(twoTier ? t("minGuestsErrorTwo") : t("minGuestsError"));
-      return;
-    }
-    if (!twoTier && parseInt(guests) > 25) {
+    } else if (guests && !twoTier && parseInt(guests) > 25) {
+      newErrors.guests = true;
       setGuestsError(t("maxGuestsErrorOne"));
+    } else {
+      setGuestsError("");
+    }
+    if (!date) newErrors.date = true;
+    if (!pickupTime) { newErrors.pickupTime = true; setTimeError(true); }
+    else setTimeError(false);
+    if (!name) newErrors.name = true;
+    if (!phone) newErrors.phone = true;
+
+    setErrors(newErrors);
+
+    if (Object.keys(newErrors).length > 0) {
+      const order = ["flavor", "guests", "date", "pickupTime", "name", "phone"];
+      const first = order.find((k) => newErrors[k]);
+      if (first) {
+        const el = document.getElementById(`field-${first}`);
+        el?.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
       return;
     }
 
@@ -170,13 +190,12 @@ export default function OrderBuilder() {
 
         <form onSubmit={handleSubmit} className="bg-white/90 rounded-3xl shadow-xl border border-pink-100 p-6 md:p-10 space-y-6">
           {/* Flavor */}
-          <div>
+          <div id="field-flavor">
             <label className="block text-sm font-semibold text-pink-800 mb-2">{t("flavorLabel")} *</label>
             <select
               value={flavor}
-              onChange={(e) => setFlavor(e.target.value)}
-              required
-              className="w-full px-4 py-3 border border-pink-200 rounded-xl bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-pink-300 focus:border-pink-400 transition-all"
+              onChange={(e) => { setFlavor(e.target.value); setErrors((p) => ({ ...p, flavor: false })); }}
+              className={`w-full px-4 py-3 border rounded-xl bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-pink-300 focus:border-pink-400 transition-all ${errors.flavor ? "border-red-400 ring-1 ring-red-300" : "border-pink-200"}`}
             >
               <option value="">{t("flavorPlaceholder")}</option>
               {flavorKeys.map((k) => (
@@ -185,11 +204,13 @@ export default function OrderBuilder() {
                 </option>
               ))}
             </select>
-            {flavor && (
+            {flavor ? (
               <p className="mt-2 text-xs text-gray-500 flex items-start gap-1">
                 <Info size={12} className="mt-0.5 flex-shrink-0 text-pink-400" />
                 {tf(`items.${flavor as FlavorKey}.desc`)}
               </p>
+            ) : errors.flavor && (
+              <p className="mt-1 text-xs text-red-500 flex items-center gap-1"><AlertTriangle size={12} /> {t("fieldRequired")}</p>
             )}
           </div>
 
@@ -255,7 +276,7 @@ export default function OrderBuilder() {
           </div>
 
           {/* Guests */}
-          <div>
+          <div id="field-guests">
             <label className="block text-sm font-semibold text-pink-800 mb-2">{t("guestsLabel")} *</label>
             <input
               type="number"
@@ -266,6 +287,7 @@ export default function OrderBuilder() {
               onChange={(e) => {
                 setGuests(e.target.value);
                 setGuestsError("");
+                setErrors((p) => ({ ...p, guests: false }));
               }}
               onBlur={(e) => {
                 const raw = parseInt(e.target.value);
@@ -284,7 +306,7 @@ export default function OrderBuilder() {
               }}
               placeholder={t("guestsPlaceholder")}
               required
-              className={`w-full px-4 py-3 border rounded-xl bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-pink-300 focus:border-pink-400 transition-all placeholder:text-gray-400 ${guestsError ? "border-red-400" : "border-pink-200"}`}
+              className={`w-full px-4 py-3 border rounded-xl bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-pink-300 focus:border-pink-400 transition-all placeholder:text-gray-400 ${guestsError || errors.guests ? "border-red-400 ring-1 ring-red-300" : "border-pink-200"}`}
             />
             {guestsError ? (
               <p className="mt-1 text-xs text-red-500 flex items-center gap-1">
@@ -296,22 +318,21 @@ export default function OrderBuilder() {
           </div>
 
           {/* Date */}
-          <div>
+          <div id="field-date">
             <label className="block text-sm font-semibold text-pink-800 mb-2">{t("dateLabel")} *</label>
             <DatePicker
               selected={date}
-              onChange={handleDateChange}
+              onChange={(d) => { handleDateChange(d); setErrors((p) => ({ ...p, date: false })); }}
               filterDate={filterDate}
               minDate={(() => { const d = new Date(); d.setDate(d.getDate() + 3); return d; })()}
               placeholderText={t("datePlaceholder")}
               dateFormat="dd.MM.yyyy"
-              className="w-full"
-              required
+              className={`w-full ${errors.date ? "border-red-400 ring-1 ring-red-300 rounded-xl" : ""}`}
             />
-            {dateError && (
-              <p className="mt-2 text-xs text-red-500 flex items-center gap-1">
-                <AlertTriangle size={12} /> {dateError}
-              </p>
+            {dateError ? (
+              <p className="mt-2 text-xs text-red-500 flex items-center gap-1"><AlertTriangle size={12} /> {dateError}</p>
+            ) : errors.date && (
+              <p className="mt-1 text-xs text-red-500 flex items-center gap-1"><AlertTriangle size={12} /> {t("fieldRequired")}</p>
             )}
             <div className="mt-3 rounded-xl bg-pink-50 border border-pink-200 px-4 py-3 space-y-1">
               <p className="text-sm font-semibold text-pink-700">⏰ {t("timeNote")}</p>
@@ -319,7 +340,7 @@ export default function OrderBuilder() {
             </div>
 
             {/* Pickup time */}
-            <div className="mt-4">
+            <div className="mt-4" id="field-pickupTime">
               <label className="block text-sm font-semibold text-pink-800 mb-2">{t("pickupTimeLabel")} *</label>
               <div className="grid grid-cols-3 gap-3">
                 {["18:00", "19:00", "20:00"].map((time) => (
@@ -365,16 +386,16 @@ export default function OrderBuilder() {
 
           <div className="border-t border-pink-100 pt-6 space-y-4">
             {/* Name */}
-            <div>
+            <div id="field-name">
               <label className="block text-sm font-semibold text-pink-800 mb-2">{t("nameLabel")} *</label>
               <input
                 type="text"
                 value={name}
-                onChange={(e) => setName(e.target.value)}
+                onChange={(e) => { setName(e.target.value); setErrors((p) => ({ ...p, name: false })); }}
                 placeholder={t("namePlaceholder")}
-                required
-                className="w-full px-4 py-3 border border-pink-200 rounded-xl bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-pink-300 focus:border-pink-400 transition-all placeholder:text-gray-400"
+                className={`w-full px-4 py-3 border rounded-xl bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-pink-300 focus:border-pink-400 transition-all placeholder:text-gray-400 ${errors.name ? "border-red-400 ring-1 ring-red-300" : "border-pink-200"}`}
               />
+              {errors.name && <p className="mt-1 text-xs text-red-500 flex items-center gap-1"><AlertTriangle size={12} /> {t("fieldRequired")}</p>}
             </div>
 
             {/* Email + Phone */}
@@ -389,16 +410,16 @@ export default function OrderBuilder() {
                   className="w-full px-4 py-3 border border-pink-200 rounded-xl bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-pink-300 focus:border-pink-400 transition-all placeholder:text-gray-400"
                 />
               </div>
-              <div>
+              <div id="field-phone">
                 <label className="block text-sm font-semibold text-pink-800 mb-2">{t("phoneLabel")} *</label>
                 <input
                   type="tel"
                   value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
+                  onChange={(e) => { setPhone(e.target.value); setErrors((p) => ({ ...p, phone: false })); }}
                   placeholder={t("phonePlaceholder")}
-                  required
-                  className="w-full px-4 py-3 border border-pink-200 rounded-xl bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-pink-300 focus:border-pink-400 transition-all placeholder:text-gray-400"
+                  className={`w-full px-4 py-3 border rounded-xl bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-pink-300 focus:border-pink-400 transition-all placeholder:text-gray-400 ${errors.phone ? "border-red-400 ring-1 ring-red-300" : "border-pink-200"}`}
                 />
+                {errors.phone && <p className="mt-1 text-xs text-red-500 flex items-center gap-1"><AlertTriangle size={12} /> {t("fieldRequired")}</p>}
               </div>
             </div>
 
