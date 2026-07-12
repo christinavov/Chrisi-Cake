@@ -309,13 +309,17 @@ export default function OrderBuilder() {
     if (window.innerWidth >= 768) {
       window.open(url, "_blank", "noopener,noreferrer");
     }
+
+    setTimeout(() => {
+      document.getElementById("order-success")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 100);
   };
 
   const filterDate = (d: Date) => !isSunday(d) && !isPast(d);
 
   if (submitted) {
     return (
-      <section id="order" className="py-20 md:py-28 bg-white/40">
+      <section id="order-success" className="py-20 md:py-28 bg-white/40">
         <div className="max-w-2xl mx-auto px-4 text-center">
           <div className="bg-white rounded-3xl shadow-xl p-10 border border-pink-100 space-y-5">
             <div className="text-6xl">🎂</div>
