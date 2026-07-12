@@ -301,12 +301,15 @@ export default function OrderBuilder() {
     ].join("\n");
 
     const waUrl = `https://wa.me/41762236126?text=${encodeURIComponent(msg)}`;
-    window.open(waUrl, "_blank");
 
     setSubmitted(true);
-    setTimeout(() => {
-      document.getElementById("order")?.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 100);
+
+    const link = document.createElement("a");
+    link.href = waUrl;
+    link.rel = "noopener noreferrer";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   const filterDate = (d: Date) => !isSunday(d) && !isPast(d);
