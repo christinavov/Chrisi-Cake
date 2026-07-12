@@ -184,6 +184,7 @@ export default function OrderBuilder() {
   const [details, setDetails] = useState("");
   const [pickupTime, setPickupTime] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [waUrl, setWaUrl] = useState("");
   const [dateError, setDateError] = useState("");
   const [guestsError, setGuestsError] = useState("");
   const [timeError, setTimeError] = useState(false);
@@ -300,16 +301,14 @@ export default function OrderBuilder() {
       `*Anlass:* ${occasionLabel}${detailsLine}${priceLine}`,
     ].join("\n");
 
-    const waUrl = `https://wa.me/41762236126?text=${encodeURIComponent(msg)}`;
-
+    const url = `https://wa.me/41762236126?text=${encodeURIComponent(msg)}`;
+    setWaUrl(url);
     setSubmitted(true);
 
-    const link = document.createElement("a");
-    link.href = waUrl;
-    link.rel = "noopener noreferrer";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    // On desktop open WhatsApp automatically; on mobile let user tap the button
+    if (window.innerWidth >= 768) {
+      window.open(url, "_blank", "noopener,noreferrer");
+    }
   };
 
   const filterDate = (d: Date) => !isSunday(d) && !isPast(d);
@@ -322,11 +321,15 @@ export default function OrderBuilder() {
             <div className="text-6xl">🎂</div>
             <h2 className="text-3xl md:text-4xl font-script text-pink-700">{t("successTitle")}</h2>
             <p className="text-gray-600 text-base leading-relaxed">{t("successMsg")}</p>
-            <div className="flex items-start gap-3 bg-green-50 border-l-4 border-green-400 rounded-xl p-4 text-left">
-              <MessageCircle size={20} className="text-green-600 flex-shrink-0 mt-0.5" />
-              <p className="text-green-800 font-semibold text-sm">{t("whatsappHint")}</p>
-            </div>
-            <div className="pt-2">
+            <a
+              href={waUrl}
+              rel="noopener noreferrer"
+              className="md:hidden flex items-center justify-center gap-3 w-full py-4 px-6 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-2xl shadow-md transition-all duration-200 text-base"
+            >
+              <MessageCircle size={20} />
+              {t("whatsappOpenBtn")}
+            </a>
+            <div className="pt-1">
               <p className="text-gray-500 text-sm mb-4">{t("successStorageHint")}</p>
               <button
                 onClick={() => document.getElementById("storage")?.scrollIntoView({ behavior: "smooth" })}
