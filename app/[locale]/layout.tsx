@@ -10,6 +10,13 @@ import HashScroll from "@/components/HashScroll";
 const inter = Inter({ subsets: ["latin", "cyrillic"], variable: "--font-inter" });
 const dancing = Dancing_Script({ subsets: ["latin"], variable: "--font-dancing" });
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+};
+
 export const metadata: Metadata = {
   title: "Chrisi Cake",
   description:
