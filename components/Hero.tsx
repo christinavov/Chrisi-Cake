@@ -55,7 +55,7 @@ export default function Hero() {
           </span>
         </div>
 
-        <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto mb-8 leading-relaxed">
+        <p className="text-lg md:text-xl text-pink-800/70 max-w-2xl mx-auto mb-8 leading-relaxed font-medium italic tracking-wide">
           {t("description")}
         </p>
 
