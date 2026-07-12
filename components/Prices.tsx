@@ -247,30 +247,15 @@ export default function Prices() {
           <h3 className="text-2xl md:text-3xl font-script text-pink-700 mb-1">{t("exampleTitle")}</h3>
           <p className="text-gray-500 text-sm">* {t("exampleNote")}</p>
         </div>
-        {/* Row 1 — 3 cards */}
-        <div className="grid grid-cols-3 gap-6 mb-6">
-          {exampleCakes.slice(0, 3).map((cake, i) => (
-            <div key={i} className="bg-white/90 border border-pink-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6">
+          {exampleCakes.map((cake, i) => (
+            <div key={i} className={`bg-white/90 border border-pink-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300${i === 4 ? " col-span-2 md:col-span-1 md:col-start-2" : ""}`}>
               <div className="relative aspect-square">
                 <Image src={cake.images[0]} alt={t(cake.labelKey)} fill className="object-cover" />
               </div>
-              <div className="p-4 text-center">
-                <p className="text-sm font-medium text-gray-700 mb-1">{t(cake.labelKey)}</p>
-                <p className="text-xl font-bold text-pink-600">{cake.price}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-        {/* Row 2 — 2 cards centred */}
-        <div className="flex justify-center gap-6">
-          {exampleCakes.slice(3).map((cake, i) => (
-            <div key={i} className="w-full max-w-[calc(33.333%-12px)] bg-white/90 border border-pink-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300">
-              <div className="relative aspect-square">
-                <Image src={cake.images[0]} alt={t(cake.labelKey)} fill className="object-cover" />
-              </div>
-              <div className="p-4 text-center">
-                <p className="text-sm font-medium text-gray-700 mb-1">{t(cake.labelKey)}</p>
-                <p className="text-xl font-bold text-pink-600">{cake.price}</p>
+              <div className="p-2 md:p-4 text-center">
+                <p className="text-xs md:text-sm font-medium text-gray-700 mb-0.5 md:mb-1 leading-tight">{t(cake.labelKey)}</p>
+                <p className="text-base md:text-xl font-bold text-pink-600">{cake.price}</p>
               </div>
             </div>
           ))}
