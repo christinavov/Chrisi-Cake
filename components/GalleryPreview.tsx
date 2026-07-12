@@ -3,7 +3,7 @@
 import { useTranslations, useLocale } from "next-intl";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
-import { useState, useEffect, useRef } from "react";
+import { useState, useMemo } from "react";
 
 const allImages = [
   "/images/gallery/photo_2026-07-03_21-01-13.webp",
@@ -114,51 +114,8 @@ export default function GalleryPreview() {
   const locale = useLocale();
   const galleryPath = locale === "de" ? "/gallery" : `/${locale}/gallery`;
 
-  const initialSlots = shuffle(allImages).slice(0, TOTAL);
-  const [slots, setSlots] = useState<string[]>(initialSlots);
-  const [pending, setPending] = useState<{ idx: number; src: string; visible: boolean } | null>(null);
-  const slotsRef = useRef<string[]>(initialSlots);
-  const busyRef = useRef(false);
+  const slots = useMemo(() => shuffle(allImages).slice(0, TOTAL), []);
   const [selected, setSelected] = useState<string | null>(null);
-
-  const FADE_MS = 2500;
-  const INTERVAL_MS = 6000;
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (busyRef.current) return;
-
-      const current = new Set(slotsRef.current);
-      const available = allImages.filter((img) => !current.has(img));
-      if (available.length === 0) return;
-
-      const slotIdx = Math.floor(Math.random() * TOTAL);
-      const newImg = available[Math.floor(Math.random() * available.length)];
-
-      busyRef.current = true;
-
-      // Optimistically update slotsRef so next tick won't pick same image
-      const next = [...slotsRef.current];
-      next[slotIdx] = newImg;
-      slotsRef.current = next;
-
-      setPending({ idx: slotIdx, src: newImg, visible: false });
-
-      requestAnimationFrame(() =>
-        requestAnimationFrame(() =>
-          setPending((p) => p ? { ...p, visible: true } : p)
-        )
-      );
-
-      setTimeout(() => {
-        setSlots([...slotsRef.current]);
-        setPending(null);
-        busyRef.current = false;
-      }, FADE_MS + 100);
-    }, INTERVAL_MS);
-
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <section id="gallery" className="relative py-20 md:py-28 overflow-hidden">
@@ -173,53 +130,26 @@ export default function GalleryPreview() {
           <p className="text-gray-500 text-lg">{t("subtitle")}</p>
         </div>
 
-        {/* Grid: flat list, correct index per slot */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3 items-start mb-10">
-          {slots.map((src, slotIdx) => {
-            const isChanging = pending?.idx === slotIdx;
-            const visibleSrc = isChanging && pending?.visible ? pending.src : src;
-            return (
-              <div
-                key={slotIdx}
-                onClick={() => setSelected(visibleSrc)}
-                className="group relative overflow-hidden rounded-2xl shadow-sm transition-all duration-300 hover:-translate-y-1 cursor-pointer"
-                onMouseEnter={e => (e.currentTarget.style.boxShadow = "0 0 0 2px rgba(236,72,153,0.7), 0 0 20px 6px rgba(249,168,212,0.8), 0 0 45px 16px rgba(251,207,232,0.5)")}
-                onMouseLeave={e => (e.currentTarget.style.boxShadow = "")}
-              >
-                <Image
-                  src={src}
-                  alt={`Chrisi Cake ${slotIdx + 1}`}
-                  width={400}
-                  height={500}
-                  className="w-full h-auto block"
-                  sizes="(max-width: 640px) 50vw, 25vw"
-                />
-                {isChanging && pending?.src && (
-                  <div
-                    className="absolute inset-0"
-                    style={{
-                      opacity: pending.visible ? 1 : 0,
-                      transition: `opacity ${FADE_MS}ms ease-in-out`,
-                    }}
-                  >
-                    <Image
-                      src={pending.src}
-                      alt="next"
-                      width={400}
-                      height={500}
-                      className="w-full h-auto block"
-                      sizes="(max-width: 640px) 50vw, 25vw"
-                    />
-                  </div>
-                )}
-                <div
-                  className="absolute inset-0 rounded-2xl pointer-events-none"
-                  style={{ boxShadow: "inset 0 0 24px 8px rgba(255,228,235,0.3)" }}
-                />
-                <div className="absolute inset-0 bg-pink-300/0 group-hover:bg-pink-300/10 transition-colors duration-300 rounded-2xl" />
-              </div>
-            );
-          })}
+          {slots.map((src, i) => (
+            <div
+              key={src}
+              onClick={() => setSelected(src)}
+              className="group relative overflow-hidden rounded-2xl shadow-sm transition-all duration-300 hover:-translate-y-1 cursor-pointer"
+              onMouseEnter={e => (e.currentTarget.style.boxShadow = "0 0 0 2px rgba(236,72,153,0.7), 0 0 20px 6px rgba(249,168,212,0.8), 0 0 45px 16px rgba(251,207,232,0.5)")}
+              onMouseLeave={e => (e.currentTarget.style.boxShadow = "")}
+            >
+              <Image
+                src={src}
+                alt={`Chrisi Cake ${i + 1}`}
+                width={400}
+                height={500}
+                className="w-full h-auto block"
+                sizes="(max-width: 640px) 50vw, 25vw"
+              />
+              <div className="absolute inset-0 bg-pink-300/0 group-hover:bg-pink-300/10 transition-colors duration-300 rounded-2xl" />
+            </div>
+          ))}
         </div>
 
         <div className="text-center">
