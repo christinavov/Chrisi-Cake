@@ -61,6 +61,7 @@ export default function Flavors() {
   const selectFlavor = (key: FlavorKey, e: React.MouseEvent) => {
     e.stopPropagation();
     localStorage.setItem("selectedFlavor", key);
+    window.dispatchEvent(new CustomEvent("flavorSelected", { detail: key }));
     document.getElementById("order")?.scrollIntoView({ behavior: "smooth" });
   };
 

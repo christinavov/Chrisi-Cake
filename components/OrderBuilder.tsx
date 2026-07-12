@@ -207,6 +207,15 @@ export default function OrderBuilder() {
   const [errors, setErrors] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
+    const onFlavorSelected = (e: Event) => {
+      const key = (e as CustomEvent<string>).detail;
+      if (key) setFlavor(key);
+    };
+    window.addEventListener("flavorSelected", onFlavorSelected);
+    return () => window.removeEventListener("flavorSelected", onFlavorSelected);
+  }, []);
+
+  useEffect(() => {
     const handler = (e: MouseEvent) => {
       if (flavorRef.current && !flavorRef.current.contains(e.target as Node)) {
         setFlavorOpen(false);
