@@ -127,17 +127,19 @@ export default function Header() {
                 <a
                   key={item}
                   href={locale === "de" ? "/gallery" : `/${locale}/gallery`}
-                  className="px-3 py-2 text-sm font-medium text-pink-800 hover:text-pink-600 hover:bg-pink-50 rounded-lg transition-all duration-200"
+                  className="group relative px-3 py-2 text-base font-medium text-pink-800 hover:text-pink-600 rounded-lg transition-all duration-200"
                 >
                   {t(item)}
+                  <span className="absolute bottom-0.5 left-3 right-3 h-0.5 bg-pink-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-200 rounded-full" />
                 </a>
               ) : (
                 <button
                   key={item}
                   onClick={() => scrollTo(sectionIds[item])}
-                  className="px-3 py-2 text-sm font-medium text-pink-800 hover:text-pink-600 hover:bg-pink-50 rounded-lg transition-all duration-200"
+                  className="group relative px-3 py-2 text-base font-medium text-pink-800 hover:text-pink-600 rounded-lg transition-all duration-200"
                 >
                   {t(item)}
+                  <span className="absolute bottom-0.5 left-3 right-3 h-0.5 bg-pink-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-200 rounded-full" />
                 </button>
               )
             ))}
