@@ -5,6 +5,22 @@ import { ChevronRight, CreditCard } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
+const flavorList = [
+  { key: "spinatHimbeere",   price: 11 },
+  { key: "oreo",             price: 11 },
+  { key: "spinatZitrone",    price: 11 },
+  { key: "schockiOrange",    price: 11 },
+  { key: "caramelBanane",    price: 12 },
+  { key: "snickers",         price: 12 },
+  { key: "kokosMango",       price: 12 },
+  { key: "schokoMango",      price: 12 },
+  { key: "blaubeereLemon",   price: 12 },
+  { key: "schockiHimbeere",  price: 10 },
+  { key: "rotVelvetErdbeere",price: 10 },
+  { key: "vanillaErdbeere",  price: 10 },
+  { key: "vanillaHimbeere",  price: 10 },
+];
+
 const exampleCakes = [
   {
     images: [
@@ -37,9 +53,11 @@ const exampleCakes = [
 
 export default function Prices() {
   const t = useTranslations("prices");
+  const tf = useTranslations("flavors");
 
   const [guests, setGuests] = useState(10);
   const [twoTier, setTwoTier] = useState(false);
+  const [flavor, setFlavor] = useState("spinatHimbeere");
   const [extraPrint, setExtraPrint] = useState(false);
   const [extraChoco, setExtraChoco] = useState(false);
   const [extraFlowers, setExtraFlowers] = useState(false);
@@ -47,7 +65,8 @@ export default function Prices() {
 
   const minGuests = twoTier ? 20 : 10;
   const maxGuests = twoTier ? 200 : 25;
-  const pricePerPerson = twoTier ? 13 : 10;
+  const flavorPrice = flavorList.find((f) => f.key === flavor)?.price ?? 10;
+  const pricePerPerson = flavorPrice + (twoTier ? 3 : 0);
 
   const handleTwoTier = (val: boolean) => {
     setTwoTier(val);
@@ -78,6 +97,28 @@ export default function Prices() {
       <div className="mb-10 bg-white/90 border-2 border-pink-100 rounded-3xl p-6 md:p-8 shadow-sm">
         <h3 className="text-2xl md:text-3xl font-script text-pink-700 mb-1 text-center">{t("calcTitle")}</h3>
         <p className="text-center text-gray-400 text-sm mb-6">{t("calcSubtitle")}</p>
+
+        {/* Flavor selector */}
+        <div className="mb-6">
+          <label className="block text-sm font-semibold text-pink-800 mb-3">{t("calcFlavorLabel")}</label>
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+            {flavorList.map(({ key, price }) => (
+              <button
+                key={key}
+                type="button"
+                onClick={() => setFlavor(key)}
+                className={`flex items-center justify-between px-3 py-2.5 rounded-xl border-2 transition-all text-left ${
+                  flavor === key
+                    ? "border-pink-400 bg-pink-50 shadow-sm"
+                    : "border-pink-100 bg-white hover:border-pink-200"
+                }`}
+              >
+                <span className="text-xs font-medium text-gray-700 leading-tight">{tf(`items.${key}.name`)}</span>
+                <span className="text-xs font-bold text-pink-500 ml-2 flex-shrink-0">{price} ₣</span>
+              </button>
+            ))}
+          </div>
+        </div>
 
         {/* Guests counter */}
         <div className="mb-6">
@@ -121,7 +162,7 @@ export default function Prices() {
               <circle cx="25" cy="22" r="2" fill="#f472b6"/>
             </svg>
             <p className="text-sm font-semibold text-gray-700">{t("calcOneTier")}</p>
-            <p className="text-xs text-pink-500">10 CHF / {t("calcPerson")}</p>
+            <p className="text-xs text-pink-500">{flavorPrice} CHF / {t("calcPerson")}</p>
           </button>
           <button
             type="button"
@@ -142,7 +183,7 @@ export default function Prices() {
               <circle cx="25" cy="28" r="1.5" fill="#f472b6"/>
             </svg>
             <p className="text-sm font-semibold text-gray-700">{t("calcTwoTier")}</p>
-            <p className="text-xs text-pink-500">13 CHF / {t("calcPerson")} · {t("calcMin20")}</p>
+            <p className="text-xs text-pink-500">{flavorPrice + 3} CHF / {t("calcPerson")} · {t("calcMin20")}</p>
           </button>
         </div>
 
