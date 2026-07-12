@@ -305,8 +305,8 @@ export default function OrderBuilder() {
 
     setSubmitted(true);
     setTimeout(() => {
-      document.getElementById("storage")?.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 300);
+      document.getElementById("order")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 100);
   };
 
   const filterDate = (d: Date) => !isSunday(d) && !isPast(d);
