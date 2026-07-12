@@ -305,8 +305,8 @@ export default function OrderBuilder() {
 
     setSubmitted(true);
     setTimeout(() => {
-      document.getElementById("order")?.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 50);
+      document.getElementById("storage")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 300);
   };
 
   const filterDate = (d: Date) => !isSunday(d) && !isPast(d);
@@ -315,13 +315,22 @@ export default function OrderBuilder() {
     return (
       <section id="order" className="py-20 md:py-28 bg-white/40">
         <div className="max-w-2xl mx-auto px-4 text-center">
-          <div className="bg-white rounded-3xl shadow-xl p-12 border border-pink-100 space-y-6">
-            <CheckCircle2 size={64} className="text-green-500 mx-auto" />
-            <h2 className="text-3xl font-script text-pink-700">{t("successTitle")}</h2>
-            <p className="text-gray-600 text-sm">{t("successMsg")}</p>
+          <div className="bg-white rounded-3xl shadow-xl p-10 border border-pink-100 space-y-5">
+            <div className="text-6xl">🎂</div>
+            <h2 className="text-3xl md:text-4xl font-script text-pink-700">{t("successTitle")}</h2>
+            <p className="text-gray-600 text-base leading-relaxed">{t("successMsg")}</p>
             <div className="flex items-start gap-3 bg-green-50 border-l-4 border-green-400 rounded-xl p-4 text-left">
               <MessageCircle size={20} className="text-green-600 flex-shrink-0 mt-0.5" />
               <p className="text-green-800 font-semibold text-sm">{t("whatsappHint")}</p>
+            </div>
+            <div className="pt-2">
+              <p className="text-gray-500 text-sm mb-4">{t("successStorageHint")}</p>
+              <button
+                onClick={() => document.getElementById("storage")?.scrollIntoView({ behavior: "smooth" })}
+                className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-pink-500 to-rose-500 text-white font-semibold rounded-full shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
+              >
+                {t("successStorageBtn")} →
+              </button>
             </div>
           </div>
         </div>

@@ -7,7 +7,7 @@ export default function StorageTips() {
   const tips = t.raw("tips") as string[];
 
   return (
-    <section className="py-20 md:py-28 bg-gradient-to-br from-pink-50 to-rose-50">
+    <section id="storage" className="py-20 md:py-28 bg-gradient-to-br from-pink-50 to-rose-50">
       <div className="max-w-4xl mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-script text-pink-700 mb-3">{t("title")}</h2>
