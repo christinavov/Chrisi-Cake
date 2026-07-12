@@ -42,7 +42,7 @@ export default function About() {
                 src={aboutPhotos[current]}
                 alt="Chrisi Cake"
                 fill
-                className="object-cover"
+                className="object-contain"
                 style={{ opacity: fading ? 0 : 1, transition: "opacity 0.8s ease-in-out" }}
               />
             </div>
