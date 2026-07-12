@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
 const galleryImages = [
@@ -101,10 +101,23 @@ export default function Gallery() {
   const t = useTranslations("gallery");
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
+  const touchStartX = useRef<number | null>(null);
+
   const openLightbox = (i: number) => setLightboxIndex(i);
   const closeLightbox = () => setLightboxIndex(null);
   const prev = () => setLightboxIndex((i) => (i! - 1 + galleryImages.length) % galleryImages.length);
   const next = () => setLightboxIndex((i) => (i! + 1) % galleryImages.length);
+
+  useEffect(() => {
+    if (lightboxIndex === null) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight") next();
+      else if (e.key === "ArrowLeft") prev();
+      else if (e.key === "Escape") closeLightbox();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [lightboxIndex]);
 
   return (
     <section id="gallery" className="relative py-20 md:py-28 overflow-hidden">
@@ -149,6 +162,13 @@ export default function Gallery() {
         <div
           className="fixed inset-0 bg-black/85 z-50 flex items-center justify-center p-4"
           onClick={closeLightbox}
+          onTouchStart={(e) => { touchStartX.current = e.touches[0].clientX; }}
+          onTouchEnd={(e) => {
+            if (touchStartX.current === null) return;
+            const diff = touchStartX.current - e.changedTouches[0].clientX;
+            if (Math.abs(diff) > 50) diff > 0 ? next() : prev();
+            touchStartX.current = null;
+          }}
         >
           <button
             onClick={closeLightbox}
