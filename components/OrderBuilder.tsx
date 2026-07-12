@@ -322,14 +322,6 @@ export default function OrderBuilder() {
             <div className="text-6xl">🎂</div>
             <h2 className="text-3xl md:text-4xl font-script text-pink-700">{t("successTitle")}</h2>
             <p className="text-gray-600 text-base leading-relaxed">{t("successMsg")}</p>
-            <a
-              href={waUrl}
-              rel="noopener noreferrer"
-              className="md:hidden flex items-center justify-center gap-3 w-full py-4 px-6 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-2xl shadow-md transition-all duration-200 text-base"
-            >
-              <MessageCircle size={20} />
-              {t("whatsappOpenBtn")}
-            </a>
             <div className="pt-1">
               <p className="text-gray-500 text-sm mb-4">{t("successStorageHint")}</p>
               <button
@@ -354,9 +346,15 @@ export default function OrderBuilder() {
         </div>
 
         {/* Important note */}
-        <div className="mb-8 flex items-start gap-3 bg-gradient-to-r from-pink-50 to-rose-50 border-l-4 border-pink-500 rounded-xl p-4">
+        <div className="mb-4 flex items-start gap-3 bg-gradient-to-r from-pink-50 to-rose-50 border-l-4 border-pink-500 rounded-xl p-4">
           <AlertTriangle size={20} className="text-pink-600 flex-shrink-0 mt-0.5" />
           <p className="text-pink-800 font-medium text-sm">{t("importantNote")}</p>
+        </div>
+
+        {/* WhatsApp photo hint */}
+        <div className="mb-8 flex items-start gap-3 bg-gradient-to-r from-pink-100 to-rose-100 border border-pink-300 rounded-xl p-4">
+          <MessageCircle size={20} className="text-pink-500 flex-shrink-0 mt-0.5" />
+          <p className="text-pink-800 text-sm">{t("photoHint")}</p>
         </div>
 
         <form onSubmit={handleSubmit} className="bg-white/90 rounded-3xl shadow-xl border border-pink-100 p-6 md:p-10 space-y-6">
