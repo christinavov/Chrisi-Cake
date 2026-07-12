@@ -43,6 +43,14 @@ export default async function LocaleLayout({
           <HashScroll />
           <ScrollToTop />
           <WhatsAppButton />
+          {/* Fixed pink vignette frame over entire site */}
+          <div
+            className="fixed inset-0 pointer-events-none z-[9999]"
+            style={{
+              boxShadow: "inset 0 0 80px 40px rgba(236,72,153,0.18), inset 0 0 160px 80px rgba(251,207,232,0.12)",
+              borderRadius: 0,
+            }}
+          />
         </NextIntlClientProvider>
       </body>
     </html>
