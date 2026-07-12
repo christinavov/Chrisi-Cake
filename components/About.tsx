@@ -19,7 +19,7 @@ export default function About() {
         setCurrent((c) => (c + 1) % aboutPhotos.length);
         setFading(false);
       }, 800);
-    }, 20000);
+    }, 15000);
     return () => clearInterval(interval);
   }, []);
 
@@ -35,7 +35,7 @@ export default function About() {
       <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
         {/* Image side */}
         <div className="relative flex justify-center">
-          <div className="relative w-80 md:w-[26rem]">
+          <div className="relative w-[30rem] md:w-[39rem]">
             <Image
               src={aboutPhotos[current]}
               alt="Chrisi Cake"
@@ -48,16 +48,6 @@ export default function About() {
                 boxShadow: "0 0 0 2px rgba(236,72,153,0.4), 0 0 30px 10px rgba(249,168,212,0.6), 0 0 70px 25px rgba(251,207,232,0.35)",
               }}
             />
-            {/* Dots indicator */}
-            <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
-              {aboutPhotos.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => { setFading(true); setTimeout(() => { setCurrent(i); setFading(false); }, 800); }}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 ${i === current ? "bg-pink-500 w-4" : "bg-pink-200"}`}
-                />
-              ))}
-            </div>
           </div>
         </div>
 
