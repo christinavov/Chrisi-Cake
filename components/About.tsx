@@ -35,7 +35,7 @@ export default function About() {
       <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
         {/* Image side */}
         <div className="relative flex justify-center">
-          <div className="relative w-full max-w-[30rem] md:max-w-[39rem]">
+          <div className="relative w-full max-w-[16rem] sm:max-w-[24rem] md:max-w-[39rem]">
             <Image
               src={aboutPhotos[current]}
               alt="Chrisi Cake"

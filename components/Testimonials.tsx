@@ -39,7 +39,7 @@ export default function Testimonials() {
             <div
               key={src}
               onClick={() => setSelected(src)}
-              className="cursor-pointer rounded-2xl border border-pink-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300"
+              className="cursor-pointer rounded-2xl border border-pink-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 overflow-hidden"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={src} alt="Kundenbewertung" className="w-full h-auto block rounded-2xl" />
