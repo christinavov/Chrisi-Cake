@@ -3,9 +3,25 @@
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { Leaf, Sparkles, Ban, Heart, Instagram } from "lucide-react";
+import { useEffect, useState } from "react";
+
+const aboutPhotos = ["/images/about/about1.jpg", "/images/about/about2.jpg"];
 
 export default function About() {
   const t = useTranslations("about");
+  const [current, setCurrent] = useState(0);
+  const [fading, setFading] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFading(true);
+      setTimeout(() => {
+        setCurrent((c) => (c + 1) % aboutPhotos.length);
+        setFading(false);
+      }, 800);
+    }, 20000);
+    return () => clearInterval(interval);
+  }, []);
 
   const badges = [
     { icon: Leaf, key: "badge1" },
@@ -23,11 +39,22 @@ export default function About() {
             <div className="absolute inset-0 bg-gradient-to-br from-pink-200 to-rose-200 rounded-3xl rotate-6 opacity-60" />
             <div className="absolute inset-0 bg-white rounded-3xl shadow-xl overflow-hidden">
               <Image
-                src="/images/logo.jpg"
+                src={aboutPhotos[current]}
                 alt="Chrisi Cake"
                 fill
-                className="object-cover p-4"
+                className="object-cover"
+                style={{ opacity: fading ? 0 : 1, transition: "opacity 0.8s ease-in-out" }}
               />
+            </div>
+            {/* Dots indicator */}
+            <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
+              {aboutPhotos.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => { setFading(true); setTimeout(() => { setCurrent(i); setFading(false); }, 800); }}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${i === current ? "bg-pink-500 w-4" : "bg-pink-200"}`}
+                />
+              ))}
             </div>
           </div>
         </div>
