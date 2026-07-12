@@ -39,10 +39,7 @@ export default function Hero() {
         </div>
 
         {/* Title */}
-        <h1
-          className="font-logo text-6xl md:text-8xl mb-3 bg-gradient-to-r from-[#1a2fa0] via-[#5b6ee8] to-[#8ab4f8] bg-clip-text text-transparent"
-          style={{ filter: "drop-shadow(0 0 8px rgba(255,255,255,1)) drop-shadow(0 0 20px rgba(255,255,255,0.7))" }}
-        >
+        <h1 className="logo-text text-6xl md:text-8xl mb-3">
           {t("title")}
         </h1>
 
