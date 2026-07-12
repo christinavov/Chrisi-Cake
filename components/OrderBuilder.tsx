@@ -6,6 +6,112 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { AlertTriangle, CheckCircle2, MessageCircle, Info } from "lucide-react";
 
+const COUNTRIES = [
+  { code: "CH", dial: "+41",  flag: "🇨🇭" },
+  { code: "DE", dial: "+49",  flag: "🇩🇪" },
+  { code: "AT", dial: "+43",  flag: "🇦🇹" },
+  { code: "FR", dial: "+33",  flag: "🇫🇷" },
+  { code: "IT", dial: "+39",  flag: "🇮🇹" },
+  { code: "UA", dial: "+380", flag: "🇺🇦" },
+  { code: "RU", dial: "+7",   flag: "🇷🇺" },
+  { code: "GB", dial: "+44",  flag: "🇬🇧" },
+  { code: "US", dial: "+1",   flag: "🇺🇸" },
+  { code: "PL", dial: "+48",  flag: "🇵🇱" },
+  { code: "TR", dial: "+90",  flag: "🇹🇷" },
+  { code: "ES", dial: "+34",  flag: "🇪🇸" },
+  { code: "NL", dial: "+31",  flag: "🇳🇱" },
+  { code: "BE", dial: "+32",  flag: "🇧🇪" },
+  { code: "CZ", dial: "+420", flag: "🇨🇿" },
+  { code: "HU", dial: "+36",  flag: "🇭🇺" },
+  { code: "RO", dial: "+40",  flag: "🇷🇴" },
+  { code: "SK", dial: "+421", flag: "🇸🇰" },
+  { code: "SE", dial: "+46",  flag: "🇸🇪" },
+  { code: "NO", dial: "+47",  flag: "🇳🇴" },
+  { code: "DK", dial: "+45",  flag: "🇩🇰" },
+  { code: "FI", dial: "+358", flag: "🇫🇮" },
+  { code: "PT", dial: "+351", flag: "🇵🇹" },
+  { code: "GR", dial: "+30",  flag: "🇬🇷" },
+  { code: "BG", dial: "+359", flag: "🇧🇬" },
+  { code: "HR", dial: "+385", flag: "🇭🇷" },
+  { code: "RS", dial: "+381", flag: "🇷🇸" },
+  { code: "SI", dial: "+386", flag: "🇸🇮" },
+  { code: "BA", dial: "+387", flag: "🇧🇦" },
+  { code: "MK", dial: "+389", flag: "🇲🇰" },
+  { code: "AL", dial: "+355", flag: "🇦🇱" },
+  { code: "ME", dial: "+382", flag: "🇲🇪" },
+  { code: "MD", dial: "+373", flag: "🇲🇩" },
+  { code: "BY", dial: "+375", flag: "🇧🇾" },
+  { code: "LT", dial: "+370", flag: "🇱🇹" },
+  { code: "LV", dial: "+371", flag: "🇱🇻" },
+  { code: "EE", dial: "+372", flag: "🇪🇪" },
+  { code: "LU", dial: "+352", flag: "🇱🇺" },
+  { code: "IE", dial: "+353", flag: "🇮🇪" },
+  { code: "IS", dial: "+354", flag: "🇮🇸" },
+  { code: "MT", dial: "+356", flag: "🇲🇹" },
+  { code: "CY", dial: "+357", flag: "🇨🇾" },
+  { code: "GE", dial: "+995", flag: "🇬🇪" },
+  { code: "AM", dial: "+374", flag: "🇦🇲" },
+  { code: "AZ", dial: "+994", flag: "🇦🇿" },
+  { code: "KZ", dial: "+7",   flag: "🇰🇿" },
+  { code: "UZ", dial: "+998", flag: "🇺🇿" },
+  { code: "IL", dial: "+972", flag: "🇮🇱" },
+  { code: "SA", dial: "+966", flag: "🇸🇦" },
+  { code: "AE", dial: "+971", flag: "🇦🇪" },
+  { code: "TR", dial: "+90",  flag: "🇹🇷" },
+  { code: "EG", dial: "+20",  flag: "🇪🇬" },
+  { code: "MA", dial: "+212", flag: "🇲🇦" },
+  { code: "TN", dial: "+216", flag: "🇹🇳" },
+  { code: "DZ", dial: "+213", flag: "🇩🇿" },
+  { code: "NG", dial: "+234", flag: "🇳🇬" },
+  { code: "ZA", dial: "+27",  flag: "🇿🇦" },
+  { code: "KE", dial: "+254", flag: "🇰🇪" },
+  { code: "ET", dial: "+251", flag: "🇪🇹" },
+  { code: "GH", dial: "+233", flag: "🇬🇭" },
+  { code: "SN", dial: "+221", flag: "🇸🇳" },
+  { code: "CI", dial: "+225", flag: "🇨🇮" },
+  { code: "CM", dial: "+237", flag: "🇨🇲" },
+  { code: "IN", dial: "+91",  flag: "🇮🇳" },
+  { code: "PK", dial: "+92",  flag: "🇵🇰" },
+  { code: "BD", dial: "+880", flag: "🇧🇩" },
+  { code: "LK", dial: "+94",  flag: "🇱🇰" },
+  { code: "NP", dial: "+977", flag: "🇳🇵" },
+  { code: "AF", dial: "+93",  flag: "🇦🇫" },
+  { code: "IR", dial: "+98",  flag: "🇮🇷" },
+  { code: "IQ", dial: "+964", flag: "🇮🇶" },
+  { code: "SY", dial: "+963", flag: "🇸🇾" },
+  { code: "LB", dial: "+961", flag: "🇱🇧" },
+  { code: "JO", dial: "+962", flag: "🇯🇴" },
+  { code: "CN", dial: "+86",  flag: "🇨🇳" },
+  { code: "JP", dial: "+81",  flag: "🇯🇵" },
+  { code: "KR", dial: "+82",  flag: "🇰🇷" },
+  { code: "VN", dial: "+84",  flag: "🇻🇳" },
+  { code: "TH", dial: "+66",  flag: "🇹🇭" },
+  { code: "ID", dial: "+62",  flag: "🇮🇩" },
+  { code: "MY", dial: "+60",  flag: "🇲🇾" },
+  { code: "PH", dial: "+63",  flag: "🇵🇭" },
+  { code: "SG", dial: "+65",  flag: "🇸🇬" },
+  { code: "MM", dial: "+95",  flag: "🇲🇲" },
+  { code: "KH", dial: "+855", flag: "🇰🇭" },
+  { code: "TW", dial: "+886", flag: "🇹🇼" },
+  { code: "HK", dial: "+852", flag: "🇭🇰" },
+  { code: "AU", dial: "+61",  flag: "🇦🇺" },
+  { code: "NZ", dial: "+64",  flag: "🇳🇿" },
+  { code: "CA", dial: "+1",   flag: "🇨🇦" },
+  { code: "MX", dial: "+52",  flag: "🇲🇽" },
+  { code: "BR", dial: "+55",  flag: "🇧🇷" },
+  { code: "AR", dial: "+54",  flag: "🇦🇷" },
+  { code: "CL", dial: "+56",  flag: "🇨🇱" },
+  { code: "CO", dial: "+57",  flag: "🇨🇴" },
+  { code: "PE", dial: "+51",  flag: "🇵🇪" },
+  { code: "VE", dial: "+58",  flag: "🇻🇪" },
+  { code: "EC", dial: "+593", flag: "🇪🇨" },
+  { code: "UY", dial: "+598", flag: "🇺🇾" },
+  { code: "PY", dial: "+595", flag: "🇵🇾" },
+  { code: "BO", dial: "+591", flag: "🇧🇴" },
+  { code: "CU", dial: "+53",  flag: "🇨🇺" },
+  { code: "DO", dial: "+1",   flag: "🇩🇴" },
+];
+
 type FlavorKey =
   | "spinatHimbeere"
   | "oreo"
@@ -423,25 +529,11 @@ export default function OrderBuilder() {
                   <select
                     value={countryCode}
                     onChange={(e) => setCountryCode(e.target.value)}
-                    className="px-2 py-3 bg-pink-50 text-gray-800 text-sm font-medium border-r border-pink-200 focus:outline-none cursor-pointer"
+                    className="px-2 py-3 bg-pink-50 text-gray-800 text-sm font-medium border-r border-pink-200 focus:outline-none cursor-pointer max-w-[110px]"
                   >
-                    <option value="+41">CH +41</option>
-                    <option value="+49">DE +49</option>
-                    <option value="+43">AT +43</option>
-                    <option value="+33">FR +33</option>
-                    <option value="+39">IT +39</option>
-                    <option value="+380">UA +380</option>
-                    <option value="+7">RU +7</option>
-                    <option value="+44">GB +44</option>
-                    <option value="+1">US +1</option>
-                    <option value="+48">PL +48</option>
-                    <option value="+90">TR +90</option>
-                    <option value="+34">ES +34</option>
-                    <option value="+31">NL +31</option>
-                    <option value="+32">BE +32</option>
-                    <option value="+420">CZ +420</option>
-                    <option value="+36">HU +36</option>
-                    <option value="+40">RO +40</option>
+                    {COUNTRIES.map(({ code, dial, flag }) => (
+                      <option key={code} value={dial}>{flag} {code} {dial}</option>
+                    ))}
                   </select>
                   <input
                     type="tel"
