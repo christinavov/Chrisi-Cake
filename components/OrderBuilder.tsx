@@ -176,6 +176,9 @@ export default function OrderBuilder() {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [countryCode, setCountryCode] = useState("+41");
+  const [countryOpen, setCountryOpen] = useState(false);
+  const countryRef = useRef<HTMLDivElement>(null);
+  const selectedCountry = COUNTRIES.find((c) => c.dial === countryCode) ?? COUNTRIES[0];
   const [details, setDetails] = useState("");
   const [pickupTime, setPickupTime] = useState("");
   const [submitted, setSubmitted] = useState(false);
@@ -188,6 +191,16 @@ export default function OrderBuilder() {
     const handler = (e: MouseEvent) => {
       if (flavorRef.current && !flavorRef.current.contains(e.target as Node)) {
         setFlavorOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
+
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (countryRef.current && !countryRef.current.contains(e.target as Node)) {
+        setCountryOpen(false);
       }
     };
     document.addEventListener("mousedown", handler);
@@ -596,22 +609,49 @@ export default function OrderBuilder() {
               </div>
               <div id="field-phone">
                 <label className="block text-sm font-semibold text-pink-800 mb-2">{t("phoneLabel")} *</label>
-                <div className={`flex border rounded-xl overflow-hidden bg-white transition-all ${errors.phone ? "border-red-400 ring-1 ring-red-300" : "border-pink-200"} focus-within:ring-2 focus-within:ring-pink-300 focus-within:border-pink-400`}>
-                  <select
-                    value={countryCode}
-                    onChange={(e) => setCountryCode(e.target.value)}
-                    className="px-2 py-3 bg-pink-50 text-gray-800 text-sm font-medium border-r border-pink-200 focus:outline-none cursor-pointer max-w-[110px]"
-                  >
-                    {COUNTRIES.map(({ code, name, dial, flag }) => (
-                      <option key={code} value={dial}>{flag} {name} {dial}</option>
-                    ))}
-                  </select>
+                <div className={`flex border rounded-xl bg-white transition-all ${errors.phone ? "border-red-400 ring-1 ring-red-300" : "border-pink-200"} focus-within:ring-2 focus-within:ring-pink-300 focus-within:border-pink-400`}>
+                  {/* Custom country dropdown */}
+                  <div ref={countryRef} className="relative flex-shrink-0">
+                    <button
+                      type="button"
+                      onClick={() => setCountryOpen((o) => !o)}
+                      className="flex items-center gap-1.5 px-3 py-3 bg-pink-50 border-r border-pink-200 rounded-l-xl h-full focus:outline-none hover:bg-pink-100 transition-colors"
+                    >
+                      <span className="text-lg leading-none">{selectedCountry.flag}</span>
+                      <span className="text-sm font-semibold text-pink-700">{selectedCountry.dial}</span>
+                      <ChevronDown size={14} className={`text-pink-400 transition-transform duration-200 ${countryOpen ? "rotate-180" : ""}`} />
+                    </button>
+
+                    {countryOpen && (
+                      <div className="absolute z-50 top-full left-0 mt-1 w-56 bg-white border border-pink-200 rounded-2xl shadow-xl shadow-pink-100 overflow-hidden">
+                        <div className="max-h-60 overflow-y-auto py-1">
+                          {COUNTRIES.map(({ code, name, dial, flag }) => (
+                            <button
+                              key={code}
+                              type="button"
+                              onClick={() => { setCountryCode(dial); setCountryOpen(false); }}
+                              className={`w-full flex items-center gap-3 px-4 py-2.5 text-left transition-colors ${
+                                countryCode === dial && selectedCountry.code === code
+                                  ? "bg-pink-50 text-pink-700"
+                                  : "hover:bg-pink-50/70 text-gray-700"
+                              }`}
+                            >
+                              <span className="text-lg leading-none">{flag}</span>
+                              <span className="flex-1 text-sm font-medium truncate">{name}</span>
+                              <span className="text-xs text-pink-400 font-mono font-semibold">{dial}</span>
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
                   <input
                     type="tel"
                     value={phone}
                     onChange={(e) => { const v = e.target.value.replace(/[^0-9\s\-()]/g, ""); setPhone(v); setErrors((p) => ({ ...p, phone: false })); }}
                     placeholder="76 223 61 26"
-                    className="flex-1 px-3 py-3 bg-white text-gray-800 focus:outline-none placeholder:text-gray-400 text-sm"
+                    className="flex-1 px-3 py-3 bg-white text-gray-800 focus:outline-none placeholder:text-gray-400 text-sm rounded-r-xl"
                   />
                 </div>
                 {errors.phone && <p className="mt-1 text-xs text-red-500 flex items-center gap-1"><AlertTriangle size={12} /> {t("fieldRequired")}</p>}
