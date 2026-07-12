@@ -39,7 +39,7 @@ export default function Hero() {
         </div>
 
         {/* Title */}
-        <h1 className="logo-text text-6xl md:text-8xl mb-3">
+        <h1 className="font-script text-6xl md:text-8xl text-pink-700 mb-3 drop-shadow-sm">
           {t("title")}
         </h1>
 

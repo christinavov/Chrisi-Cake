@@ -115,7 +115,7 @@ export default function Header() {
                 onError={() => {}}
               />
             </div>
-            <span className="logo-text text-xl md:text-2xl">
+            <span className="font-script text-xl md:text-2xl text-pink-700 font-bold">
               Chrisi Cake
             </span>
           </button>
