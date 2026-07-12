@@ -114,47 +114,44 @@ export default function GalleryPreview() {
   const locale = useLocale();
   const galleryPath = locale === "de" ? "/gallery" : `/${locale}/gallery`;
 
-  // Guaranteed-unique initial 12 images
-  const [slots, setSlots] = useState<string[]>(() => shuffle(allImages).slice(0, TOTAL));
-  // pending: which slot is swapping and what the incoming image is
+  const initialSlots = shuffle(allImages).slice(0, TOTAL);
+  const [slots, setSlots] = useState<string[]>(initialSlots);
   const [pending, setPending] = useState<{ idx: number; src: string; visible: boolean } | null>(null);
-  const usedRef = useRef<Set<string>>(new Set(slots));
+  const slotsRef = useRef<string[]>(initialSlots);
   const busyRef = useRef(false);
   const [selected, setSelected] = useState<string | null>(null);
 
-  const FADE_MS = 2500;   // duration of the crossfade
-  const INTERVAL_MS = 6000; // time between swaps
+  const FADE_MS = 2500;
+  const INTERVAL_MS = 6000;
 
   useEffect(() => {
     const interval = setInterval(() => {
       if (busyRef.current) return;
 
-      const slotIdx = Math.floor(Math.random() * TOTAL);
-      const available = allImages.filter((img) => !usedRef.current.has(img));
+      const current = new Set(slotsRef.current);
+      const available = allImages.filter((img) => !current.has(img));
       if (available.length === 0) return;
+
+      const slotIdx = Math.floor(Math.random() * TOTAL);
       const newImg = available[Math.floor(Math.random() * available.length)];
 
       busyRef.current = true;
-      usedRef.current.add(newImg);
 
-      // Mount new image at opacity 0
+      // Optimistically update slotsRef so next tick won't pick same image
+      const next = [...slotsRef.current];
+      next[slotIdx] = newImg;
+      slotsRef.current = next;
+
       setPending({ idx: slotIdx, src: newImg, visible: false });
 
-      // One frame later → start fade in
       requestAnimationFrame(() =>
         requestAnimationFrame(() =>
           setPending((p) => p ? { ...p, visible: true } : p)
         )
       );
 
-      // After fade completes → commit as current slot
       setTimeout(() => {
-        setSlots((prev) => {
-          const updated = [...prev];
-          usedRef.current.delete(updated[slotIdx]);
-          updated[slotIdx] = newImg;
-          return updated;
-        });
+        setSlots([...slotsRef.current]);
         setPending(null);
         busyRef.current = false;
       }, FADE_MS + 100);
