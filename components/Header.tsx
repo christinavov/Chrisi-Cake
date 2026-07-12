@@ -115,7 +115,7 @@ export default function Header() {
                 onError={() => {}}
               />
             </div>
-            <span className="font-logo text-xl md:text-2xl font-semibold bg-gradient-to-r from-indigo-900 via-indigo-500 to-blue-400 bg-clip-text text-transparent">
+            <span className="font-logo text-xl md:text-2xl font-semibold bg-gradient-to-r from-teal-500 via-cyan-400 to-sky-400 bg-clip-text text-transparent">
               Chrisi Cake
             </span>
           </button>
