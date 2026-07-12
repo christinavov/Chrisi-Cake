@@ -16,14 +16,7 @@ export default function Hero() {
       id="hero"
       className="min-h-screen flex items-center justify-center relative overflow-hidden pt-16"
     >
-      {/* Background gradient blobs */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-20 -left-20 w-96 h-96 bg-pink-200/40 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 -right-20 w-80 h-80 bg-rose-200/40 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-1/3 w-72 h-72 bg-pink-100/60 rounded-full blur-3xl" />
-      </div>
-
-      {/* Pink vignette corners */}
+{/* Pink vignette corners */}
       <div className="absolute inset-0 pointer-events-none z-10" style={{
         background: "radial-gradient(ellipse at center, transparent 45%, rgba(236,72,153,0.18) 75%, rgba(190,24,93,0.38) 100%)"
       }} />
