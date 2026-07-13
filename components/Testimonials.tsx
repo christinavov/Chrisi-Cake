@@ -38,7 +38,7 @@ export default function Testimonials() {
             <div
               key={src}
               onClick={() => setSelected(src)}
-              className="flex-shrink-0 snap-start cursor-pointer rounded-2xl overflow-hidden border border-pink-100 shadow-sm hover:shadow-md transition-all duration-300 w-48 sm:w-56"
+              className="flex-shrink-0 snap-start cursor-pointer rounded-2xl overflow-hidden border border-pink-100 shadow-sm hover:shadow-md transition-all duration-300 w-32 sm:w-40"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={src} alt="Kundenbewertung" className="w-full h-auto block" />
