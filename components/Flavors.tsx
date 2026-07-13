@@ -18,7 +18,8 @@ type FlavorKey =
   | "kokosMango"
   | "schokoMango"
   | "blaubeereLemon"
-  | "makMalinaLimon";
+  | "makMalinaLimon"
+  | "malinaKokos";
 
 const flavorImages: Record<FlavorKey, string> = {
   spinatHimbeere: "/images/flavors/spinatHimbeere.jpg",
@@ -35,6 +36,7 @@ const flavorImages: Record<FlavorKey, string> = {
   schokoMango: "/images/flavors/schokoMango.jpg",
   blaubeereLemon: "/images/flavors/blaubeereLemon.jpg",
   makMalinaLimon: "/images/flavors/мак малина лимон.jpg",
+  malinaKokos: "/images/flavors/малина кокос.jpg",
 };
 
 const flavorKeys: FlavorKey[] = [
@@ -52,6 +54,7 @@ const flavorKeys: FlavorKey[] = [
   "schokoMango",
   "blaubeereLemon",
   "makMalinaLimon",
+  "malinaKokos",
 ];
 
 export default function Flavors() {

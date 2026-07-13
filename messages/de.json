@@ -91,6 +91,10 @@
         "name": "Heidelbeere Zitrone",
         "desc": "Vanille-Biskuit · Heidelbeerfüllung · Lemon Curd · Frischkäsecreme"
       },
+      "malinaKokos": {
+        "name": "Himbeere Kokos",
+        "desc": "Kokosbiskuit · Kokosganache · Himbeerfüllung · Frischkäse"
+      },
       "makMalinaLimon": {
         "name": "Mohn Himbeere Zitrone",
         "desc": "Mohn-Biskuit · Frischkäsecreme · Lemon Curd · Himbeerfüllung"
