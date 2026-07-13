@@ -94,19 +94,17 @@ export default function Flavors() {
                     className="object-cover"
                     sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
                   />
-                  {/* Desktop: show on hover */}
-                  {isHovered && (
-                    <div className="hidden md:flex absolute inset-0 bg-black/50 items-center justify-center p-3">
-                      <p className="text-white text-xs text-center leading-relaxed">
-                        {t(`items.${key}.desc`)}
-                      </p>
-                    </div>
-                  )}
                 </div>
                 <div className="p-3">
                   <p className="text-sm font-semibold text-pink-700 text-center leading-tight">
                     {t(`items.${key}.name`)}
                   </p>
+                  {/* Desktop: show on hover */}
+                  {isHovered && (
+                    <p className="hidden md:block text-xs text-gray-500 mt-2 text-center leading-relaxed">
+                      {t(`items.${key}.desc`)}
+                    </p>
+                  )}
                   {/* Mobile: show on tap */}
                   {isExpanded && (
                     <p className="md:hidden text-xs text-gray-500 mt-2 text-center leading-relaxed">
