@@ -56,6 +56,7 @@ const flavorKeys: FlavorKey[] = [
 
 export default function Flavors() {
   const t = useTranslations("flavors");
+  const [hovered, setHovered] = useState<FlavorKey | null>(null);
   const [expanded, setExpanded] = useState<FlavorKey | null>(null);
 
   const selectFlavor = (key: FlavorKey, e: React.MouseEvent) => {
@@ -75,12 +76,15 @@ export default function Flavors() {
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
           {flavorKeys.map((key) => {
-            const isOpen = expanded === key;
+            const isHovered = hovered === key;
+            const isExpanded = expanded === key;
             return (
               <div
                 key={key}
-                onClick={() => setExpanded(isOpen ? null : key)}
-                className="cursor-pointer rounded-2xl overflow-hidden border border-pink-100 bg-white shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300"
+                onMouseEnter={() => setHovered(key)}
+                onMouseLeave={() => setHovered(null)}
+                onClick={() => setExpanded(isExpanded ? null : key)}
+                className="relative rounded-2xl overflow-hidden border border-pink-100 bg-white shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 cursor-pointer"
               >
                 <div className="relative w-full aspect-square">
                   <Image
@@ -90,13 +94,22 @@ export default function Flavors() {
                     className="object-cover"
                     sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
                   />
+                  {/* Desktop: show on hover */}
+                  {isHovered && (
+                    <div className="hidden md:flex absolute inset-0 bg-black/50 items-center justify-center p-3">
+                      <p className="text-white text-xs text-center leading-relaxed">
+                        {t(`items.${key}.desc`)}
+                      </p>
+                    </div>
+                  )}
                 </div>
                 <div className="p-3">
                   <p className="text-sm font-semibold text-pink-700 text-center leading-tight">
                     {t(`items.${key}.name`)}
                   </p>
-                  {isOpen && (
-                    <p className="text-xs text-gray-500 mt-2 text-center leading-relaxed">
+                  {/* Mobile: show on tap */}
+                  {isExpanded && (
+                    <p className="md:hidden text-xs text-gray-500 mt-2 text-center leading-relaxed">
                       {t(`items.${key}.desc`)}
                     </p>
                   )}
