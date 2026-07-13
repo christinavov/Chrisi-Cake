@@ -33,15 +33,15 @@ export default function Testimonials() {
           <p className="text-gray-500 text-lg">{t("subtitle")}</p>
         </div>
 
-        <div className="grid grid-cols-4 gap-3">
-          {reviewImages.map((src) => (
+        <div className="columns-3 gap-3">
+          {reviewImages.slice(0, 9).map((src) => (
             <div
               key={src}
               onClick={() => setSelected(src)}
-              className="cursor-pointer rounded-xl overflow-hidden border border-pink-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 aspect-[3/4]"
+              className="break-inside-avoid mb-3 cursor-pointer rounded-2xl overflow-hidden border border-pink-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={src} alt="Kundenbewertung" className="w-full h-full object-cover" />
+              <img src={src} alt="Kundenbewertung" className="w-full h-auto block" />
             </div>
           ))}
         </div>
