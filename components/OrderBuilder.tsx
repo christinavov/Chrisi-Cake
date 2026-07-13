@@ -216,6 +216,14 @@ export default function OrderBuilder() {
   }, []);
 
   useEffect(() => {
+    if (submitted) {
+      setTimeout(() => {
+        document.getElementById("order-success")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 100);
+    }
+  }, [submitted]);
+
+  useEffect(() => {
     const handler = (e: MouseEvent) => {
       if (flavorRef.current && !flavorRef.current.contains(e.target as Node)) {
         setFlavorOpen(false);
