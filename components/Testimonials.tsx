@@ -33,7 +33,7 @@ export default function Testimonials() {
           <p className="text-gray-500 text-lg">{t("subtitle")}</p>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+        <div className="grid grid-cols-4 gap-3">
           {reviewImages.map((src) => (
             <div
               key={src}
