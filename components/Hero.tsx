@@ -8,7 +8,7 @@ export default function Hero() {
   const t = useTranslations("hero");
 
   const scrollToOrder = () => {
-    document.getElementById("order")?.scrollIntoView({ behavior: "smooth" });
+    document.getElementById("flavors")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
