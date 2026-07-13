@@ -36,6 +36,9 @@ button:hover, a:hover {
   transition: all 0.25s ease;
 }
 
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
