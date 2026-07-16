@@ -110,7 +110,7 @@
     "guestsPlaceholder": "Minimum 10 persons",
     "dateLabel": "Pickup Date",
     "datePlaceholder": "Select a date",
-    "dateNote": "Pickup is available Monday to Saturday from 18:00 – 20:00. No delivery. Closed on Sundays.",
+    "dateNote": "Pickup Mon–Sat 18:00–20:00 · Sundays closed · No delivery",
     "timeNote": "Self-pickup possible from 18:00 – 20:00 (no delivery)",
     "referenceLabel": "Reference photos (up to 3 images)",
     "referenceBtn": "Add photos (max. 3)",

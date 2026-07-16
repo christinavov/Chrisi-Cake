@@ -110,7 +110,7 @@
     "guestsPlaceholder": "Mindestens 10 Personen",
     "dateLabel": "Abholdatum",
     "datePlaceholder": "Datum wählen",
-    "dateNote": "Abholung ist von Montag bis Samstag von 18:00 – 20:00 Uhr möglich. Lieferung ist nicht möglich. Sonntag ist geschlossen.",
+    "dateNote": "Abholung Mo–Sa von 18:00–20:00 Uhr · Sonntag Ruhetag · Keine Lieferung",
     "timeNote": "Selbstabholung möglich von 18:00 – 20:00 Uhr (keine Lieferung)",
     "referenceLabel": "Referenzfotos (bis zu 3 Bilder)",
     "referenceBtn": "Fotos hinzufügen (max. 3)",

@@ -586,9 +586,8 @@ export default function OrderBuilder() {
             ) : errors.date && (
               <p className="mt-1 text-xs text-red-500 flex items-center gap-1"><AlertTriangle size={12} /> {t("fieldRequired")}</p>
             )}
-            <div className="mt-3 rounded-xl bg-pink-50 border border-pink-200 px-4 py-3 space-y-1">
-              <p className="text-sm font-semibold text-pink-700">⏰ {t("timeNote")}</p>
-              <p className="text-sm font-medium text-pink-600">📅 {t("dateNote")}</p>
+            <div className="mt-3 rounded-xl bg-pink-50 border border-pink-200 px-4 py-3">
+              <p className="text-sm font-medium text-pink-700">📅 {t("dateNote")}</p>
             </div>
 
             {/* Pickup time */}
