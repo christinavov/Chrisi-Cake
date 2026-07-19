@@ -23,7 +23,7 @@ const allReviews = [
 ];
 
 const TOTAL = 6;
-const SWAP_INTERVAL = 3000;
+const SWAP_INTERVAL = 20000;
 const FADE_DURATION = 600;
 
 function shuffle<T>(arr: T[]): T[] {
