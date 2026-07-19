@@ -34,10 +34,10 @@ export const metadata: Metadata = {
     siteName: "Chrisi Cake",
     images: [
       {
-        url: "https://chrisicake.ch/images/gallery/photo_2026-07-03_21-01-13.jpg",
-        width: 1200,
-        height: 900,
-        alt: "Chrisi Cake – Handgefertigte Torte",
+        url: "https://chrisicake.ch/logo.jpg",
+        width: 1024,
+        height: 1026,
+        alt: "Chrisi Cake Logo",
       },
     ],
     locale: "de_CH",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Chrisi Cake – Handgefertigte Torten in Bern",
     description: "Traumtorten auf Bestellung – frische Zutaten, kein Fondant, kein Gelatine.",
-    images: ["https://chrisicake.ch/images/gallery/photo_2026-07-03_21-01-13.jpg"],
+    images: ["https://chrisicake.ch/logo.jpg"],
   },
 };
 
