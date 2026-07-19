@@ -27,9 +27,26 @@ export const metadata: Metadata = {
     apple: "/favicon.png",
   },
   openGraph: {
-    title: "Chrisi Cake",
-    description: "Handgefertigte Traumtorten auf Bestellung in Bern, Schweiz",
+    title: "Chrisi Cake – Handgefertigte Torten in Bern",
+    description: "Traumtorten auf Bestellung – frische Zutaten, kein Fondant, kein Gelatine. Abholung Mo–Sa in Bern.",
     type: "website",
+    url: "https://chrisicake.ch",
+    siteName: "Chrisi Cake",
+    images: [
+      {
+        url: "https://chrisicake.ch/images/gallery/photo_2026-07-03_21-01-13.jpg",
+        width: 1200,
+        height: 900,
+        alt: "Chrisi Cake – Handgefertigte Torte",
+      },
+    ],
+    locale: "de_CH",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Chrisi Cake – Handgefertigte Torten in Bern",
+    description: "Traumtorten auf Bestellung – frische Zutaten, kein Fondant, kein Gelatine.",
+    images: ["https://chrisicake.ch/images/gallery/photo_2026-07-03_21-01-13.jpg"],
   },
 };
 
