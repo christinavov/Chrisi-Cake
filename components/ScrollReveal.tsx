@@ -11,8 +11,8 @@ export default function ScrollReveal({ children, className = "" }: { children: R
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          el.classList.add("opacity-100", "translate-y-0");
-          el.classList.remove("opacity-0", "translate-y-8");
+          el.classList.add("opacity-100");
+          el.classList.remove("opacity-0");
           observer.disconnect();
         }
       },
@@ -23,7 +23,7 @@ export default function ScrollReveal({ children, className = "" }: { children: R
   }, []);
 
   return (
-    <div ref={ref} className={`opacity-0 translate-y-8 transition-all duration-700 ease-out ${className}`}>
+    <div ref={ref} className={`opacity-0 transition-opacity duration-700 ease-out ${className}`}>
       {children}
     </div>
   );
