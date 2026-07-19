@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { useState } from "react";
+import { flavorPrices } from "@/lib/flavorPrices";
 
 type FlavorKey =
   | "spinatHimbeere"
@@ -102,6 +103,7 @@ export default function Flavors() {
                   <p className="text-sm font-semibold text-pink-700 text-center leading-tight">
                     {t(`items.${key}.name`)}
                   </p>
+                  <p className="text-xs text-gray-400 text-center mt-0.5">{flavorPrices[key]} CHF / Person</p>
                   {/* Desktop: show on hover */}
                   {isHovered && (
                     <p className="hidden md:block text-xs text-gray-500 mt-2 text-center leading-relaxed">

@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { AlertTriangle, CheckCircle2, MessageCircle, Info, ChevronDown } from "lucide-react";
+import { flavorPrices } from "@/lib/flavorPrices";
 
 const COUNTRIES = [
   { code: "CH", name: "Schweiz",        dial: "+41",  flag: "🇨🇭" },
@@ -111,11 +112,6 @@ const COUNTRIES = [
   { code: "DO", name: "Dom. Republik",  dial: "+1",   flag: "🇩🇴" },
 ];
 
-const flavorPrices: Record<string, number> = {
-  spinatHimbeere: 11, oreo: 11, spinatZitrone: 11, schockiOrange: 11,
-  caramelBanane: 12, snickers: 12, kokosMango: 12, schokoMango: 12, blaubeereLemon: 12, makMalinaLimon: 12, malinaKokos: 12,
-  schockiHimbeere: 10, rotVelvetErdbeere: 10, vanillaErdbeere: 10, vanillaHimbeere: 10,
-};
 
 type FlavorKey =
   | "spinatHimbeere"
