@@ -29,15 +29,20 @@ export default function GalleryPreview() {
   const [fadingIndex, setFadingIndex] = useState<number | null>(null);
   const [selected, setSelected] = useState<string | null>(null);
   const slotsRef = useRef<string[]>(initialSlots);
-  const usedRef = useRef<Set<string>>(new Set(initialSlots));
+  const shownRef = useRef<Set<string>>(new Set(initialSlots));
+  // Queue ensures every image is shown before any repeats
+  const queueRef = useRef<string[]>(shuffle(allImages.filter(img => !shownRef.current.has(img))));
 
   const swappingRef = useRef(false);
   const swapOne = useCallback(() => {
     if (swappingRef.current) return;
-    const available = allImages.filter(img => !usedRef.current.has(img));
-    if (available.length === 0) return;
+    // Refill queue when exhausted (reshuffle, excluding currently visible)
+    if (queueRef.current.length === 0) {
+      queueRef.current = shuffle(allImages.filter(img => !shownRef.current.has(img)));
+      if (queueRef.current.length === 0) return;
+    }
+    const newImg = queueRef.current.shift()!;
     const slotIdx = Math.floor(Math.random() * TOTAL);
-    const newImg = available[Math.floor(Math.random() * available.length)];
     const oldImg = slotsRef.current[slotIdx];
 
     swappingRef.current = true;
@@ -46,8 +51,8 @@ export default function GalleryPreview() {
       const next = [...slotsRef.current];
       next[slotIdx] = newImg;
       slotsRef.current = next;
-      usedRef.current.delete(oldImg);
-      usedRef.current.add(newImg);
+      shownRef.current.delete(oldImg);
+      shownRef.current.add(newImg);
       setSlots(next);
       setFadingIndex(null);
       swappingRef.current = false;
