@@ -79,12 +79,18 @@ export default function Header() {
 
   const switchLocale = (newLocale: string) => {
     restoreScrollRef.current = window.scrollY;
-    const newPath = newLocale === "de" ? "/" : `/${newLocale}`;
+    // Preserve current page path, just swap locale prefix
+    const segments = pathname.split("/").filter(Boolean);
+    const locales = ["de", "en", "ru", "uk"];
+    const withoutLocale = locales.includes(segments[0]) ? segments.slice(1) : segments;
+    const newPath = newLocale === "de"
+      ? "/" + withoutLocale.join("/")
+      : "/" + [newLocale, ...withoutLocale].join("/");
     setLangOpen(false);
     document.documentElement.style.transition = "opacity 0.2s ease";
     document.documentElement.style.opacity = "0";
     setTimeout(() => {
-      router.push(newPath, { scroll: false });
+      router.push(newPath || "/", { scroll: false });
     }, 200);
   };
 

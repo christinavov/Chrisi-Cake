@@ -13,14 +13,15 @@ export default function About() {
   const [fading, setFading] = useState(false);
 
   useEffect(() => {
+    let timeoutId: ReturnType<typeof setTimeout>;
     const interval = setInterval(() => {
       setFading(true);
-      setTimeout(() => {
+      timeoutId = setTimeout(() => {
         setCurrent((c) => (c + 1) % aboutPhotos.length);
         setFading(false);
       }, 800);
     }, 15000);
-    return () => clearInterval(interval);
+    return () => { clearInterval(interval); clearTimeout(timeoutId); };
   }, []);
 
   const badges = [

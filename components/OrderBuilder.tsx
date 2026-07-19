@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { AlertTriangle, CheckCircle2, MessageCircle, Info, ChevronDown } from "lucide-react";
@@ -164,14 +164,9 @@ const isTooSoon = (date: Date) => {
 export default function OrderBuilder() {
   const t = useTranslations("order");
   const tf = useTranslations("flavors");
+  const locale = useLocale();
 
-  const [flavor, setFlavor] = useState(() => {
-    if (typeof window !== "undefined") {
-      const saved = localStorage.getItem("selectedFlavor");
-      if (saved) { localStorage.removeItem("selectedFlavor"); return saved; }
-    }
-    return "";
-  });
+  const [flavor, setFlavor] = useState("");
   const [flavorOpen, setFlavorOpen] = useState(false);
   const flavorRef = useRef<HTMLDivElement>(null);
   const [occasion, setOccasion] = useState("");
@@ -181,28 +176,30 @@ export default function OrderBuilder() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [countryCode, setCountryCode] = useState("+41");
+  const [selectedCountryCode, setSelectedCountryCode] = useState("CH");
   const [countryOpen, setCountryOpen] = useState(false);
   const countryRef = useRef<HTMLDivElement>(null);
-  const selectedCountry = COUNTRIES.find((c) => c.dial === countryCode) ?? COUNTRIES[0];
+  const selectedCountry = COUNTRIES.find((c) => c.code === selectedCountryCode) ?? COUNTRIES[0];
+  const countryCode = selectedCountry.dial;
   const [details, setDetails] = useState("");
   const [pickupTime, setPickupTime] = useState("");
-  const [submitted, setSubmitted] = useState(() => {
-    if (typeof window !== "undefined") {
-      return sessionStorage.getItem("orderSubmitted") === "1";
-    }
-    return false;
-  });
-  const [waUrl, setWaUrl] = useState(() => {
-    if (typeof window !== "undefined") {
-      return sessionStorage.getItem("orderWaUrl") || "";
-    }
-    return "";
-  });
+  const [submitted, setSubmitted] = useState(false);
+  const [waUrl, setWaUrl] = useState("");
   const [dateError, setDateError] = useState("");
   const [guestsError, setGuestsError] = useState("");
   const [timeError, setTimeError] = useState(false);
   const [errors, setErrors] = useState<Record<string, boolean>>({});
+
+  useEffect(() => {
+    const savedSubmitted = sessionStorage.getItem("orderSubmitted") === "1";
+    const savedWaUrl = sessionStorage.getItem("orderWaUrl") || "";
+    if (savedSubmitted) { setSubmitted(true); setWaUrl(savedWaUrl); }
+  }, []);
+
+  useEffect(() => {
+    const saved = localStorage.getItem("selectedFlavor");
+    if (saved) { localStorage.removeItem("selectedFlavor"); setFlavor(saved); }
+  }, []);
 
   useEffect(() => {
     const onFlavorSelected = (e: Event) => {
@@ -305,14 +302,14 @@ export default function OrderBuilder() {
     }
 
     const flavorName = tf(`items.${flavor as FlavorKey}.name`);
-    const tierLabel = twoTier ? "Zweistöckig (2 Etagen)" : "Einstöckig (1 Etage)";
+    const tierLabel = twoTier ? t("tierTwo") : t("tierOne");
     const dateStr = date ? date.toLocaleDateString("de-CH") : "—";
     const occasionMap: Record<string, string> = {
-      birthday:    "Geburtstag",
-      wedding:     "Hochzeit",
-      anniversary: "Jubiläum",
-      babyshower:  "Babyshower",
-      other:       "Sonstiges",
+      birthday:    t("occasionBirthday"),
+      wedding:     t("occasionWedding"),
+      anniversary: t("occasionAnniversary"),
+      babyshower:  t("occasionBabyShower"),
+      other:       t("occasionOther"),
     };
     const occasionLabel = occasion ? (occasionMap[occasion] ?? occasion) : "—";
     const emailLine = email ? `\nE-Mail: ${email}` : "";
@@ -349,7 +346,7 @@ export default function OrderBuilder() {
     }
   };
 
-  const filterDate = (d: Date) => !isSunday(d) && !isPast(d);
+  const filterDate = (d: Date) => !isSunday(d) && !isPast(d) && !isTooSoon(d);
 
   if (submitted) {
     return (
@@ -537,14 +534,14 @@ export default function OrderBuilder() {
                 if (!isNaN(raw)) {
                   // round to nearest multiple of 5
                   let val = Math.round(raw / 5) * 5;
+                  const max = twoTier ? 40 : 25;
                   if (val < minGuests) val = minGuests;
-                  if (!twoTier && val > 25) val = 25;
-                  if (twoTier && val > 40) val = 40;
+                  if (val > max) val = max;
                   setGuests(String(val));
-                  if (val < minGuests) {
+                  if (raw < minGuests) {
                     setGuestsError(twoTier ? t("minGuestsErrorTwo") : t("minGuestsError"));
-                  } else if (!twoTier && raw > 25) {
-                    setGuestsError(t("maxGuestsErrorOne"));
+                  } else if (raw > max) {
+                    setGuestsError(twoTier ? t("maxGuestsErrorTwo") : t("maxGuestsErrorOne"));
                   }
                 }
               }}
@@ -675,9 +672,9 @@ export default function OrderBuilder() {
                             <button
                               key={code}
                               type="button"
-                              onClick={() => { setCountryCode(dial); setCountryOpen(false); }}
+                              onClick={() => { setSelectedCountryCode(code); setCountryOpen(false); }}
                               className={`w-full flex items-center gap-3 px-4 py-2.5 text-left transition-colors ${
-                                countryCode === dial && selectedCountry.code === code
+                                selectedCountryCode === code
                                   ? "bg-pink-50 text-pink-700"
                                   : "hover:bg-pink-50/70 text-gray-700"
                               }`}

@@ -36,8 +36,8 @@ const flavorImages: Record<FlavorKey, string> = {
   kokosMango: "/images/flavors/kokosMango.jpg",
   schokoMango: "/images/flavors/schokoMango.jpg",
   blaubeereLemon: "/images/flavors/blaubeereLemon.jpg",
-  makMalinaLimon: "/images/flavors/мак малина лимон.jpg",
-  malinaKokos: "/images/flavors/малина кокос.jpg",
+  makMalinaLimon: "/images/flavors/makMalinaLimon.jpg",
+  malinaKokos: "/images/flavors/malinaKokos.jpg",
 };
 
 const flavorKeys: FlavorKey[] = [
