@@ -313,24 +313,25 @@ export default function OrderBuilder() {
     };
     const occasionLabel = occasion ? (occasionMap[occasion] ?? occasion) : "—";
     const emailLine = email ? `\nE-Mail: ${email}` : "";
-    const detailsLine = details ? `\nWünsche: ${details}` : "";
+    const detailsLine = details ? `\n${t("msgWishes")}: ${details}` : "";
 
     const calcFlavorPrice = flavorPrices[flavor] ?? 0;
     const calcPricePerPerson = calcFlavorPrice + (twoTier ? 3 : 0);
     const calcTotal = calcPricePerPerson * parseInt(guests);
-    const priceLine = `\n\n*Geschätzter Preis:* ${calcFlavorPrice} CHF${twoTier ? " + 3 CHF (2-stöckig)" : ""} × ${guests} Personen = *${calcTotal} CHF*`;
+    const twoTierExtra = twoTier ? ` + 3 CHF (${t("tierTwo").toLowerCase()})` : "";
+    const priceLine = `\n\n*${t("msgEstPrice")}:* ${calcFlavorPrice} CHF${twoTierExtra} × ${guests} ${t("msgPersons")} = *${calcTotal} CHF*`;
 
     const msg = [
-      "*Neue Tortenbestellung*",
+      `*${t("msgTitle")}*`,
       "",
-      `*Name:* ${name}`,
-      `*Telefon:* ${countryCode} ${phone}${emailLine}`,
+      `*${t("msgName")}:* ${name}`,
+      `*${t("msgPhone")}:* ${countryCode} ${phone}${emailLine}`,
       "",
-      `*Geschmack:* ${flavorName}`,
-      `*Tortenart:* ${tierLabel}`,
-      `*Gaeste:* ${guests} Personen`,
-      `*Abholdatum:* ${dateStr}${pickupTime ? ` um ${pickupTime} Uhr` : ""}`,
-      `*Anlass:* ${occasionLabel}${detailsLine}${priceLine}`,
+      `*${t("msgFlavor")}:* ${flavorName}`,
+      `*${t("msgTier")}:* ${tierLabel}`,
+      `*${t("msgGuests")}:* ${guests} ${t("msgPersons")}`,
+      `*${t("msgDate")}:* ${dateStr}${pickupTime ? ` ${t("msgAt")} ${pickupTime}` : ""}`,
+      `*${t("msgOccasion")}:* ${occasionLabel}${detailsLine}${priceLine}`,
     ].join("\n");
 
     const url = `https://wa.me/41762236126?text=${encodeURIComponent(msg)}`;
