@@ -7,16 +7,19 @@ export default function HashScroll() {
     if (!window.location.hash) return;
     const id = window.location.hash.slice(1);
 
-    // Wait for page to render, then scroll
+    const timeouts: ReturnType<typeof setTimeout>[] = [];
     const tryScroll = (attempts = 0) => {
       const el = document.getElementById(id);
       if (el) {
-        setTimeout(() => el.scrollIntoView({ behavior: "smooth" }), 100);
+        const t = setTimeout(() => el.scrollIntoView({ behavior: "smooth" }), 100);
+        timeouts.push(t);
       } else if (attempts < 20) {
-        setTimeout(() => tryScroll(attempts + 1), 100);
+        const t = setTimeout(() => tryScroll(attempts + 1), 100);
+        timeouts.push(t);
       }
     };
     tryScroll();
+    return () => timeouts.forEach(clearTimeout);
   }, []);
 
   return null;

@@ -15,7 +15,8 @@
     "subtitle": "Custom Cakes to Order",
     "description": "Handcrafted dream cakes for your unforgettable moments — made with love and the finest ingredients",
     "cta": "Order Now",
-    "note": "Minimum order: 8–10 persons"
+    "note": "Minimum order: 8–10 persons",
+    "location": "Bern, Switzerland"
   },
   "about": {
     "title": "About Me",
@@ -226,7 +227,8 @@
     "calcPerson": "person",
     "calcMin20": "from 20 persons",
     "calcTotal": "Estimated price",
-    "calcApprox": "Final price agreed personally"
+    "calcApprox": "Final price agreed personally",
+    "from": "from"
   },
   "faq": {
     "title": "Frequently Asked Questions",

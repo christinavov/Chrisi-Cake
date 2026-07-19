@@ -24,33 +24,11 @@ const flavorList = [
 ];
 
 const exampleCakes = [
-  {
-    images: [
-      "/images/gallery/photo_2026-07-03_21-02-13.webp",
-    ],
-    labelKey: "exampleBerries",
-    price: "ab 100 CHF",
-  },
-  {
-    images: ["/images/gallery/photo_2026-07-03_21-02-28.webp"],
-    labelKey: "examplePrint",
-    price: "ab 110 CHF",
-  },
-  {
-    images: ["/images/gallery/photo_2026-07-03_21-01-28.webp"],
-    labelKey: "exampleFlowers",
-    price: "ab 120 CHF",
-  },
-  {
-    images: ["/images/gallery/photo_2026-07-03_21-02-33.webp"],
-    labelKey: "exampleBottle",
-    price: "ab 120 CHF",
-  },
-  {
-    images: ["/images/gallery/photo_2026-07-03_21-02-20.webp"],
-    labelKey: "exampleTwoTier",
-    price: "ab 270 CHF",
-  },
+  { images: ["/images/gallery/photo_2026-07-03_21-02-13.webp"], labelKey: "exampleBerries", price: 100 },
+  { images: ["/images/gallery/photo_2026-07-03_21-02-28.webp"], labelKey: "examplePrint",   price: 110 },
+  { images: ["/images/gallery/photo_2026-07-03_21-01-28.webp"], labelKey: "exampleFlowers", price: 120 },
+  { images: ["/images/gallery/photo_2026-07-03_21-02-33.webp"], labelKey: "exampleBottle",  price: 120 },
+  { images: ["/images/gallery/photo_2026-07-03_21-02-20.webp"], labelKey: "exampleTwoTier", price: 270 },
 ];
 
 export default function Prices() {
@@ -257,7 +235,7 @@ export default function Prices() {
               </div>
               <div className="px-2 py-1.5 md:p-4 text-center">
                 <p className="text-[10px] md:text-sm font-medium text-gray-500 leading-tight">{t(cake.labelKey)}</p>
-                <p className="text-xs md:text-xl font-semibold text-pink-500">{cake.price}</p>
+                <p className="text-xs md:text-xl font-semibold text-pink-500">{t("from")} {cake.price} CHF</p>
               </div>
             </div>
           ))}

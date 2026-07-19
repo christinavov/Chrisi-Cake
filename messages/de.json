@@ -15,7 +15,8 @@
     "subtitle": "Torten auf Bestellung",
     "description": "Handgefertigte Traumtorten für Ihre unvergesslichen Momente — mit Liebe und den feinsten Zutaten gemacht",
     "cta": "Jetzt bestellen",
-    "note": "Mindestbestellung: 8–10 Personen"
+    "note": "Mindestbestellung: 8–10 Personen",
+    "location": "Bern, Schweiz"
   },
   "about": {
     "title": "Über mich",
@@ -226,7 +227,8 @@
     "calcPerson": "Person",
     "calcMin20": "ab 20 Personen",
     "calcTotal": "Ungefährer Preis",
-    "calcApprox": "Endgültiger Preis nach persönlicher Absprache"
+    "calcApprox": "Endgültiger Preis nach persönlicher Absprache",
+    "from": "ab"
   },
   "faq": {
     "title": "Häufig gestellte Fragen",

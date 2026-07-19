@@ -49,7 +49,7 @@ export default function Hero() {
         <div className="flex justify-center mb-6">
           <span className="inline-flex items-center gap-2 bg-white/80 border border-pink-200 text-pink-700 font-medium text-sm px-4 py-2 rounded-full shadow-sm">
             <MapPin size={14} className="text-pink-500" />
-            Bern, Schweiz
+            {t("location")}
           </span>
         </div>
 
