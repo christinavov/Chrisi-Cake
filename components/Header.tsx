@@ -63,8 +63,18 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    const saved = sessionStorage.getItem("restoreScroll");
+    if (saved) {
+      sessionStorage.removeItem("restoreScroll");
+      setTimeout(() => window.scrollTo({ top: parseInt(saved), behavior: "instant" }), 100);
+    }
+  }, []);
+
   const switchLocale = (newLocale: string) => {
+    const scrollY = window.scrollY;
     const newPath = newLocale === "de" ? "/" : `/${newLocale}`;
+    sessionStorage.setItem("restoreScroll", String(scrollY));
     window.location.href = newPath;
     setLangOpen(false);
   };
