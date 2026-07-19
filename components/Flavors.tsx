@@ -128,7 +128,6 @@ export default function Flavors() {
 
         {/* No gelatin notice */}
         <div className="mt-8 flex items-center justify-center gap-3 bg-green-50 border border-green-200 rounded-2xl px-6 py-4 max-w-xl mx-auto">
-          <span className="text-2xl">🌿</span>
           <p className="text-green-800 font-medium text-sm">{t("noGelatin")}</p>
         </div>
       </div>
