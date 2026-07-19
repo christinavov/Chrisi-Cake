@@ -74,7 +74,7 @@ export default function Header() {
     document.documentElement.style.transition = "opacity 0.2s ease";
     document.documentElement.style.opacity = "0";
     setTimeout(() => {
-      router.push(newPath);
+      router.push(newPath, { scroll: false });
       requestAnimationFrame(() => requestAnimationFrame(() => {
         document.documentElement.style.opacity = "1";
         window.scrollTo({ top: scrollY, behavior: "instant" });
