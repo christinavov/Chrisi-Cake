@@ -158,7 +158,9 @@
     "pickupTimeLabel": "Pickup Time",
     "pickupTimeError": "Please select a pickup time",
     "minGuestsErrorTwo": "Minimum for a two-tier cake is 20 persons",
-    "maxGuestsErrorOne": "One-tier cake is for max. 25 persons. Choose two-tier for more."
+    "maxGuestsErrorOne": "One-tier cake is for max. 25 persons. Choose two-tier for more.",
+    "maxGuestsErrorTwo": "Two-tier cake is for max. 40 persons. For larger orders please write directly via WhatsApp.",
+    "tierCustomNote": "For a bigger cake or more tiers, write directly:"
   },
   "prices": {
     "title": "Prices",

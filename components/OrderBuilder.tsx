@@ -242,7 +242,7 @@ export default function OrderBuilder() {
   }, []);
 
   const minGuests = twoTier ? 20 : 10;
-  const maxGuests = twoTier ? undefined : 25;
+  const maxGuests = twoTier ? 40 : 25;
 
   const flavorPrice = flavor ? flavorPrices[flavor] : null;
   const guestsNum = guests ? parseInt(guests) : null;
@@ -253,6 +253,7 @@ export default function OrderBuilder() {
     setTwoTier(val);
     setGuestsError("");
     if (val && guests && parseInt(guests) < 20) setGuests("20");
+    if (val && guests && parseInt(guests) > 40) setGuests("40");
     if (!val && guests && parseInt(guests) > 25) setGuests("25");
   };
 
@@ -279,6 +280,9 @@ export default function OrderBuilder() {
     } else if (guests && !twoTier && parseInt(guests) > 25) {
       newErrors.guests = true;
       setGuestsError(t("maxGuestsErrorOne"));
+    } else if (guests && twoTier && parseInt(guests) > 40) {
+      newErrors.guests = true;
+      setGuestsError(t("maxGuestsErrorTwo"));
     } else {
       setGuestsError("");
     }
@@ -488,6 +492,10 @@ export default function OrderBuilder() {
                 <p className="text-xs text-pink-500">{t("tierTwoNote")}</p>
               </button>
             </div>
+            <p className="mt-3 text-xs text-gray-400 text-center">
+              {t("tierCustomNote")}{" "}
+              <a href="https://wa.me/41762236126" target="_blank" rel="noopener noreferrer" className="text-pink-500 underline">WhatsApp</a>.
+            </p>
           </div>
 
           {/* Occasion */}
@@ -531,6 +539,7 @@ export default function OrderBuilder() {
                   let val = Math.round(raw / 5) * 5;
                   if (val < minGuests) val = minGuests;
                   if (!twoTier && val > 25) val = 25;
+                  if (twoTier && val > 40) val = 40;
                   setGuests(String(val));
                   if (val < minGuests) {
                     setGuestsError(twoTier ? t("minGuestsErrorTwo") : t("minGuestsError"));

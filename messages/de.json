@@ -158,7 +158,9 @@
     "pickupTimeLabel": "Abholzeit",
     "pickupTimeError": "Bitte wähle eine Abholzeit",
     "minGuestsErrorTwo": "Mindestanzahl für zweistöckige Torte ist 20 Personen",
-    "maxGuestsErrorOne": "Einstöckige Torte ist für max. 25 Personen. Wählen Sie zweistöckig für mehr."
+    "maxGuestsErrorOne": "Einstöckige Torte ist für max. 25 Personen. Wählen Sie zweistöckig für mehr.",
+    "maxGuestsErrorTwo": "Zweistöckige Torte ist für max. 40 Personen. Für größere Bestellungen bitte direkt per WhatsApp anfragen.",
+    "tierCustomNote": "Für größere Torten oder mehr Etagen bitte direkt schreiben:"
   },
   "prices": {
     "title": "Preise",
