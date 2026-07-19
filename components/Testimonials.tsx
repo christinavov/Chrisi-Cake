@@ -33,7 +33,7 @@ export default function Testimonials() {
           <p className="text-gray-500 text-lg">{t("subtitle")}</p>
         </div>
 
-        <div className="columns-2 sm:columns-4 gap-3">
+        <div className="columns-2 sm:columns-4 gap-3 min-h-[500px]">
           {reviewImages.map((src) => (
             <div
               key={src}
@@ -41,7 +41,7 @@ export default function Testimonials() {
               className="break-inside-avoid mb-3 cursor-pointer rounded-2xl overflow-hidden border border-pink-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={src} alt="Kundenbewertung" className="w-full h-auto block" />
+              <img src={src} alt="Kundenbewertung" className="w-full h-auto block" style={{ contentVisibility: "auto", containIntrinsicSize: "0 300px" }} />
             </div>
           ))}
         </div>

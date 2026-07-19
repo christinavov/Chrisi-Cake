@@ -27,7 +27,7 @@ export default function TestimonialsPreview() {
           <p className="text-gray-500 text-lg">{t("subtitle")}</p>
         </div>
 
-        <div className="columns-2 sm:columns-4 gap-3 mb-10">
+        <div className="columns-2 sm:columns-4 gap-3 mb-10 min-h-[300px]">
           {previewImages.map((src) => (
             <div
               key={src}
@@ -35,7 +35,7 @@ export default function TestimonialsPreview() {
               className="break-inside-avoid mb-3 cursor-pointer rounded-2xl overflow-hidden border border-pink-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={src} alt="Kundenbewertung" className="w-full h-auto block" />
+              <img src={src} alt="Kundenbewertung" className="w-full h-auto block" style={{ contentVisibility: "auto", containIntrinsicSize: "0 300px" }} />
             </div>
           ))}
         </div>
