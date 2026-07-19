@@ -75,7 +75,10 @@ export default function Flavors() {
       <div className="max-w-6xl mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-script text-pink-700 mb-3">{t("title")}</h2>
-          <p className="text-gray-500 text-lg">{t("subtitle")}</p>
+          <p className="text-gray-500 text-lg mb-4">{t("subtitle")}</p>
+          <div className="inline-flex items-center gap-2 bg-green-50 border border-green-200 rounded-2xl px-5 py-2.5">
+            <p className="text-green-800 font-medium text-sm">{t("noGelatin")}</p>
+          </div>
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
@@ -128,10 +131,6 @@ export default function Flavors() {
           })}
         </div>
 
-        {/* No gelatin notice */}
-        <div className="mt-8 flex items-center justify-center gap-3 bg-green-50 border border-green-200 rounded-2xl px-6 py-4 max-w-xl mx-auto">
-          <p className="text-green-800 font-medium text-sm">{t("noGelatin")}</p>
-        </div>
       </div>
     </section>
   );
