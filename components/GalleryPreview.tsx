@@ -165,16 +165,15 @@ export default function GalleryPreview() {
               key={i}
               data-src={src}
               onClick={e => setSelected(e.currentTarget.dataset.src!)}
-              className="group relative overflow-hidden rounded-2xl shadow-sm transition-all duration-300 hover:-translate-y-1 cursor-pointer"
+              className="group relative overflow-hidden rounded-2xl shadow-sm transition-all duration-300 hover:-translate-y-1 cursor-pointer aspect-[4/5]"
               onMouseEnter={e => (e.currentTarget.style.boxShadow = "0 0 0 2px rgba(236,72,153,0.7), 0 0 20px 6px rgba(249,168,212,0.8), 0 0 45px 16px rgba(251,207,232,0.5)")}
               onMouseLeave={e => (e.currentTarget.style.boxShadow = "")}
             >
               <Image
                 src={src}
                 alt={`Chrisi Cake ${i + 1}`}
-                width={400}
-                height={500}
-                className="w-full h-auto block"
+                fill
+                className="object-cover"
                 sizes="(max-width: 640px) 50vw, 25vw"
                 style={{ opacity: fadingIndex === i ? 0 : 1, transition: `opacity ${FADE_DURATION}ms ease-in-out` }}
               />
