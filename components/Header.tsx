@@ -64,12 +64,11 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
-    const saved = sessionStorage.getItem("restoreScroll");
-    if (saved) {
-      sessionStorage.removeItem("restoreScroll");
-      window.scrollTo({ top: parseInt(saved), behavior: "instant" });
+    const pos = (window as unknown as Record<string, number>).__restoreScroll;
+    if (pos) {
+      window.scrollTo({ top: pos, behavior: "instant" });
+      delete (window as unknown as Record<string, number>).__restoreScroll;
     }
-    document.documentElement.style.opacity = "0";
     document.documentElement.style.transition = "opacity 0.3s ease";
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
