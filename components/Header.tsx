@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -56,6 +56,7 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
+  const restoreScrollRef = useRef<number | null>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -63,22 +64,27 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Restore scroll after locale navigation completes
   useEffect(() => {
-    document.documentElement.style.opacity = "1";
-  }, []);
+    if (restoreScrollRef.current !== null) {
+      const target = restoreScrollRef.current;
+      restoreScrollRef.current = null;
+      requestAnimationFrame(() => {
+        window.scrollTo({ top: target, behavior: "instant" });
+        document.documentElement.style.transition = "opacity 0.25s ease";
+        document.documentElement.style.opacity = "1";
+      });
+    }
+  }, [pathname]);
 
   const switchLocale = (newLocale: string) => {
-    const scrollY = window.scrollY;
+    restoreScrollRef.current = window.scrollY;
     const newPath = newLocale === "de" ? "/" : `/${newLocale}`;
     setLangOpen(false);
     document.documentElement.style.transition = "opacity 0.2s ease";
     document.documentElement.style.opacity = "0";
     setTimeout(() => {
       router.push(newPath, { scroll: false });
-      requestAnimationFrame(() => requestAnimationFrame(() => {
-        document.documentElement.style.opacity = "1";
-        window.scrollTo({ top: scrollY, behavior: "instant" });
-      }));
     }, 200);
   };
 
