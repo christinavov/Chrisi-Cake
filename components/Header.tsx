@@ -67,16 +67,25 @@ export default function Header() {
     const saved = sessionStorage.getItem("restoreScroll");
     if (saved) {
       sessionStorage.removeItem("restoreScroll");
-      setTimeout(() => window.scrollTo({ top: parseInt(saved), behavior: "instant" }), 100);
+      window.scrollTo({ top: parseInt(saved), behavior: "instant" });
     }
+    document.documentElement.style.opacity = "0";
+    document.documentElement.style.transition = "opacity 0.3s ease";
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        document.documentElement.style.opacity = "1";
+      });
+    });
   }, []);
 
   const switchLocale = (newLocale: string) => {
     const scrollY = window.scrollY;
     const newPath = newLocale === "de" ? "/" : `/${newLocale}`;
     sessionStorage.setItem("restoreScroll", String(scrollY));
-    window.location.href = newPath;
     setLangOpen(false);
+    document.documentElement.style.transition = "opacity 0.25s ease";
+    document.documentElement.style.opacity = "0";
+    setTimeout(() => { window.location.href = newPath; }, 250);
   };
 
   const scrollTo = (id: string) => {
