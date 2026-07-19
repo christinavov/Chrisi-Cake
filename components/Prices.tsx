@@ -66,13 +66,14 @@ export default function Prices() {
   const [extraBottle, setExtraBottle] = useState(false);
 
   const minGuests = twoTier ? 20 : 10;
-  const maxGuests = twoTier ? 200 : 25;
+  const maxGuests = twoTier ? 40 : 25;
   const flavorPrice = flavorList.find((f) => f.key === flavor)?.price ?? 10;
   const pricePerPerson = flavorPrice + (twoTier ? 3 : 0);
 
   const handleTwoTier = (val: boolean) => {
     setTwoTier(val);
     if (val && guests < 20) setGuests(20);
+    if (val && guests > 40) setGuests(40);
     if (!val) setGuests(10);
   };
 
