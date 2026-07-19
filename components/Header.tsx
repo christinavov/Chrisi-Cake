@@ -64,27 +64,22 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
-    const pos = (window as unknown as Record<string, number>).__restoreScroll;
-    if (pos) {
-      window.scrollTo({ top: pos, behavior: "instant" });
-      delete (window as unknown as Record<string, number>).__restoreScroll;
-    }
-    document.documentElement.style.transition = "opacity 0.3s ease";
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        document.documentElement.style.opacity = "1";
-      });
-    });
+    document.documentElement.style.opacity = "1";
   }, []);
 
   const switchLocale = (newLocale: string) => {
     const scrollY = window.scrollY;
     const newPath = newLocale === "de" ? "/" : `/${newLocale}`;
-    sessionStorage.setItem("restoreScroll", String(scrollY));
     setLangOpen(false);
-    document.documentElement.style.transition = "opacity 0.25s ease";
+    document.documentElement.style.transition = "opacity 0.2s ease";
     document.documentElement.style.opacity = "0";
-    setTimeout(() => { window.location.href = newPath; }, 250);
+    setTimeout(() => {
+      router.push(newPath);
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        document.documentElement.style.opacity = "1";
+        window.scrollTo({ top: scrollY, behavior: "instant" });
+      }));
+    }, 200);
   };
 
   const scrollTo = (id: string) => {

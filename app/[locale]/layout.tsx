@@ -61,16 +61,7 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} className="scroll-smooth">
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: `
-          (function(){
-            var s = sessionStorage.getItem('restoreScroll');
-            if(s){ sessionStorage.removeItem('restoreScroll'); document.documentElement.style.opacity='0'; window.__restoreScroll=parseInt(s); }
-            else { document.documentElement.style.opacity='0'; }
-          })();
-        `}} />
-      </head>
-      <body className={`${inter.variable} ${dancing.variable} font-sans antialiased`}>
+<body className={`${inter.variable} ${dancing.variable} font-sans antialiased`}>
         <NextIntlClientProvider messages={messages}>
           {children}
           <HashScroll />
