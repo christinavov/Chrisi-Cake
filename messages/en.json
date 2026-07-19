@@ -152,6 +152,7 @@
     "tierTwo": "Two-tier",
     "tierOneNote": "10–25 persons",
     "tierTwoNote": "from 20 persons",
+    "minGuestsTwo": "Minimum: 20 persons",
     "fieldRequired": "This field is required",
     "pickupTimeLabel": "Pickup Time",
     "pickupTimeError": "Please select a pickup time",

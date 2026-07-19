@@ -152,6 +152,7 @@
     "tierTwo": "Двоярусний",
     "tierOneNote": "10–25 осіб",
     "tierTwoNote": "від 20 осіб",
+    "minGuestsTwo": "Мінімальна кількість: 20 осіб",
     "fieldRequired": "Це поле є обов'язковим",
     "pickupTimeLabel": "Час самовивозу",
     "pickupTimeError": "Будь ласка, оберіть час самовивозу",

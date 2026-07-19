@@ -509,7 +509,8 @@ export default function OrderBuilder() {
 
           {/* Guests */}
           <div id="field-guests">
-            <label className="block text-sm font-semibold text-pink-800 mb-2">{t("guestsLabel")} *</label>
+            <label className="block text-sm font-semibold text-pink-800 mb-1">{t("guestsLabel")} *</label>
+            {twoTier && <p className="text-xs text-gray-400 mb-2">{t("minGuestsTwo")}</p>}
             <input
               type="text"
               inputMode="numeric"

@@ -152,6 +152,7 @@
     "tierTwo": "Zweistöckig",
     "tierOneNote": "10–25 Personen",
     "tierTwoNote": "ab 20 Personen",
+    "minGuestsTwo": "Mindestanzahl: 20 Personen",
     "fieldRequired": "Dieses Feld ist erforderlich",
     "pickupTimeLabel": "Abholzeit",
     "pickupTimeError": "Bitte wähle eine Abholzeit",

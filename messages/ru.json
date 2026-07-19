@@ -152,6 +152,7 @@
     "tierTwo": "Двухъярусный",
     "tierOneNote": "10–25 человек",
     "tierTwoNote": "от 20 человек",
+    "minGuestsTwo": "Минимальное количество: 20 человек",
     "fieldRequired": "Это поле обязательно",
     "pickupTimeLabel": "Время самовывоза",
     "pickupTimeError": "Пожалуйста, выберите время самовывоза",
