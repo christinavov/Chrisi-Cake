@@ -108,6 +108,7 @@
     "flavorPlaceholder": "Please select a flavor",
     "guestsLabel": "Number of Guests",
     "guestsPlaceholder": "Minimum 10 persons",
+    "guestsPlaceholderTwo": "Minimum 20 persons",
     "dateLabel": "Pickup Date",
     "datePlaceholder": "Select a date",
     "dateNote": "Pickup Mon–Sat 18:00–20:00 · Sundays closed · No delivery",

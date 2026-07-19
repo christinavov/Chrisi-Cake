@@ -108,6 +108,7 @@
     "flavorPlaceholder": "Bitte wähle einen Geschmack",
     "guestsLabel": "Anzahl der Gäste",
     "guestsPlaceholder": "Mindestens 10 Personen",
+    "guestsPlaceholderTwo": "Mindestens 20 Personen",
     "dateLabel": "Abholdatum",
     "datePlaceholder": "Datum wählen",
     "dateNote": "Abholung Mo–Sa von 18:00–20:00 Uhr · Sonntag geschlossen · Keine Lieferung",

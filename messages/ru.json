@@ -108,6 +108,7 @@
     "flavorPlaceholder": "Пожалуйста, выберите начинку",
     "guestsLabel": "Количество гостей",
     "guestsPlaceholder": "Минимум 10 человек",
+    "guestsPlaceholderTwo": "Минимум 20 человек",
     "dateLabel": "Дата самовывоза",
     "datePlaceholder": "Выберите дату",
     "dateNote": "Забрать можно пн–сб с 18:00 до 20:00 · Воскресенье — выходной · Доставки нет",
