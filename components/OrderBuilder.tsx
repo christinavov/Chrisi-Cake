@@ -557,7 +557,7 @@ export default function OrderBuilder() {
                 <AlertTriangle size={12} /> {guestsError}
               </p>
             ) : (
-              <p className="mt-1 text-xs text-gray-400">⚠️ {twoTier ? t("tierTwoNote") : t("minGuests")}</p>
+              <p className="mt-1 text-xs text-gray-400">{twoTier ? t("tierTwoNote") : t("minGuests")}</p>
             )}
           </div>
 
